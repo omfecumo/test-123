@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mario & Yoshi - Nivel Completo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #1a1a2e;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 8px;
+  }
+  #gameCanvas {
+    background: #5c94fc;
+    border: 4px solid #111;
+    border-radius: 4px;
+    image-rendering: pixelated;
+    max-width: 96vw;
+    max-height: 78vh;
+    touch-action: none;
+  }
+  #title {
+    color: #ffd23f;
+    text-shadow: 3px 3px 0 #000;
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+  #hint {
+    color: #eee;
+    font-size: 13px;
+    text-align: center;
+    max-width: 720px;
+  }
+  #overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.72);
+    color: #fff;
+    text-align: center;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 10;
+  }
+  #overlay.hidden { display: none; }
+  #overlay h1 { color: #ffd23f; text-shadow: 3px 3px 0 #000; margin: 0; }
+  #overlay button {
+    font-size: 18px;
+    padding: 10px 26px;
+    border-radius: 8px;
+    border: 3px solid #111;
+    background: #e63946;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #overlay button:hover { background: #ff5566; }
+  #stage { position: relative; }
+  #touchControls {
+    display: none;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 720px;
+    padding: 0 10px;
+  }
+  #touchControls .side { display: flex; gap: 10px; }
+  #touchControls button {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    border: 3px solid #111;
+    background: rgba(255,255,255,0.85);
+    font-size: 22px;
+    font-weight: bold;
+    touch-action: none;
+  }
+  @media (pointer: coarse) {
+    #touchControls { display: flex; }
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="title">🍄 MARIO &amp; YOSHI 🦖 — Nivel Completo</div>
+  <div id="stage">
+    <canvas id="gameCanvas" width="960" height="540"></canvas>
+    <div id="overlay">
+      <h1 id="overlayTitle">MARIO &amp; YOSHI</h1>
+      <div id="overlayText" style="max-width:560px; line-height:1.5;">
+        Encuentra el huevo de <b>Yoshi</b> 🥚 al inicio del nivel para montarlo.<br>
+        Mientras vayas montado sobre Yoshi eres inmune a los enemigos comunes<br>
+        y puedes hacer un <b>salto de aleteo</b> (mantén saltar en el aire).
+      </div>
+      <button id="startBtn">▶ Jugar</button>
+    </div>
+  </div>
+  <div id="hint">
+    Flechas / A-D: mover · Flecha arriba / W / Espacio: saltar (mantén pulsado sobre Yoshi para aletear) · Flecha abajo / S: bajar de Yoshi<br>
+    Objetivo: llega hasta la bandera al final del nivel. Golpea los bloques de interrogación desde abajo, salta sobre los Goombas para eliminarlos.
+  </div>
+  <div id="touchControls">
+    <div class="side">
+      <button id="btnLeft">◀</button>
+      <button id="btnRight">▶</button>
+    </div>
+    <div class="side">
+      <button id="btnDown">▼</button>
+      <button id="btnJump">⤒</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // ---------- Constants ----------
+  const GRAVITY = 0.62;
+  const MAX_FALL = 16;
+  const GROUND_ACCEL = 0.55;
+  const AIR_ACCEL = 0.4;
+  const FRICTION = 0.78;
+  const MAX_RUN = 4.6;
+  const MAX_RUN_YOSHI = 5.6;
+  const JUMP_V = -12.6;
+  const JUMP_V_YOSHI = -13.4;
+  const FLUTTER_ACCEL = -0.62;
+  const FLUTTER_MAX_FRAMES = 34;
+  const LEVEL_W = 6400;
+  const LEVEL_H = H;
+  const GROUND_Y = H - 80;
+
+  // ---------- Level data ----------
+  // Solid platforms/ground: {x,y,w,h}
+  const platforms = [];
+  function ground(x1, x2, topY) {
+    platforms.push({ x: x1, y: topY, w: x2 - x1, h: LEVEL_H - topY, type: 'ground' });
+  }
+  function plat(x, y, w, h, type) {
+    platforms.push({ x, y, w, h, type: type || 'brick' });
+  }
+
+  // Ground with gaps (pits). Segments:
+  ground(0, 760, GROUND_Y);
+  ground(860, 1560, GROUND_Y);
+  ground(1660, 2180, GROUND_Y);
+  // wide gap here needing a flutter jump / platform assist 2180 -> 2460
+  plat(2280, GROUND_Y - 10, 90, 20, 'platform'); // small safety island mid-gap
+  ground(2460, 3400, GROUND_Y);
+  ground(3500, 3900, GROUND_Y);
+  // staircase gap
+  ground(4020, 4700, GROUND_Y);
+  ground(4820, 5400, GROUND_Y);
+  ground(5480, 6400, GROUND_Y);
+
+  // Floating platforms / staircases
+  plat(1000, GROUND_Y - 120, 160, 24, 'platform');
+  plat(1230, GROUND_Y - 200, 140, 24, 'platform');
+  plat(1900, GROUND_Y - 140, 120, 24, 'platform');
+
+  // pipes (solid obstacles)
+  plat(1420, GROUND_Y - 80, 70, 80, 'pipe');
+  plat(3150, GROUND_Y - 85, 70, 85, 'pipe');
+  plat(4550, GROUND_Y - 80, 70, 80, 'pipe');
+
+  // staircase near 4020-4700 gap
+  plat(3900, GROUND_Y - 40, 60, 40, 'brick');
+  plat(3960, GROUND_Y - 80, 60, 80, 'brick');
+  plat(4020, GROUND_Y - 120, 60, 120, 'brick');
+  // descending side
+  plat(4640, GROUND_Y - 120, 60, 120, 'brick');
+  plat(4700, GROUND_Y - 80, 60, 80, 'brick');
+  plat(4760, GROUND_Y - 40, 60, 40, 'brick');
+
+  // Question blocks {x,y,w,h,hit,coin}
+  const blocks = [
+    { x: 340, y: GROUND_Y - 160, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 1030, y: GROUND_Y - 200, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 1260, y: GROUND_Y - 280, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 1980, y: GROUND_Y - 220, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 2600, y: GROUND_Y - 160, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 2660, y: GROUND_Y - 160, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 3600, y: GROUND_Y - 160, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+    { x: 5000, y: GROUND_Y - 160, w: 40, h: 40, hit: false, coin: true, bump: 0 },
+  ];
+
+  // Floating decorative collectible coins (not from blocks)
+  const coins = [
+    { x: 1080, y: GROUND_Y - 260, taken: false },
+    { x: 1120, y: GROUND_Y - 260, taken: false },
+    { x: 1160, y: GROUND_Y - 260, taken: false },
+    { x: 2300, y: GROUND_Y - 90, taken: false },
+    { x: 2320, y: GROUND_Y - 110, taken: false },
+    { x: 2340, y: GROUND_Y - 90, taken: false },
+    { x: 4300, y: GROUND_Y - 40, taken: false },
+    { x: 4340, y: GROUND_Y - 40, taken: false },
+    { x: 4380, y: GROUND_Y - 40, taken: false },
+  ];
+
+  // Goombas {x,y,w,h,vx,minX,maxX,alive}
+  const enemies = [
+    { x: 950, y: GROUND_Y - 32, w: 32, h: 32, vx: -1.4, minX: 870, maxX: 1540, alive: true, squash: 0 },
+    { x: 1750, y: GROUND_Y - 32, w: 32, h: 32, vx: 1.4, minX: 1670, maxX: 2160, alive: true, squash: 0 },
+    { x: 2600, y: GROUND_Y - 32, w: 32, h: 32, vx: -1.4, minX: 2470, maxX: 3130, alive: true, squash: 0 },
+    { x: 2900, y: GROUND_Y - 32, w: 32, h: 32, vx: 1.4, minX: 2470, maxX: 3390, alive: true, squash: 0 },
+    { x: 3550, y: GROUND_Y - 32, w: 32, h: 32, vx: -1.4, minX: 3510, maxX: 3880, alive: true, squash: 0 },
+    { x: 4900, y: GROUND_Y - 32, w: 32, h: 32, vx: 1.4, minX: 4830, maxX: 5390, alive: true, squash: 0 },
+    { x: 5600, y: GROUND_Y - 32, w: 32, h: 32, vx: -1.4, minX: 5490, maxX: 6100, alive: true, squash: 0 },
+  ];
+
+  // Yoshi egg spawn points {x,y,used}
+  const yoshiEggs = [
+    { x: 220, y: GROUND_Y - 40, used: false },
+    { x: 3650, y: GROUND_Y - 40, used: false }, // backup mount later in the level
+  ];
+
+  const flag = { x: 6250, y: GROUND_Y - 260, w: 10, h: 260 };
+  const goalX = flag.x;
+
+  // ---------- Player ----------
+  function freshPlayer() {
+    return {
+      x: 60, y: GROUND_Y - 40, w: 30, h: 40,
+      vx: 0, vy: 0, onGround: false, facing: 1,
+      riding: false, flutterFrames: 0, usedFlutter: false,
+      invuln: 0, dead: false
+    };
+  }
+  let player = freshPlayer();
+  let lives = 3;
+  let score = 0;
+  let coinCount = 0;
+  let camX = 0;
+  let won = false;
+  let gameOver = false;
+  let running = false;
+  let respawnX = 60;
+
+  // ---------- Input ----------
+  const keys = {};
+  function setKey(name, val) { keys[name] = val; }
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyW','KeyA','KeyS','KeyD'].includes(e.code)) e.preventDefault();
+    mapKey(e.code, true);
+  });
+  window.addEventListener('keyup', (e) => { mapKey(e.code, false); });
+  function mapKey(code, val) {
+    if (code === 'ArrowLeft' || code === 'KeyA') setKey('left', val);
+    if (code === 'ArrowRight' || code === 'KeyD') setKey('right', val);
+    if (code === 'ArrowUp' || code === 'KeyW' || code === 'Space') setKey('jump', val);
+    if (code === 'ArrowDown' || code === 'KeyS') setKey('down', val);
+  }
+  // touch controls
+  function bindHold(id, name) {
+    const el = document.getElementById(id);
+    const on = (e) => { e.preventDefault(); setKey(name, true); };
+    const off = (e) => { e.preventDefault(); setKey(name, false); };
+    el.addEventListener('touchstart', on);
+    el.addEventListener('touchend', off);
+    el.addEventListener('touchcancel', off);
+    el.addEventListener('mousedown', on);
+    el.addEventListener('mouseup', off);
+    el.addEventListener('mouseleave', off);
+  }
+  bindHold('btnLeft', 'left');
+  bindHold('btnRight', 'right');
+  bindHold('btnJump', 'jump');
+  bindHold('btnDown', 'down');
+
+  // Debug/automation hook (also usable for accessibility scripting) - does not affect normal play.
+  window.__game = {
+    setInput(obj) { Object.assign(keys, obj); },
+    getState() {
+      return {
+        x: player.x, y: player.y, riding: player.riding, lives, score,
+        coins: coinCount, won, gameOver, camX, onGround: player.onGround, vy: player.vy
+      };
+    },
+    // Test-only helpers, harmless for normal play.
+    mount() { player.riding = true; },
+    teleport(x, y) { player.x = x; if (y !== undefined) player.y = y; }
+  };
+
+  // ---------- Collision helpers ----------
+  function aabb(a, b) {
+    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+  }
+
+  function resolveHorizontal(box, vx) {
+    box.x += vx;
+    for (const p of platforms) {
+      if (aabb(box, p)) {
+        if (vx > 0) box.x = p.x - box.w;
+        else if (vx < 0) box.x = p.x + p.w;
+      }
+    }
+  }
+
+  function resolveVertical(box, vy) {
+    box.y += vy;
+    let onGround = false;
+    let hitCeiling = null;
+    for (const p of platforms) {
+      if (aabb(box, p)) {
+        if (vy > 0) { box.y = p.y - box.h; onGround = true; }
+        else if (vy < 0) { box.y = p.y + p.h; hitCeiling = p; }
+      }
+    }
+    for (const b of blocks) {
+      const bb = { x: b.x, y: b.y, w: b.w, h: b.h };
+      if (aabb(box, bb)) {
+        if (vy > 0) { box.y = b.y - box.h; onGround = true; }
+        else if (vy < 0) {
+          box.y = b.y + b.h;
+          hitCeiling = b;
+          if (!b.hit) {
+            b.hit = true;
+            b.bump = 8;
+            if (b.coin) { score += 50; coinCount++; }
+          }
+        }
+      }
+    }
+    return { onGround, hitCeiling };
+  }
+
+  // ---------- Update ----------
+  function respawnPlayer(fell) {
+    if (fell) lives--;
+    if (lives <= 0) {
+      gameOver = true;
+      running = false;
+      showOverlay('GAME OVER', `Puntuación final: ${score}`, 'Reintentar');
+      return;
+    }
+    player = freshPlayer();
+    player.x = respawnX;
+  }
+
+  function update() {
+    if (!running) return;
+
+    // Horizontal input
+    const maxRun = player.riding ? MAX_RUN_YOSHI : MAX_RUN;
+    const accel = player.onGround ? GROUND_ACCEL : AIR_ACCEL;
+    if (keys.left) { player.vx -= accel; player.facing = -1; }
+    if (keys.right) { player.vx += accel; player.facing = 1; }
+    if (!keys.left && !keys.right) player.vx *= FRICTION;
+    player.vx = Math.max(-maxRun, Math.min(maxRun, player.vx));
+    if (Math.abs(player.vx) < 0.05) player.vx = 0;
+
+    // Jump / flutter
+    if (keys.jump && player.onGround) {
+      player.vy = player.riding ? JUMP_V_YOSHI : JUMP_V;
+      player.onGround = false;
+      player.usedFlutter = false;
+      player.flutterFrames = FLUTTER_MAX_FRAMES;
+    } else if (keys.jump && player.riding && !player.onGround && player.flutterFrames > 0 && player.vy > -2) {
+      // flutter: gentle upward thrust while airborne, limited duration, only while rising/falling slowly
+      player.vy += FLUTTER_ACCEL;
+      player.vy = Math.max(player.vy, -6.5);
+      player.flutterFrames--;
+    }
+    if (player.onGround) player.flutterFrames = FLUTTER_MAX_FRAMES;
+    if (!keys.jump) {
+      // cut jump short if released early (snappier control)
+      if (player.vy < -4 && !player.onGround) player.vy = Math.max(player.vy, -4);
+    }
+
+    // Dismount voluntarily
+    if (keys.down && player.riding) {
+      player.riding = false;
+    }
+
+    // Gravity
+    player.vy += GRAVITY;
+    if (player.vy > MAX_FALL) player.vy = MAX_FALL;
+
+    // Move & collide
+    const box = { x: player.x, y: player.y, w: player.w, h: player.h };
+    resolveHorizontal(box, player.vx);
+    box.x = Math.max(0, Math.min(LEVEL_W - box.w, box.x));
+    const vres = resolveVertical(box, player.vy);
+    player.x = box.x; player.y = box.y;
+    player.onGround = vres.onGround;
+    if (vres.onGround) player.vy = 0;
+    if (vres.hitCeiling) player.vy = 0.5;
+
+    if (player.invuln > 0) player.invuln--;
+
+    // Yoshi eggs
+    for (const eg of yoshiEggs) {
+      if (!eg.used) {
+        const eb = { x: eg.x, y: eg.y - 10, w: 34, h: 34 };
+        if (aabb({ x: player.x, y: player.y, w: player.w, h: player.h }, eb)) {
+          eg.used = true;
+          player.riding = true;
+          score += 200;
+        }
+      }
+    }
+
+    // Coins
+    for (const c of coins) {
+      if (!c.taken) {
+        const cb = { x: c.x - 10, y: c.y - 10, w: 20, h: 20 };
+        if (aabb({ x: player.x, y: player.y, w: player.w, h: player.h }, cb)) {
+          c.taken = true;
+          score += 25;
+          coinCount++;
+        }
+      }
+    }
+
+    // Enemies
+    for (const e of enemies) {
+      if (!e.alive) continue;
+      e.x += e.vx;
+      if (e.x < e.minX) { e.x = e.minX; e.vx *= -1; }
+      if (e.x + e.w > e.maxX) { e.x = e.maxX - e.w; e.vx *= -1; }
+      const pb = { x: player.x, y: player.y, w: player.w, h: player.h };
+      if (aabb(pb, e)) {
+        const playerBottom = player.y + player.h;
+        const stomping = player.vy > 0 && playerBottom - e.y < 18;
+        if (stomping) {
+          e.alive = false;
+          e.squash = 1;
+          player.vy = -8; // bounce
+          score += 100;
+        } else if (player.riding) {
+          // Yoshi eats/defeats enemy on contact, rider unharmed
+          e.alive = false;
+          score += 100;
+        } else if (player.invuln <= 0) {
+          // Player gets hurt
+          player.invuln = 90;
+          lives--;
+          player.vx = (player.x < e.x ? -1 : 1) * 6;
+          player.vy = -8;
+          if (lives <= 0) {
+            gameOver = true;
+            running = false;
+            showOverlay('GAME OVER', `Puntuación final: ${score}`, 'Reintentar');
+          }
+        }
+      }
+    }
+
+    // Block bump animation decay
+    for (const b of blocks) if (b.bump > 0) b.bump -= 1;
+
+    // Fell into pit
+    if (player.y > LEVEL_H + 100) {
+      respawnPlayer(true);
+    }
+
+    // Update respawn checkpoint (last solid ground x under player, roughly every ground segment start)
+    if (player.onGround) {
+      respawnX = Math.max(60, Math.min(player.x, LEVEL_W - 200));
+    }
+
+    // Win check
+    if (!won && player.x + player.w >= goalX) {
+      won = true;
+      running = false;
+      showOverlay('¡NIVEL COMPLETADO! 🏁', `Puntuación: ${score} · Monedas: ${coinCount}`, 'Jugar de nuevo');
+    }
+
+    // Camera
+    camX = Math.max(0, Math.min(player.x - W / 2, LEVEL_W - W));
+  }
+
+  // ---------- Drawing ----------
+  function drawBackground() {
+    // sky gradient
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#5c94fc');
+    g.addColorStop(1, '#9ed2ff');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    // parallax hills
+    ctx.fillStyle = '#3aa93a';
+    for (let i = -1; i < 8; i++) {
+      const bx = i * 400 - (camX * 0.3) % 400;
+      ctx.beginPath();
+      ctx.ellipse(bx + 200, GROUND_Y + 40, 160, 90, 0, Math.PI, 0);
+      ctx.fill();
+    }
+    // clouds
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    for (let i = -1; i < 10; i++) {
+      const cx = i * 320 - (camX * 0.5) % 320;
+      drawCloud(cx + 100, 70 + (i % 3) * 30);
+    }
+  }
+
+  function drawCloud(x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, 18, 0, Math.PI * 2);
+    ctx.arc(x + 20, y - 10, 22, 0, Math.PI * 2);
+    ctx.arc(x + 42, y, 18, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawPlatforms() {
+    for (const p of platforms) {
+      const sx = p.x - camX;
+      if (sx + p.w < 0 || sx > W) continue;
+      if (p.type === 'ground') {
+        ctx.fillStyle = '#8b5a2b';
+        ctx.fillRect(sx, p.y, p.w, Math.min(p.h, H - p.y));
+        ctx.fillStyle = '#3aa93a';
+        ctx.fillRect(sx, p.y, p.w, 12);
+        // brick texture lines
+        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+        for (let bx = 0; bx < p.w; bx += 32) {
+          ctx.beginPath(); ctx.moveTo(sx + bx, p.y + 12); ctx.lineTo(sx + bx, p.y + Math.min(p.h, H - p.y)); ctx.stroke();
+        }
+      } else if (p.type === 'pipe') {
+        ctx.fillStyle = '#1f9d55';
+        ctx.fillRect(sx, p.y, p.w, p.h);
+        ctx.fillStyle = '#17c766';
+        ctx.fillRect(sx - 6, p.y, p.w + 12, 22);
+        ctx.strokeStyle = '#0b6b38';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(sx, p.y, p.w, p.h);
+      } else if (p.type === 'platform') {
+        ctx.fillStyle = '#c77b3b';
+        ctx.fillRect(sx, p.y, p.w, p.h);
+        ctx.fillStyle = '#e0a15c';
+        ctx.fillRect(sx, p.y, p.w, 5);
+      } else {
+        ctx.fillStyle = '#b5651d';
+        ctx.fillRect(sx, p.y, p.w, p.h);
+        ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+        ctx.strokeRect(sx, p.y, p.w, p.h);
+      }
+    }
+  }
+
+  function drawBlocks() {
+    for (const b of blocks) {
+      const sx = b.x - camX;
+      if (sx + b.w < 0 || sx > W) continue;
+      const y = b.y - (b.bump || 0);
+      if (!b.hit) {
+        ctx.fillStyle = '#f4b400';
+        ctx.fillRect(sx, y, b.w, b.h);
+        ctx.strokeStyle = '#8a5a00';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(sx, y, b.w, b.h);
+        ctx.fillStyle = '#8a5a00';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('?', sx + b.w / 2, y + b.h / 2 + 7);
+      } else {
+        ctx.fillStyle = '#a9762f';
+        ctx.fillRect(sx, y, b.w, b.h);
+        ctx.strokeStyle = '#5c3d15';
+        ctx.strokeRect(sx, y, b.w, b.h);
+      }
+    }
+  }
+
+  function drawCoins() {
+    for (const c of coins) {
+      if (c.taken) continue;
+      const sx = c.x - camX;
+      if (sx < -20 || sx > W + 20) continue;
+      ctx.fillStyle = '#ffd23f';
+      ctx.beginPath();
+      ctx.ellipse(sx, c.y, 8 + Math.sin(Date.now() / 150 + c.x) * 2, 10, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#a9761f';
+      ctx.stroke();
+    }
+  }
+
+  function drawEggs() {
+    for (const eg of yoshiEggs) {
+      if (eg.used) continue;
+      const sx = eg.x - camX;
+      if (sx < -40 || sx > W + 40) continue;
+      ctx.fillStyle = '#f2f2f2';
+      ctx.beginPath();
+      ctx.ellipse(sx + 15, eg.y + 20, 16, 20, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#3ec6f0';
+      ctx.beginPath(); ctx.arc(sx + 10, eg.y + 12, 3, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(sx + 20, eg.y + 26, 3, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#999';
+      ctx.stroke();
+    }
+  }
+
+  function drawEnemies() {
+    for (const e of enemies) {
+      const sx = e.x - camX;
+      if (sx + e.w < 0 || sx > W) continue;
+      if (!e.alive) continue;
+      // Goomba: brown mushroom body
+      ctx.fillStyle = '#8b4513';
+      ctx.beginPath();
+      ctx.ellipse(sx + e.w / 2, e.y + 14, e.w / 2, 14, 0, Math.PI, 0);
+      ctx.fill();
+      ctx.fillRect(sx + 2, e.y + 12, e.w - 4, 12);
+      ctx.fillStyle = '#5a2d0c';
+      ctx.fillRect(sx + 2, e.y + e.h - 8, 10, 8);
+      ctx.fillRect(sx + e.w - 12, e.y + e.h - 8, 10, 8);
+      // eyes
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(sx + 10, e.y + 12, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(sx + e.w - 10, e.y + 12, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#000';
+      ctx.beginPath(); ctx.arc(sx + 10, e.y + 12, 2, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(sx + e.w - 10, e.y + 12, 2, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  function drawFlag() {
+    const sx = flag.x - camX;
+    ctx.fillStyle = '#888';
+    ctx.fillRect(sx, flag.y, 6, flag.h);
+    ctx.fillStyle = won ? '#ffd23f' : '#e63946';
+    ctx.beginPath();
+    ctx.moveTo(sx + 6, flag.y + 6);
+    ctx.lineTo(sx + 46, flag.y + 20);
+    ctx.lineTo(sx + 6, flag.y + 34);
+    ctx.closePath();
+    ctx.fill();
+    // castle block at base
+    ctx.fillStyle = '#777';
+    ctx.fillRect(sx - 20, GROUND_Y - 40, 60, 40);
+    ctx.fillStyle = '#999';
+    for (let i = 0; i < 3; i++) ctx.fillRect(sx - 20 + i * 20, GROUND_Y - 52, 12, 12);
+  }
+
+  function drawYoshi(sx, sy, facing) {
+    const dir = facing >= 0 ? 1 : -1;
+    // tail
+    ctx.fillStyle = '#2a9c26';
+    ctx.beginPath();
+    ctx.ellipse(sx + 20 - dir * 20, sy + 10, 8, 6, 0.4 * dir, 0, Math.PI * 2);
+    ctx.fill();
+    // legs (behind body)
+    ctx.fillStyle = '#2a9c26';
+    ctx.fillRect(sx + 8, sy + 22, 9, 14);
+    ctx.fillRect(sx + 28, sy + 22, 9, 14);
+    // Body
+    ctx.fillStyle = '#3ec639';
+    ctx.beginPath();
+    ctx.ellipse(sx + 22, sy + 14, 22, 16, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // belly
+    ctx.fillStyle = '#f2e9c9';
+    ctx.beginPath();
+    ctx.ellipse(sx + 22, sy + 22, 14, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Head
+    ctx.fillStyle = '#3ec639';
+    ctx.beginPath();
+    ctx.ellipse(sx + 22 + dir * 16, sy - 2, 13, 11, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // snout
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.ellipse(sx + 22 + dir * 27, sy + 1, 7, 6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // eye
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(sx + 22 + dir * 18, sy - 7, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#000';
+    ctx.beginPath(); ctx.arc(sx + 22 + dir * 19, sy - 7, 2, 0, Math.PI * 2); ctx.fill();
+    // saddle
+    ctx.fillStyle = '#e63946';
+    ctx.fillRect(sx + 10, sy + 2, 22, 7);
+  }
+
+  function drawPlayer() {
+    if (player.invuln > 0 && Math.floor(player.invuln / 5) % 2 === 0) return; // blink when hurt
+    const sx = player.x - camX;
+    let sy = player.y;
+    if (player.riding) {
+      drawYoshi(sx - 8, sy + player.h - 16, player.facing);
+      sy -= 10; // Mario sits up on Yoshi's saddle
+    }
+    // Mario body
+    ctx.fillStyle = '#e63946'; // cap/shirt
+    ctx.fillRect(sx, sy, player.w, 14);
+    ctx.fillStyle = '#f2c29a'; // face
+    ctx.fillRect(sx + (player.facing >= 0 ? 10 : 0), sy + 6, player.w - 10, 10);
+    ctx.fillStyle = '#2851a3'; // overalls
+    ctx.fillRect(sx, sy + 14, player.w, player.h - 14);
+    ctx.fillStyle = '#e63946';
+    ctx.fillRect(sx + (player.facing >= 0 ? player.w - 8 : 0), sy + 16, 8, 10); // arm
+    if (!player.riding) {
+      ctx.fillStyle = '#7a3b12';
+      ctx.fillRect(sx, sy + player.h - 8, player.w, 8); // shoes
+    }
+  }
+
+  function drawHUD() {
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    ctx.fillRect(10, 10, 260, 66);
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(`❤ Vidas: ${lives}`, 20, 32);
+    ctx.fillText(`🪙 Monedas: ${coinCount}   ⭐ Puntos: ${score}`, 20, 54);
+    if (player.riding) {
+      ctx.fillStyle = '#3ec639';
+      ctx.fillText('🦖 Montando a Yoshi', 20, 68);
+    }
+    ctx.textAlign = 'left';
+  }
+
+  function draw() {
+    drawBackground();
+    drawPlatforms();
+    drawBlocks();
+    drawCoins();
+    drawEggs();
+    drawEnemies();
+    drawFlag();
+    drawPlayer();
+    drawHUD();
+  }
+
+  // ---------- Overlay control ----------
+  const overlay = document.getElementById('overlay');
+  const overlayTitle = document.getElementById('overlayTitle');
+  const overlayText = document.getElementById('overlayText');
+  const startBtn = document.getElementById('startBtn');
+
+  function showOverlay(title, text, btnLabel) {
+    overlayTitle.textContent = title;
+    overlayText.textContent = text;
+    startBtn.textContent = btnLabel;
+    overlay.classList.remove('hidden');
+  }
+
+  function resetGame() {
+    player = freshPlayer();
+    lives = 3; score = 0; coinCount = 0; camX = 0; won = false; gameOver = false;
+    respawnX = 60;
+    for (const b of blocks) { b.hit = false; b.bump = 0; }
+    for (const c of coins) c.taken = false;
+    for (const e of enemies) e.alive = true;
+    for (const eg of yoshiEggs) eg.used = false;
+  }
+
+  startBtn.addEventListener('click', () => {
+    resetGame();
+    overlay.classList.add('hidden');
+    running = true;
+  });
+
+  // ---------- Main loop ----------
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+  draw();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
