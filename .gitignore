@@ -9,3 +9,7 @@ _site
 *.tgz
 .header.json
 .simstate.json
+
+# Python
+__pycache__/
+*.pyc
