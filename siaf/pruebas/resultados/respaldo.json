@@ -1,0 +1,130 @@
+[
+ {
+  "id": "R01",
+  "nombre": "Exportar respaldo JSON con versión, conteos y huella SHA-256",
+  "estado": "APROBADA",
+  "evidencia": {
+   "formato": 2,
+   "hashArchivo": "7b5cd171a9bcf201",
+   "hashNode": "7b5cd171a9bcf201",
+   "animales": 144,
+   "fotos": 13,
+   "MB": 2.61
+  }
+ },
+ {
+  "id": "R02",
+  "nombre": "SHA-256 en JavaScript puro coincide con la implementación de referencia (Node crypto)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "js": "0adfdea3c2c8a30c"
+  }
+ },
+ {
+  "id": "R03",
+  "nombre": "Exportar respaldo sin fotos (marcado sinFotos)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "sinFotos": true
+  }
+ },
+ {
+  "id": "R04",
+  "nombre": "Restaurar respaldo válido: vista previa con integridad verificada, reemplaza datos y registra en bitácora",
+  "estado": "APROBADA",
+  "evidencia": {
+   "existe": false,
+   "audit": true,
+   "puntos": [
+    "Antes de restaurar «finca_backup_2026-10-10.json»"
+   ]
+  }
+ },
+ {
+  "id": "R05",
+  "nombre": "Antes de restaurar se crea un punto de restauración automático",
+  "estado": "APROBADA",
+  "evidencia": [
+   "Antes de restaurar «finca_backup_2026-10-10.json»"
+  ]
+ },
+ {
+  "id": "R06",
+  "nombre": "Restaurar respaldo SIN fotos conserva las fotos del dispositivo (opción marcada)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "antes": 13,
+   "despues": 13
+  }
+ },
+ {
+  "id": "R07",
+  "nombre": "Archivo modificado: detecta huella que no coincide y exige confirmación explícita",
+  "estado": "APROBADA",
+  "evidencia": {
+   "peso": 408
+  }
+ },
+ {
+  "id": "R08",
+  "nombre": "Respaldo malicioso: descarta IDs/imágenes inválidos, vacía referencias inyectadas y no ejecuta código (XSS)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "xss": null,
+   "malAnimal": false,
+   "loteIdLimpio": null,
+   "fotoMala": false
+  }
+ },
+ {
+  "id": "R09",
+  "nombre": "Archivo JSON corrupto y archivo que no es de SIAF son rechazados sin tocar los datos",
+  "estado": "APROBADA",
+  "evidencia": {
+   "toast": "⛔\nEl archivo no es un JSON válido: Expected double-quoted property name in JSON ",
+   "botonDeshabilitado": true
+  }
+ },
+ {
+  "id": "R10",
+  "nombre": "Restaurar un punto de restauración recupera los datos",
+  "estado": "APROBADA",
+  "evidencia": {
+   "recuperado": true,
+   "animalesAntes": 144
+  }
+ },
+ {
+  "id": "R11",
+  "nombre": "Reversión: un respaldo exportado por v6 se restaura en SIAF v5",
+  "estado": "APROBADA",
+  "evidencia": {
+   "animales": 144,
+   "fotos": 0
+  }
+ },
+ {
+  "id": "R12",
+  "nombre": "Defecto confirmado en v5: restaurar un respaldo «sin fotos» elimina todas las fotos del dispositivo (corregido en v6, ver R06)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "fotosAntes": 13,
+   "fotosDespues": 0
+  }
+ },
+ {
+  "id": "R13",
+  "nombre": "Respaldo de v5 (formato 1, sin huella) se valida con aviso y se restaura en v6; la migración vuelve a registrar el esquema",
+  "estado": "APROBADA",
+  "evidencia": {
+   "animales": 144,
+   "esquema": 6
+  }
+ },
+ {
+  "id": "R14",
+  "nombre": "Sin errores de JavaScript durante las pruebas de respaldo en v6",
+  "estado": "APROBADA",
+  "evidencia": []
+ }
+]

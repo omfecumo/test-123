@@ -1,0 +1,5089 @@
+{
+ "archivo": "SIAFver5.html",
+ "fecha": "2026-10-10T01:44:49.414Z",
+ "tCargaMs": 1701,
+ "rutas": 21,
+ "vistas": {
+  "mapa": {
+   "ms": 261,
+   "errores": [],
+   "inicio": "Lotes Ganado Cultivos Aforo Fertilización Infraestructura Agua Tareas Maquinaria"
+  },
+  "dashboard": {
+   "ms": 343,
+   "errores": [],
+   "inicio": "Resumen de la finca Finca — Puerto López · actualizado 10/10/2026 01:44 · compar"
+  },
+  "ganado": {
+   "ms": 271,
+   "errores": [],
+   "inicio": "Ganado ＋ Nuevo animal 🔄 Mover ⚖️ Pesaje grupal 💉 Sanidad grupal ⬇️ Excel Inven"
+  },
+  "lotes": {
+   "ms": 280,
+   "errores": [],
+   "inicio": "Lotes ＋ Nuevo lote ⬇️ Excel 📐 350 lotes numerados y 44 áreas rotuladas proviene"
+  },
+  "rotacion": {
+   "ms": 280,
+   "errores": [],
+   "inicio": "Planificador de rotación ＋ Programar uso 🔄 Mover ganado Descanso mínimo: 30 día"
+  },
+  "aforo": {
+   "ms": 277,
+   "errores": [],
+   "inicio": "Aforo de pasto ＋ Nuevo aforo ⬇️ Excel Disponibilidad por lote Próximo potrero Hi"
+  },
+  "fertilizacion": {
+   "ms": 278,
+   "errores": [],
+   "inicio": "Fertilización ＋ Registrar aplicación 📅 Programar ⬇️ Excel Aplicaciones Balance "
+  },
+  "pluviosidad": {
+   "ms": 277,
+   "errores": [],
+   "inicio": "Pluviosidad ＋ Registrar lluvia ⚙️ Pluviómetros ⬇️ Excel 2026 2025 Todos los pluv"
+  },
+  "tareas": {
+   "ms": 262,
+   "errores": [],
+   "inicio": "Agenda de finca ＋ Nueva tarea Pendientes Vencidas Completadas Calendario 🟢 Arre"
+  },
+  "alertas": {
+   "ms": 260,
+   "errores": [],
+   "inicio": "Centro de alertas Se calculan automáticamente a partir de los datos registrados "
+  },
+  "inventario": {
+   "ms": 265,
+   "errores": [],
+   "inicio": "Inventario agrícola ＋ Nuevo elemento ⇄ Movimiento ⬇️ Excel Existencias Movimient"
+  },
+  "agricultura": {
+   "ms": 262,
+   "errores": [],
+   "inicio": "Producción agrícola ＋ Cultivo 🧑‍🌾 Labor Cultivos Labores de campo Zonas agríco"
+  },
+  "maquinaria": {
+   "ms": 262,
+   "errores": [],
+   "inicio": "Maquinaria y equipos Tarjetas Tabla ＋ Nuevo equipo ⬇️ Excel 7 Equipos 5 Operativ"
+  },
+  "mantenimiento": {
+   "ms": 259,
+   "errores": [],
+   "inicio": "Mantenimiento ＋ Programar / registrar Programados Historial Calendario Fecha Tip"
+  },
+  "infraestructura": {
+   "ms": 260,
+   "errores": [],
+   "inicio": "Infraestructura Tarjetas Tabla ＋ Agregar 🗺️ Ver en mapa 📐 Los elementos con la"
+  },
+  "agua": {
+   "ms": 259,
+   "errores": [],
+   "inicio": "Sistema hídrico Tarjetas Tabla ＋ Agregar 🗺️ Ver en mapa 📐 Los elementos con la"
+  },
+  "ambiental": {
+   "ms": 259,
+   "errores": [],
+   "inicio": "Gestión ambiental ＋ Registrar ♻️ Compostera 📐 Del plano — identificada en el pl"
+  },
+  "costos": {
+   "ms": 285,
+   "errores": [],
+   "inicio": "Costos ＋ Registrar costo / ingreso 2026 2026 2025 2024 Incluye costos de DATOS D"
+  },
+  "reportes": {
+   "ms": 277,
+   "errores": [],
+   "inicio": "Reportes ⬇️ Exportar finca a Excel 1. Inventario ganadero 2. Ganado por lote 3. "
+  },
+  "bitacora": {
+   "ms": 260,
+   "errores": [],
+   "inicio": "Bitácora de la finca ⬇️ Excel Todos los usuarios Sistema Administrador Fecha – h"
+  },
+  "configuracion": {
+   "ms": 258,
+   "errores": [],
+   "inicio": "Configuración Respaldo Parámetros Usuarios y permisos Plano Aplicación 💾 Export"
+  }
+ },
+ "errores": [],
+ "externas": [],
+ "snap": {
+  "costos": {
+   "n": 664,
+   "monto": 190462640,
+   "ingreso": 47463700,
+   "porOrigen": {
+    "Consumo de insumo": {
+     "n": 171,
+     "m": 28677500
+    },
+    "Fertilización (aplicación)": {
+     "n": 115,
+     "m": 4019940
+    },
+    "Registro de costo": {
+     "n": 33,
+     "m": 63922000
+    },
+    "Tratamiento": {
+     "n": 16,
+     "m": 296000
+    },
+    "Mantenimiento": {
+     "n": 9,
+     "m": 6205000
+    },
+    "Venta": {
+     "n": 12,
+     "m": 47463700
+    },
+    "Labor": {
+     "n": 18,
+     "m": 2209600
+    },
+    "Vacunación": {
+     "n": 262,
+     "m": 629600
+    },
+    "Compra": {
+     "n": 28,
+     "m": 84503000
+    }
+   }
+  },
+  "aforos": {
+   "afo-dm-mv1qenj6s38n7": [
+    6402.983878,
+    5701.857143,
+    253.415873,
+    0,
+    184.97509
+   ],
+   "afo-dm-mv1qenj6x4po5": [
+    1346.247478,
+    1198.833379,
+    60.54714,
+    0,
+    44.194993
+   ],
+   "afo-dm-mv1qenj6layo1": [
+    6376.158326,
+    4227.39297,
+    213.504695,
+    0,
+    209.318329
+   ],
+   "afo-dm-mv1qenj6pllko": [
+    6321.575005,
+    6985.34038,
+    352.794969,
+    0,
+    207.526452
+   ],
+   "afo-dm-mv1qenj6avifk": [
+    1174.462958,
+    1297.781569,
+    65.544524,
+    0,
+    38.555602
+   ],
+   "afo-dm-mv1qenj62jki1": [
+    6418.011925,
+    4088.273596,
+    181.701049,
+    0,
+    185.409233
+   ],
+   "afo-dm-mv1qenj6mv49z": [
+    1372.492336,
+    909.962419,
+    45.957698,
+    0,
+    45.056567
+   ],
+   "afo-dm-mv1qenj6p9lss": [
+    1420.210258,
+    904.673934,
+    45.690603,
+    0,
+    46.623064
+   ],
+   "afo-dm-mv1qenj6ev0kx": [
+    6455.405424,
+    3524.651361,
+    178.012695,
+    0,
+    211.919875
+   ],
+   "afo-dm-mv1qenj6ip199": [
+    6505.105475,
+    3847.769889,
+    194.331813,
+    0,
+    213.551442
+   ],
+   "afo-dm-mv1qenj6kwek3": [
+    6502.791395,
+    4057.741831,
+    180.344081,
+    0,
+    187.858418
+   ],
+   "afo-dm-mv1qenj6nz7mx": [
+    1420.210258,
+    840.054368,
+    42.426988,
+    0,
+    46.623064
+   ],
+   "afo-dm-mv1qenj6jeegm": [
+    1413.05257,
+    771.526703,
+    38.965995,
+    0,
+    46.388089
+   ],
+   "afo-dm-mv1qenj6l7wrk": [
+    1291.371868,
+    805.816045,
+    40.69778,
+    0,
+    42.393521
+   ],
+   "afo-dm-mv1qenj6805mm": [
+    6505.295334,
+    2663.918439,
+    134.541335,
+    0,
+    213.557675
+   ],
+   "afo-dm-mv1qenj6vpjja": [
+    6561.165692,
+    3539.748891,
+    178.775196,
+    0,
+    215.391803
+   ],
+   "afo-dm-mv1qenj6iro74": [
+    6439.782223,
+    4688.161458,
+    208.362731,
+    0,
+    186.038153
+   ],
+   "afo-dm-mv1qenj67laqc": [
+    1329.546206,
+    544.449171,
+    27.497433,
+    0,
+    43.646719
+   ],
+   "afo-dm-mv1qenj62ydpm": [
+    1305.687244,
+    950.540314,
+    48.007087,
+    0,
+    42.86347
+   ],
+   "afo-dm-mv1qenj64s27b": [
+    6566.176822,
+    3585.132545,
+    181.0673,
+    0,
+    215.55631
+   ],
+   "afo-dm-mv1qenj6ci1hb": [
+    6528.331573,
+    4285.849678,
+    216.457054,
+    0,
+    214.313915
+   ],
+   "afo-dm-mv1qenj6cu5zl": [
+    1095.728386,
+    598.267699,
+    30.21554,
+    0,
+    35.970881
+   ],
+   "afo-dm-mv1qenj6egs94": [
+    6423.023054,
+    13443.387253,
+    597.483878,
+    0,
+    185.553999
+   ],
+   "afo-dm-mv1qenj6ji4yv": [
+    1296.14366,
+    2712.82868,
+    137.01155,
+    0,
+    42.550171
+   ],
+   "afo-dm-mv1qenj60bov9": [
+    6478.310027,
+    8042.821898,
+    406.203126,
+    0,
+    212.671794
+   ],
+   "afo-dm-mv1qenj64y2be": [
+    6519.84,
+    5085.4752,
+    256.842182,
+    0,
+    214.035152
+   ],
+   "afo-dm-mv1qenj6wc7fb": [
+    1346.247478,
+    1671.366244,
+    84.412437,
+    0,
+    44.194993
+   ],
+   "afo-dm-mv1qenj64qowv": [
+    6447.293377,
+    13494.185038,
+    599.741557,
+    0,
+    186.255142
+   ],
+   "afo-dm-mv1qenj6ezlqh": [
+    1391.579505,
+    2912.575903,
+    147.099793,
+    0,
+    45.683166
+   ],
+   "afo-dm-mv1qenj69jzi0": [
+    6450.924089,
+    3689.928579,
+    186.360029,
+    0,
+    211.77276
+   ],
+   "afo-dm-mv1qenj6m4vrk": [
+    6669.535182,
+    7760.004184,
+    391.919403,
+    0,
+    218.949387
+   ],
+   "afo-dm-mv1qenj6v1fwe": [
+    1300.915452,
+    744.123639,
+    37.582002,
+    0,
+    42.70682
+   ],
+   "afo-dm-mv1qenj6hikqk": [
+    1477.471765,
+    1719.038398,
+    86.820121,
+    0,
+    48.502861
+   ],
+   "afo-dm-mv1qenj6k7t03": [
+    6404.923153,
+    3497.088041,
+    155.426135,
+    0,
+    185.031113
+   ],
+   "afo-dm-mv1qenj6gej1p": [
+    6607.489259,
+    3478.843095,
+    175.699146,
+    0,
+    216.912526
+   ],
+   "afo-dm-mv1qenj62dqfi": [
+    6453.258117,
+    2936.232443,
+    148.294568,
+    0,
+    211.849383
+   ],
+   "afo-dm-mv1qenj6p0mff": [
+    1508.488414,
+    794.21915,
+    40.112078,
+    0,
+    49.521084
+   ],
+   "afo-dm-mv1qenj6ovbqx": [
+    6424.250667,
+    3424.125605,
+    152.18336,
+    0,
+    185.589464
+   ],
+   "afo-dm-mv1qenj6frksx": [
+    1358.176959,
+    617.970516,
+    31.210632,
+    0,
+    44.586617
+   ],
+   "afo-dm-mv1qenj69hvaf": [
+    1436.911531,
+    765.873846,
+    38.680497,
+    0,
+    47.171338
+   ],
+   "afo-dm-mv1qenj6i2tpv": [
+    6474.492593,
+    3703.409763,
+    187.040897,
+    0,
+    212.546474
+   ],
+   "afo-dm-mv1qenj6rlp9b": [
+    6460.868303,
+    4829.499057,
+    214.644403,
+    0,
+    186.647307
+   ],
+   "afo-dm-mv1qenj6d7xjp": [
+    6576.348667,
+    4445.611699,
+    224.525843,
+    0,
+    215.890234
+   ],
+   "afo-dm-mv1qenj6bjqug": [
+    1217.409088,
+    910.013293,
+    45.960267,
+    0,
+    39.96545
+   ],
+   "afo-dm-mv1qenj6svzi4": [
+    1055.168152,
+    713.293671,
+    36.024933,
+    0,
+    34.639359
+   ],
+   "afo-dm-mv1qenj6pseaa": [
+    1184.006542,
+    677.251742,
+    34.204633,
+    0,
+    38.868902
+   ],
+   "afo-dm-mv1qenj6pnz7r": [
+    6631.058824,
+    4051.576941,
+    204.625098,
+    0,
+    217.686275
+   ],
+   "afo-dm-mv1qenj6htv3j": [
+    6535.986472,
+    8071.943293,
+    358.753035,
+    0,
+    188.817387
+   ],
+   "afo-dm-mv1qenj6txhhe": [
+    6421.446169,
+    3923.503609,
+    198.156748,
+    0,
+    210.805051
+   ],
+   "afo-dm-mv1qenj6nfgo4": [
+    1186.392439,
+    1465.194662,
+    73.99973,
+    0,
+    38.947227
+   ],
+   "afo-dm-mv1qenj6pejrs": [
+    1453.612804,
+    888.157423,
+    44.856436,
+    0,
+    47.719612
+   ],
+   "afo-dm-mv1qenj666ekj": [
+    6535.137734,
+    2633.660507,
+    117.051578,
+    0,
+    188.792868
+   ],
+   "afo-dm-mv1qenj68cgwq": [
+    6561.165692,
+    7932.449321,
+    400.628754,
+    0,
+    215.391803
+   ],
+   "afo-dm-mv1qenj6c7y3j": [
+    6555.36,
+    4260.984,
+    215.201212,
+    0,
+    215.201212
+   ],
+   "afo-dm-mv1qenj65uv83": [
+    6411.504935,
+    3792.405169,
+    191.535615,
+    0,
+    210.478697
+   ],
+   "afo-dm-mv1qenj6oa46h": [
+    6443.325,
+    3559.937063,
+    158.219425,
+    0,
+    186.1405
+   ],
+   "afo-dm-mv1qenj6pqd7c": [
+    6448.997589,
+    3814.582074,
+    192.65566,
+    0,
+    211.709517
+   ],
+   "afo-dm-mv1qenj6m4s4l": [
+    1169.691166,
+    691.872325,
+    34.943047,
+    0,
+    38.398952
+   ],
+   "afo-dm-mv1qenj6nmm92": [
+    1453.612804,
+    859.811973,
+    43.424847,
+    0,
+    47.719612
+   ],
+   "afo-dm-mv1qenj6s17ql": [
+    1570.521713,
+    867.713247,
+    43.823901,
+    0,
+    51.557531
+   ],
+   "afo-dm-mv1qenj65hh7p": [
+    6526.111111,
+    3775.355278,
+    190.674509,
+    0,
+    214.241021
+   ],
+   "afo-dm-mv1qenj6yel2a": [
+    1284.214179,
+    742.917903,
+    37.521106,
+    0,
+    42.158546
+   ],
+   "afo-dm-mv1qenj6fwsaz": [
+    6277.346667,
+    4488.302867,
+    199.480127,
+    0,
+    181.34557
+   ],
+   "afo-dm-mv1qenj6ofagp": [
+    6396.32196,
+    2868.750399,
+    144.886384,
+    0,
+    209.980266
+   ],
+   "afo-dm-mv1qenj6sgoum": [
+    1351.019271,
+    605.932143,
+    30.602633,
+    0,
+    44.351643
+   ],
+   "afo-dm-mv1qenj6g2g0j": [
+    6548.8625,
+    4299.328231,
+    191.081255,
+    0,
+    189.189361
+   ],
+   "afo-dm-mv1qenj6uag6f": [
+    6390.758013,
+    8806.464541,
+    444.770936,
+    0,
+    209.797612
+   ],
+   "afo-dm-mv1qenj6l74ex": [
+    6546.705715,
+    4042.590779,
+    204.171251,
+    0,
+    214.917107
+   ],
+   "afo-dm-mv1qenj6693xq": [
+    1408.280777,
+    1940.610911,
+    98.010652,
+    0,
+    46.23144
+   ],
+   "afo-dm-mv1qenj6pndmc": [
+    1069.483529,
+    660.406079,
+    33.353842,
+    0,
+    35.109308
+   ],
+   "afo-dm-mv1qenj6xmcxi": [
+    6502.395,
+    3846.166643,
+    170.94074,
+    0,
+    187.846967
+   ],
+   "afo-dm-mv1qenj68pb89": [
+    6601.469333,
+    3861.85956,
+    195.043412,
+    0,
+    216.714902
+   ],
+   "afo-dm-mv1qenj6qkg44": [
+    1455.9987,
+    861.223231,
+    43.496123,
+    0,
+    47.797937
+   ],
+   "afo-dm-mv1qenj64os26": [
+    6467.833333,
+    4204.091667,
+    212.327862,
+    0,
+    212.327862
+   ],
+   "afo-dm-mv1qenj6rkl0c": [
+    1465.542284,
+    952.602485,
+    48.111237,
+    0,
+    48.111237
+   ],
+   "afo-dm-mv1qenj6qq8x7": [
+    1067.097633,
+    624.252115,
+    31.527885,
+    0,
+    35.030983
+   ],
+   "afo-dm-mv1qenj6fcvp6": [
+    6761.436366,
+    14151.686314,
+    628.963836,
+    0,
+    195.330384
+   ],
+   "afo-dm-mv1qenj6unlq6": [
+    6522.210515,
+    3900.281888,
+    196.983934,
+    0,
+    214.112971
+   ],
+   "afo-dm-mv1qenj64aq2p": [
+    1176.848854,
+    2463.144652,
+    124.401245,
+    0,
+    38.633927
+   ],
+   "afo-dm-mv1qenj6snb43": [
+    6490.4325,
+    3501.588334,
+    176.847896,
+    0,
+    213.069754
+   ],
+   "afo-dm-mv1qenj6n22un": [
+    1186.392439,
+    709.462678,
+    35.831448,
+    0,
+    38.947227
+   ],
+   "afo-dm-mv1qenj6poga9": [
+    1150.603997,
+    620.750856,
+    31.351053,
+    0,
+    37.772353
+   ],
+   "afo-dm-mv1qenj6fyq2y": [
+    6422.639117,
+    3924.232501,
+    174.410333,
+    0,
+    185.542908
+   ],
+   "afo-dm-mv1qenj6k4ipw": [
+    6444.700012,
+    4105.273907,
+    207.337066,
+    0,
+    211.568435
+   ],
+   "afo-dm-mv1qenj6fckzf": [
+    6489.444208,
+    4766.496771,
+    240.73216,
+    0,
+    213.03731
+   ],
+   "afo-dm-mv1qenj6vvxvd": [
+    1491.787142,
+    950.268409,
+    47.993354,
+    0,
+    48.97281
+   ],
+   "afo-dm-mv1qenj6f18xc": [
+    1162.533477,
+    710.307955,
+    35.874139,
+    0,
+    38.163978
+   ],
+   "afo-dm-mv1qenj694rqb": [
+    1393.965401,
+    1023.867587,
+    51.710484,
+    0,
+    45.76149
+   ],
+   "afo-dm-mv1qenj6c1ujv": [
+    6684.190588,
+    7299.136122,
+    324.40605,
+    0,
+    193.098839
+   ],
+   "afo-dm-mv1qenj6b2ur3": [
+    6348.541176,
+    3920.224176,
+    197.99112,
+    0,
+    208.411705
+   ],
+   "afo-dm-mv1qenj6sdkhf": [
+    6550.320709,
+    3576.475107,
+    180.630056,
+    0,
+    215.035781
+   ],
+   "afo-dm-mv1qenj6w3i7b": [
+    6562.611689,
+    4009.755742,
+    178.211366,
+    0,
+    189.58656
+   ],
+   "afo-dm-mv1qenj64837r": [
+    6429.857982,
+    2549.43869,
+    128.75953,
+    0,
+    211.081196
+   ],
+   "afo-dm-mv1qenj626tes": [
+    6576.529417,
+    6711.34827,
+    338.956983,
+    0,
+    215.896168
+   ],
+   "afo-dm-mv1qenj6ldt95": [
+    6679.918248,
+    3299.879615,
+    146.661316,
+    0,
+    192.975416
+   ],
+   "afo-dm-mv1qenj6r32mr": [
+    6494.093647,
+    3967.891218,
+    200.398546,
+    0,
+    213.189943
+   ],
+   "afo-dm-mv1qenj6t15o1": [
+    6414.231111,
+    3210.322671,
+    162.137509,
+    0,
+    210.568193
+   ],
+   "afo-dm-mv1qenj6zxgpa": [
+    1267.512907,
+    774.450386,
+    39.113656,
+    0,
+    41.610272
+   ],
+   "afo-dm-mv1qenj64b1wh": [
+    1384.421816,
+    692.903119,
+    34.995107,
+    0,
+    45.448191
+   ],
+   "afo-dm-mv1qenj6du1ri": [
+    6530.799741,
+    8065.53768,
+    358.468341,
+    0,
+    188.667548
+   ],
+   "afo-dm-mv1qenj6f1n9y": [
+    6469.596319,
+    3994.975727,
+    201.766451,
+    0,
+    212.385738
+   ],
+   "afo-dm-mv1qenj610yb0": [
+    1575.293506,
+    1945.487479,
+    98.256943,
+    0,
+    51.714181
+   ],
+   "afo-dm-mv1qenj6cn51x": [
+    6561.08,
+    4776.46624,
+    241.235669,
+    0,
+    215.38899
+   ],
+   "afo-dm-mv1qenj69e21y": [
+    1494.173038,
+    1087.757971,
+    54.937271,
+    0,
+    49.051135
+   ],
+   "afo-dm-mv1qenj6bz0go": [
+    6382.874182,
+    3402.071939,
+    171.821815,
+    0,
+    209.538799
+   ],
+   "afo-dm-mv1qenj6c4fbl": [
+    6473.745704,
+    3618.823848,
+    160.836615,
+    0,
+    187.01932
+   ],
+   "afo-dm-mv1qenj6o8eor": [
+    1079.027113,
+    575.121451,
+    29.046538,
+    0,
+    35.422607
+   ],
+   "afo-dm-mv1qenj6syork": [
+    6495.928952,
+    3589.000746,
+    181.262664,
+    0,
+    213.250193
+   ],
+   "afo-dm-mv1qenj63l8le": [
+    6654.071041,
+    3892.631559,
+    173.005847,
+    0,
+    192.228719
+   ],
+   "afo-dm-mv1qenj67i42t": [
+    1317.616725,
+    727.983241,
+    36.76683,
+    0,
+    43.255095
+   ],
+   "afo-dm-mv1qenj6gjuug": [
+    6356.717691,
+    6734.942394,
+    340.148606,
+    0,
+    208.680126
+   ],
+   "afo-dm-mv1qenj63qj4p": [
+    6411.504935,
+    4334.177336,
+    218.897845,
+    0,
+    210.478697
+   ],
+   "afo-dm-mv1qenj60ss8y": [
+    6385.810669,
+    6392.19648,
+    284.097621,
+    0,
+    184.478975
+   ],
+   "afo-dm-mv1qenj64du8i": [
+    981.205372,
+    663.294832,
+    33.499739,
+    0,
+    32.211287
+   ],
+   "afo-dm-mv1qenj6trr3r": [
+    6423.434416,
+    3632.452162,
+    183.45718,
+    0,
+    210.870322
+   ],
+   "afo-dm-mv1qenj679sw3": [
+    1205.479607,
+    1206.685087,
+    60.943691,
+    0,
+    39.573825
+   ],
+   "afo-dm-mv1qenj66yeml": [
+    6547.58938,
+    4128.255104,
+    208.497733,
+    0,
+    214.946116
+   ],
+   "afo-dm-mv1qenj675eqa": [
+    959.732307,
+    542.72862,
+    27.410536,
+    0,
+    31.506364
+   ],
+   "afo-dm-mv1qenj66mqvt": [
+    6362.082801,
+    7443.636878,
+    330.828306,
+    0,
+    183.793503
+   ],
+   "afo-dm-mv1qenj6fqoa0": [
+    6553.068105,
+    3833.544841,
+    193.613376,
+    0,
+    215.125973
+   ],
+   "afo-dm-mv1qenj67lnb3": [
+    1470.314076,
+    860.133735,
+    43.441098,
+    0,
+    48.267886
+   ],
+   "afo-dm-mv1qenj6xf9ye": [
+    6446.059293,
+    3519.548374,
+    177.754968,
+    0,
+    211.613058
+   ],
+   "afo-dm-mv1qenj6e4ze5": [
+    6469.596319,
+    7989.951454,
+    403.532902,
+    0,
+    212.385738
+   ],
+   "afo-dm-mv1qenj6ht0cz": [
+    6542.5,
+    3912.415,
+    173.885111,
+    0,
+    189.005556
+   ],
+   "afo-dm-mv1qenj61toq8": [
+    1150.603997,
+    628.229782,
+    31.728777,
+    0,
+    37.772353
+   ],
+   "afo-dm-mv1qenj6a3to9": [
+    1260.355218,
+    1556.538694,
+    78.613065,
+    0,
+    41.375298
+   ],
+   "afo-dm-mv1qenj6ukzb1": [
+    1386.807712,
+    829.311012,
+    41.884395,
+    0,
+    45.526516
+   ],
+   "afo-dm-mv1qenj6ey060": [
+    6381.886915,
+    3982.297435,
+    201.126133,
+    0,
+    209.506389
+   ],
+   "afo-dm-mv1qenj6py19w": [
+    6583.066667,
+    8130.087333,
+    410.610471,
+    0,
+    216.110774
+   ],
+   "afo-dm-mv1qenj6xieoh": [
+    6412.2,
+    4001.2128,
+    177.83168,
+    0,
+    185.241333
+   ],
+   "afo-dm-mv1qenj69nx4k": [
+    6516.882014,
+    3812.375978,
+    192.544241,
+    0,
+    213.938046
+   ],
+   "afo-dm-mv1qenj6iird1": [
+    1055.168152,
+    658.424927,
+    33.253784,
+    0,
+    34.639359
+   ],
+   "afo-dm-mv1qenj6l4rdw": [
+    6471.947637,
+    7151.502139,
+    366.155757,
+    44.516678,
+    215.38574
+   ],
+   "afo-dm-mv1qenj6q0rt8": [
+    6603.957647,
+    7726.630447,
+    343.405798,
+    0,
+    190.780999
+   ],
+   "afo-dm-mv1qenj6jwgms": [
+    6460.927069,
+    3569.662206,
+    180.28597,
+    0,
+    212.101141
+   ],
+   "afo-dm-mv1qenj6jjjzr": [
+    1355.791063,
+    1586.275544,
+    80.114926,
+    0,
+    44.508292
+   ],
+   "afo-dm-mv1qenj6qm6d2": [
+    1088.570698,
+    601.43531,
+    30.375521,
+    0,
+    35.735907
+   ],
+   "afo-dm-mv1qenj6utiat": [
+    6314.423645,
+    3447.67531,
+    176.415847,
+    41.537043,
+    210.018865
+   ],
+   "afo-dm-mv1qenj6sak9z": [
+    6363.787013,
+    5666.952335,
+    254.991841,
+    39.508185,
+    186.125431
+   ],
+   "afo-dm-mv1qenj6iqh00": [
+    6427.410909,
+    4470.264287,
+    225.770924,
+    0,
+    211.000863
+   ],
+   "afo-dm-mv1qenj6bdwps": [
+    6433.659685,
+    3470.9594,
+    175.30098,
+    0,
+    211.206
+   ],
+   "afo-dm-mv1qenj691oy6": [
+    1320.002621,
+    1175.462334,
+    59.366785,
+    0,
+    43.333419
+   ],
+   "afo-dm-mv1qenj6qcgnj": [
+    1160.147581,
+    625.89962,
+    31.611092,
+    0,
+    38.085653
+   ],
+   "afo-dm-mv1qenj6r6s4k": [
+    6492.258342,
+    4304.367281,
+    220.029742,
+    39.382815,
+    215.715433
+   ],
+   "afo-dm-mv1qenj6l85wd": [
+    6510.917274,
+    4147.454303,
+    186.548588,
+    39.159285,
+    190.355702
+   ],
+   "afo-dm-mv1qenj6i7f6t": [
+    6500.57839,
+    3549.315801,
+    181.784524,
+    45.803814,
+    216.410147
+   ],
+   "afo-dm-mv1qenj6xgio9": [
+    1453.612804,
+    925.951356,
+    46.76522,
+    0,
+    47.719612
+   ],
+   "afo-dm-mv1qenj6wj31b": [
+    1248.425738,
+    827.706264,
+    41.803347,
+    0,
+    40.983673
+   ],
+   "afo-dm-mv1qenj6oclto": [
+    6653.50297,
+    4151.785853,
+    186.829394,
+    41.566908,
+    194.613952
+   ],
+   "afo-dm-mv1qenj6wxub3": [
+    6591.531642,
+    3898.890966,
+    199.272261,
+    39.475736,
+    218.980506
+   ],
+   "afo-dm-mv1qenj6kr4nv": [
+    6483.081819,
+    8048.746078,
+    411.961478,
+    43.532494,
+    215.686638
+   ],
+   "afo-dm-mv1qenj63ldzt": [
+    1444.069219,
+    854.166943,
+    43.139745,
+    0,
+    47.406313
+   ],
+   "afo-dm-mv1qenj67a97h": [
+    1515.646103,
+    1881.674637,
+    95.034073,
+    0,
+    49.756059
+   ],
+   "afo-dm-mv1qenj6r0p6l": [
+    6500.57839,
+    2661.986851,
+    136.089109,
+    39.777171,
+    216.014458
+   ],
+   "afo-dm-mv1qenj6l4un8": [
+    6480.218743,
+    4717.599245,
+    212.266812,
+    40.112647,
+    189.523939
+   ],
+   "afo-dm-mv1qenj6kpsp3": [
+    6503.123346,
+    7566.384013,
+    387.146039,
+    42.590268,
+    216.282703
+   ],
+   "afo-dm-mv1qenj6qzxxn": [
+    1351.019271,
+    983.542029,
+    49.67384,
+    0,
+    44.351643
+   ],
+   "afo-dm-mv1qenj6q9529": [
+    1491.787142,
+    1735.694339,
+    87.66133,
+    0,
+    48.97281
+   ],
+   "afo-dm-mv1qenj6mtnrz": [
+    6363.787013,
+    13319.406218,
+    599.339289,
+    39.590964,
+    186.130214
+   ],
+   "afo-dm-mv1qenj6velk6": [
+    1408.280777,
+    2947.531667,
+    148.865236,
+    0,
+    46.23144
+   ],
+   "afo-dm-mv1qenj651f5g": [
+    6554.658702,
+    3451.027807,
+    176.588047,
+    43.129661,
+    218.009935
+   ],
+   "afo-dm-mv1qenj6piibv": [
+    6559.430495,
+    4306.26612,
+    217.488188,
+    0,
+    215.334839
+   ],
+   "afo-dm-mv1qenj62cyeo": [
+    1028.923295,
+    541.728115,
+    27.360006,
+    0,
+    33.777785
+   ],
+   "afo-dm-mv1qenj6cjvc3": [
+    6544.433433,
+    13697.499176,
+    616.326244,
+    40.573653,
+    191.405666
+   ],
+   "afo-dm-mv1qenj6uwrvo": [
+    1203.093711,
+    2518.075138,
+    127.175512,
+    0,
+    39.495501
+   ],
+   "afo-dm-mv1qenj6irqzk": [
+    6379.692987,
+    4976.16053,
+    251.321239,
+    0,
+    209.434366
+   ],
+   "afo-dm-mv1qenj6usilg": [
+    6510.555556,
+    3724.037778,
+    190.735786,
+    45.918526,
+    216.745212
+   ],
+   "afo-dm-mv1qenj63az9d": [
+    1308.073141,
+    748.217836,
+    37.78878,
+    0,
+    42.941795
+   ],
+   "afo-dm-mv1qenj6qgckr": [
+    1448.841011,
+    1130.095989,
+    57.075555,
+    0,
+    47.562962
+   ],
+   "afo-dm-mv1qenj61wvyt": [
+    6508.586226,
+    3553.688079,
+    157.941692,
+    0,
+    188.025824
+   ],
+   "afo-dm-mv1qenj66xov2": [
+    6478.663493,
+    3958.463394,
+    199.922394,
+    0,
+    212.683397
+   ],
+   "afo-dm-mv1qenj6invjn": [
+    1172.077062,
+    639.954076,
+    32.320913,
+    0,
+    38.477277
+   ],
+   "afo-dm-mv1qenj6ty94l": [
+    6495.928952,
+    3715.67136,
+    189.934081,
+    39.356163,
+    215.834183
+   ],
+   "afo-dm-mv1qenj623i31": [
+    1642.098597,
+    1003.322243,
+    50.672841,
+    0,
+    53.907277
+   ],
+   "afo-dm-mv1qenj6wc8gn": [
+    6413.3775,
+    3418.330207,
+    153.782274,
+    39.184771,
+    187.539359
+   ],
+   "afo-dm-mv1qenj6yd6a1": [
+    1150.603997,
+    613.27193,
+    30.97333,
+    0,
+    37.772353
+   ],
+   "afo-dm-mv1qenj6grco7": [
+    6538.752728,
+    7905.352048,
+    399.260204,
+    0,
+    214.656024
+   ],
+   "afo-dm-mv1qenj6err19": [
+    6564.87,
+    2987.01585,
+    152.686085,
+    39.745748,
+    218.122978
+   ],
+   "afo-dm-mv1qenj62uvtl": [
+    6622,
+    4949.945,
+    222.803064,
+    42.223366,
+    193.741795
+   ],
+   "afo-dm-mv1qenj6luma0": [
+    1167.30527,
+    1411.272071,
+    71.276367,
+    0,
+    38.320628
+   ],
+   "afo-dm-mv1qenj6joyub": [
+    1100.500178,
+    822.623883,
+    41.546661,
+    0,
+    36.127531
+   ],
+   "afo-dm-mv1qenj6kevww": [
+    6449.281624,
+    3814.75008,
+    195.31492,
+    44.366306,
+    214.63178
+   ],
+   "afo-dm-mv1qenj639lqp": [
+    6415.842928,
+    7923.566016,
+    356.678785,
+    41.176776,
+    187.725676
+   ],
+   "afo-dm-mv1qenj6olk4o": [
+    6568.292394,
+    4440.165659,
+    227.102698,
+    41.766093,
+    218.367979
+   ],
+   "afo-dm-mv1qenj6927m0": [
+    1398.737193,
+    1727.440433,
+    87.244466,
+    0,
+    45.91814
+   ],
+   "afo-dm-mv1qenj6by2ls": [
+    1207.865504,
+    714.452445,
+    36.083457,
+    0,
+    39.65215
+   ]
+  },
+  "stock": {
+   "ins-dm-mv1qendki41us": 112,
+   "ins-dm-mv1qendl5gbll": 34,
+   "ins-dm-mv1qendl5mnuj": 62,
+   "ins-dm-mv1qendl2lkfe": 16,
+   "ins-dm-mv1qendlg63u4": 9,
+   "ins-dm-mv1qendlg5lcq": 4,
+   "ins-dm-mv1qendlta1ha": 110,
+   "ins-dm-mv1qendl8p66w": 56,
+   "ins-dm-mv1qendl6znzn": 8,
+   "ins-dm-mv1qendlenmlq": 40,
+   "ins-dm-mv1qendlealtn": 28,
+   "ins-dm-mv1qendlrk1yv": 7.75,
+   "ins-dm-mv1qendlpjpul": 142,
+   "ins-dm-mv1qendlorpoe": 30,
+   "ins-dm-mv1qendl5sdm8": 8,
+   "ins-dm-mv1qendl1cj1u": 64,
+   "ins-dm-mv1qendlwcgso": 369,
+   "ins-dm-mv1qendln4ok0": 8,
+   "ins-dm-mv1qendlo9735": 15,
+   "ins-dm-mv1qendl0n9kt": 3
+  },
+  "fert": {
+   "fer-dm-mv1qenj64krup": 18.4,
+   "fer-dm-mv1qenj67yyep": 23,
+   "fer-dm-mv1qenj673emr": 33.6,
+   "fer-dm-mv1qenj6bbrfb": 20,
+   "fer-dm-mv1qenj6kxbsj": 46,
+   "fer-dm-mv1qenj6zue58": 16.8,
+   "fer-dm-mv1qenj6ij3vk": 18.4,
+   "fer-dm-mv1qenj6dd564": 20,
+   "fer-dm-mv1qenj6m80in": 18.4,
+   "fer-dm-mv1qenj66iz0n": 23,
+   "fer-dm-mv1qenj6t1pa2": 20.8,
+   "fer-dm-mv1qenj6eow1y": 15.2,
+   "fer-dm-mv1qenj6x1gr5": 23,
+   "fer-dm-mv1qenj6wa7e3": 21.6,
+   "fer-dm-mv1qenj6l4gyg": 23,
+   "fer-dm-mv1qenj68btn8": 16.8,
+   "fer-dm-mv1qenj6ztqly": 22.4,
+   "fer-dm-mv1qenj667vl1": 33.6,
+   "fer-dm-mv1qenj6na46l": 46,
+   "fer-dm-mv1qenj60jon7": 13.6,
+   "fer-dm-mv1qenj6uiyh1": 23,
+   "fer-dm-mv1qenj66yhoc": 18.4,
+   "fer-dm-mv1qenj6goomd": 20,
+   "fer-dm-mv1qenj6c8nbi": 23,
+   "fer-dm-mv1qenj67hpjk": 33.6,
+   "fer-dm-mv1qenj6joxxx": 46,
+   "fer-dm-mv1qenj6ikfal": 16.8,
+   "fer-dm-mv1qenj66rngd": 18.4,
+   "fer-dm-mv1qenj6hdtzk": 20,
+   "fer-dm-mv1qenj6j2wbt": 23,
+   "fer-dm-mv1qenj67614q": 18.4,
+   "fer-dm-mv1qenj65w9pd": 20.8,
+   "fer-dm-mv1qenj6bd8wg": 46,
+   "fer-dm-mv1qenj6032qf": 15.2,
+   "fer-dm-mv1qenj6p5c4l": 21.6,
+   "fer-dm-mv1qenj6zagsc": 23,
+   "fer-dm-mv1qenj6ltc0d": 22.4,
+   "fer-dm-mv1qenj6718gy": 16.8,
+   "fer-dm-mv1qenj674s52": 23,
+   "fer-dm-mv1qenj6elo9h": 13.6,
+   "fer-dm-mv1qenj61ul8l": 33.6,
+   "fer-dm-mv1qenj6zb2dv": 23,
+   "fer-dm-mv1qenj6w5fqc": 20,
+   "fer-dm-mv1qenj6ijc4v": 46,
+   "fer-dm-mv1qenj602e2l": 18.4,
+   "fer-dm-mv1qenj6vhpbl": 16.8,
+   "fer-dm-mv1qenj6s04yu": 23,
+   "fer-dm-mv1qenj6j5vfu": 33.6,
+   "fer-dm-mv1qenj6m064f": 20,
+   "fer-dm-mv1qenj66jxxb": 23,
+   "fer-dm-mv1qenj6zbj16": 18.4,
+   "fer-dm-mv1qenj65jc34": 20.8,
+   "fer-dm-mv1qenj6i3ocg": 23,
+   "fer-dm-mv1qenj6hhte9": 18.4,
+   "fer-dm-mv1qenj61cpd5": 21.6,
+   "fer-dm-mv1qenj62wmxf": 46,
+   "fer-dm-mv1qenj64y5o9": 15.2,
+   "fer-dm-mv1qenj6jjaks": 22.4,
+   "fer-dm-mv1qenj6f8mfw": 23,
+   "fer-dm-mv1qenj63rowm": 16.8,
+   "fer-dm-mv1qenj627d6w": 23,
+   "fer-dm-mv1qenj6r2t29": 13.6,
+   "fer-dm-mv1qenj6hna0x": 33.6,
+   "fer-dm-mv1qenj6srurm": 20,
+   "fer-dm-mv1qenj6m20oo": 46,
+   "fer-dm-mv1qenj68x5hu": 18.4,
+   "fer-dm-mv1qenj6h75dm": 16.8,
+   "fer-dm-mv1qenj64zhm8": 23,
+   "fer-dm-mv1qenj6xn356": 33.6,
+   "fer-dm-mv1qenj67azvq": 20,
+   "fer-dm-mv1qenj6v2ndd": 18.4,
+   "fer-dm-mv1qenj64vxa4": 46,
+   "fer-dm-mv1qenj6wzp7q": 20.8,
+   "fer-dm-mv1qenj6d423o": 18.4,
+   "fer-dm-mv1qenj6xiy7w": 23,
+   "fer-dm-mv1qenj6suipj": 21.6,
+   "fer-dm-mv1qenj6nt34z": 15.2,
+   "fer-dm-mv1qenj6jb15x": 23,
+   "fer-dm-mv1qenj7igqbu": 16.8,
+   "fer-dm-mv1qenj7bsxhz": 23,
+   "fer-dm-mv1qenj7nklmu": 22.4,
+   "fer-dm-mv1qenj7n1vgf": 33.6,
+   "fer-dm-mv1qenj7qktlc": 13.6,
+   "fer-dm-mv1qenj7aj75j": 46,
+   "fer-dm-mv1qenj71cdqf": 18.4,
+   "fer-dm-mv1qenj7e6htc": 20,
+   "fer-dm-mv1qenj7hqzpn": 23,
+   "fer-dm-mv1qenj7u83qp": 33.6,
+   "fer-dm-mv1qenj757bjy": 23,
+   "fer-dm-mv1qenj79savg": 16.8,
+   "fer-dm-mv1qenj7r2ufg": 18.4,
+   "fer-dm-mv1qenj7se6j7": 20,
+   "fer-dm-mv1qenj7gtuta": 23,
+   "fer-dm-mv1qenj7pmvqw": 18.4,
+   "fer-dm-mv1qenj7gradx": 46,
+   "fer-dm-mv1qenj7h82tw": 20.8,
+   "fer-dm-mv1qenj7vicmj": 15.2,
+   "fer-dm-mv1qenj7h7100": 23,
+   "fer-dm-mv1qenj77toki": 21.6,
+   "fer-dm-mv1qenj7g10te": 16.8,
+   "fer-dm-mv1qenj75pycx": 23,
+   "fer-dm-mv1qenj7ifr36": 22.4,
+   "fer-dm-mv1qenj70vglk": 33.6,
+   "fer-dm-mv1qenj73aypt": 46,
+   "fer-dm-mv1qenj74ukyq": 13.6,
+   "fer-dm-mv1qenj7t94q3": 18.4,
+   "fer-dm-mv1qenj7udien": 23,
+   "fer-dm-mv1qenj7nb4qv": 20,
+   "fer-dm-mv1qenj7ko1ss": 33.6,
+   "fer-dm-mv1qenj7xz7dq": 46,
+   "fer-dm-mv1qenj7cpfcv": 16.8,
+   "fer-dm-mv1qenj7dyth4": 18.4,
+   "fer-dm-mv1qenj7ktxzr": 23,
+   "fer-dm-mv1qenj7o8ri1": 18.4,
+   "fer-dm-mv1qenj7i6coe": 20,
+   "fer-dm-mv1qenj74mpzi": 15.2,
+   "fer-dm-mv1qenj7wf0yj": 23,
+   "fer-dm-mv1qenj9hcqmq": 18,
+   "fer-dm-mv1qenj9kxus3": 18
+  },
+  "potreros": {
+   "zona-ha-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p1-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p2-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p4-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p5-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p7-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-po-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-2": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-3": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "zona-fdc-4": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "zona-fdc-5": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-2": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-3": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-4": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-5": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-6": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-7": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-8": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-6": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-7": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-8": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-9": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-10": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-11": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-337": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-338": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-349": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-12": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "zona-manakao-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-p3-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-f-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-fdc-13": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "zona-fdc-14": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pot-9": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-345": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-328": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-298": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-297": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-296": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-295": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-318": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-336": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-335": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-339": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-340": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-334": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-341": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-333": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-319": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-320": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-332": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-342": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-346": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-343": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-344": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-331": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-330": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-321": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-322": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-323": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-329": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-324": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-325": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-326": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-327": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-xxx-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-347": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-348": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-f-2": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-pista-de-aterrizaje-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-xxx-2": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-018": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-033": [
+    0,
+    0,
+    0,
+    null,
+    5
+   ],
+   "lote-183": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-189": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-187": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-181": [
+    0,
+    0,
+    0,
+    null,
+    5
+   ],
+   "lote-182": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-184": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-185": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-188": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-190": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-194": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-040": [
+    0,
+    0,
+    0,
+    null,
+    36
+   ],
+   "lote-034": [
+    0,
+    0,
+    0,
+    null,
+    24
+   ],
+   "lote-036": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-035": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-039": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-038": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-037": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-005": [
+    0,
+    0,
+    0,
+    null,
+    13
+   ],
+   "lote-030": [
+    0,
+    0,
+    0,
+    null,
+    41
+   ],
+   "lote-031": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-014": [
+    0,
+    0,
+    0,
+    null,
+    32
+   ],
+   "lote-022": [
+    0,
+    0,
+    0,
+    null,
+    37
+   ],
+   "lote-012": [
+    0,
+    0,
+    0,
+    null,
+    11
+   ],
+   "lote-013": [
+    0,
+    0,
+    0,
+    null,
+    22
+   ],
+   "lote-010": [
+    0,
+    0,
+    0,
+    null,
+    33
+   ],
+   "lote-011": [
+    0,
+    0,
+    0,
+    null,
+    8
+   ],
+   "lote-032": [
+    0,
+    0,
+    0,
+    null,
+    26
+   ],
+   "lote-008": [
+    0,
+    0,
+    0,
+    null,
+    17
+   ],
+   "lote-007": [
+    0,
+    0,
+    0,
+    null,
+    1
+   ],
+   "lote-006": [
+    0,
+    0,
+    0,
+    null,
+    20
+   ],
+   "lote-009": [
+    0,
+    0,
+    0,
+    null,
+    29
+   ],
+   "lote-004": [
+    0,
+    0,
+    0,
+    null,
+    35
+   ],
+   "lote-020": [
+    0,
+    0,
+    0,
+    null,
+    30
+   ],
+   "lote-023": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-024": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-017": [
+    0,
+    0,
+    0,
+    null,
+    18
+   ],
+   "lote-016": [
+    0,
+    0,
+    0,
+    null,
+    6
+   ],
+   "lote-015": [
+    0,
+    0,
+    0,
+    null,
+    43
+   ],
+   "lote-019": [
+    0,
+    0,
+    0,
+    null,
+    27
+   ],
+   "lote-028": [
+    0,
+    0,
+    0,
+    null,
+    38
+   ],
+   "lote-027": [
+    0,
+    0,
+    0,
+    null,
+    19
+   ],
+   "lote-021": [
+    0,
+    0,
+    0,
+    null,
+    39
+   ],
+   "lote-029": [
+    0,
+    0,
+    0,
+    null,
+    3
+   ],
+   "lote-025": [
+    39,
+    37.5,
+    27.271368,
+    1,
+    null
+   ],
+   "lote-003": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-001": [
+    0,
+    0,
+    0,
+    null,
+    9
+   ],
+   "lote-002": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "zona-arboles-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-197": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-191": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-192": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-193": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-226": [
+    0,
+    0,
+    0,
+    null,
+    14
+   ],
+   "lote-225": [
+    0,
+    0,
+    0,
+    null,
+    22
+   ],
+   "lote-224": [
+    0,
+    0,
+    0,
+    null,
+    18
+   ],
+   "lote-220": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-217": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-213": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-212": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-211": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-210": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-209": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-175": [
+    0,
+    0,
+    0,
+    null,
+    31
+   ],
+   "lote-173": [
+    0,
+    0,
+    0,
+    null,
+    19
+   ],
+   "lote-238": [
+    0,
+    0,
+    0,
+    null,
+    1
+   ],
+   "lote-236": [
+    0,
+    0,
+    0,
+    null,
+    16
+   ],
+   "lote-205": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-195": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-196": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-198": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-203": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-221": [
+    0,
+    0,
+    0,
+    null,
+    6
+   ],
+   "lote-218": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-219": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-227": [
+    0,
+    0,
+    0,
+    null,
+    2
+   ],
+   "lote-242": [
+    0,
+    0,
+    0,
+    null,
+    9
+   ],
+   "lote-244": [
+    0,
+    0,
+    0,
+    null,
+    23
+   ],
+   "lote-232": [
+    0,
+    0,
+    0,
+    null,
+    24
+   ],
+   "lote-231": [
+    0,
+    0,
+    0,
+    null,
+    28
+   ],
+   "lote-230": [
+    0,
+    0,
+    0,
+    null,
+    20
+   ],
+   "lote-229": [
+    14,
+    10.218978,
+    9.617194,
+    1,
+    null
+   ],
+   "lote-228": [
+    0,
+    0,
+    0,
+    null,
+    26
+   ],
+   "lote-235": [
+    0,
+    0,
+    0,
+    null,
+    4
+   ],
+   "lote-237": [
+    0,
+    0,
+    0,
+    null,
+    33
+   ],
+   "lote-233": [
+    0,
+    0,
+    0,
+    null,
+    12
+   ],
+   "lote-241": [
+    0,
+    0,
+    0,
+    null,
+    37
+   ],
+   "lote-243": [
+    0,
+    0,
+    0,
+    null,
+    35
+   ],
+   "lote-239": [
+    0,
+    0,
+    0,
+    null,
+    19
+   ],
+   "lote-240": [
+    0,
+    0,
+    0,
+    null,
+    10
+   ],
+   "lote-234": [
+    0,
+    0,
+    0,
+    null,
+    5
+   ],
+   "lote-312": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-310": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-313": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-311": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-314": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-315": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-207": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-199": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-200": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-201": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-202": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-204": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-208": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-206": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-171": [
+    0,
+    0,
+    0,
+    null,
+    24
+   ],
+   "lote-167": [
+    0,
+    0,
+    0,
+    null,
+    22
+   ],
+   "lote-169": [
+    0,
+    0,
+    0,
+    null,
+    34
+   ],
+   "lote-165": [
+    0,
+    0,
+    0,
+    null,
+    2
+   ],
+   "lote-166": [
+    0,
+    0,
+    0,
+    null,
+    37
+   ],
+   "lote-172": [
+    0,
+    0,
+    0,
+    null,
+    0
+   ],
+   "lote-168": [
+    0,
+    0,
+    0,
+    null,
+    9
+   ],
+   "lote-176": [
+    0,
+    0,
+    0,
+    null,
+    7
+   ],
+   "lote-170": [
+    0,
+    0,
+    0,
+    null,
+    33
+   ],
+   "lote-164": [
+    0,
+    0,
+    0,
+    null,
+    26
+   ],
+   "lote-163": [
+    0,
+    0,
+    0,
+    null,
+    1
+   ],
+   "lote-222": [
+    0,
+    0,
+    0,
+    null,
+    11
+   ],
+   "lote-174": [
+    0,
+    0,
+    0,
+    null,
+    8
+   ],
+   "lote-216": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-215": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-214": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-223": [
+    0,
+    0,
+    0,
+    null,
+    30
+   ],
+   "lote-249": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-255": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-248": [
+    0,
+    0,
+    0,
+    null,
+    34
+   ],
+   "lote-246": [
+    0,
+    0,
+    0,
+    null,
+    31
+   ],
+   "lote-252": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-251": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-301": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-250": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-257": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-256": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-245": [
+    0,
+    0,
+    0,
+    null,
+    25
+   ],
+   "lote-247": [
+    0,
+    0,
+    0,
+    null,
+    8
+   ],
+   "lote-258": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-259": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-261": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-260": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-262": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-263": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-265": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-264": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-272": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-271": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-268": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-270": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-269": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-266": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-267": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-273": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-274": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-253": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-254": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-275": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-291": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-304": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-306": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-294": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-302": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-288": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-287": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-281": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-280": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-289": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-286": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-282": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-300": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-290": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-299": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-285": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-284": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-292": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-293": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-283": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-303": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-305": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-307": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-308": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-309": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-279": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-316": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-317": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-276": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-278": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-277": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-xxx-3": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-122": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-105": [
+    0,
+    0,
+    0,
+    null,
+    8
+   ],
+   "lote-098": [
+    0,
+    0,
+    0,
+    null,
+    12
+   ],
+   "lote-085": [
+    0,
+    0,
+    0,
+    null,
+    3
+   ],
+   "lote-186": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-043": [
+    0,
+    0,
+    0,
+    null,
+    38
+   ],
+   "lote-055": [
+    0,
+    0,
+    0,
+    null,
+    19
+   ],
+   "lote-178": [
+    0,
+    0,
+    0,
+    null,
+    36
+   ],
+   "lote-179": [
+    0,
+    0,
+    0,
+    null,
+    20
+   ],
+   "lote-180": [
+    0,
+    0,
+    0,
+    null,
+    12
+   ],
+   "lote-089": [
+    0,
+    0,
+    0,
+    null,
+    16
+   ],
+   "lote-042": [
+    0,
+    0,
+    0,
+    null,
+    4
+   ],
+   "lote-041": [
+    0,
+    0,
+    0,
+    null,
+    6
+   ],
+   "lote-045": [
+    0,
+    0,
+    0,
+    null,
+    10
+   ],
+   "lote-026": [
+    0,
+    0,
+    0,
+    null,
+    15
+   ],
+   "lote-047": [
+    0,
+    0,
+    0,
+    null,
+    30
+   ],
+   "lote-046": [
+    0,
+    0,
+    0,
+    null,
+    35
+   ],
+   "lote-177": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-048": [
+    0,
+    0,
+    0,
+    null,
+    11
+   ],
+   "lote-049": [
+    0,
+    0,
+    0,
+    null,
+    14
+   ],
+   "lote-050": [
+    0,
+    0,
+    0,
+    null,
+    3
+   ],
+   "lote-051": [
+    0,
+    0,
+    0,
+    null,
+    15
+   ],
+   "lote-053": [
+    0,
+    0,
+    0,
+    null,
+    13
+   ],
+   "lote-052": [
+    0,
+    0,
+    0,
+    null,
+    33
+   ],
+   "lote-054": [
+    0,
+    0,
+    0,
+    null,
+    7
+   ],
+   "lote-044": [
+    0,
+    0,
+    0,
+    null,
+    1
+   ],
+   "lote-078": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-059": [
+    0,
+    0,
+    0,
+    null,
+    17
+   ],
+   "lote-082": [
+    0,
+    0,
+    0,
+    null,
+    10
+   ],
+   "lote-077": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-081": [
+    0,
+    0,
+    0,
+    null,
+    25
+   ],
+   "lote-079": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-080": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-076": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-075": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-074": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-083": [
+    0,
+    0,
+    0,
+    null,
+    36
+   ],
+   "lote-084": [
+    22,
+    23.157895,
+    17.660819,
+    0,
+    null
+   ],
+   "lote-086": [
+    0,
+    0,
+    0,
+    null,
+    19
+   ],
+   "lote-088": [
+    0,
+    0,
+    0,
+    null,
+    27
+   ],
+   "lote-087": [
+    0,
+    0,
+    0,
+    null,
+    21
+   ],
+   "lote-071": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-070": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-069": [
+    0,
+    0,
+    0,
+    null,
+    16
+   ],
+   "lote-068": [
+    36,
+    39.130435,
+    28.183575,
+    0,
+    null
+   ],
+   "lote-067": [
+    0,
+    0,
+    0,
+    null,
+    12
+   ],
+   "lote-066": [
+    0,
+    0,
+    0,
+    null,
+    24
+   ],
+   "lote-065": [
+    0,
+    0,
+    0,
+    null,
+    8
+   ],
+   "lote-073": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-072": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-061": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-062": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-060": [
+    0,
+    0,
+    0,
+    null,
+    32
+   ],
+   "lote-058": [
+    0,
+    0,
+    0,
+    null,
+    28
+   ],
+   "lote-057": [
+    0,
+    0,
+    0,
+    null,
+    0
+   ],
+   "lote-056": [
+    0,
+    0,
+    0,
+    null,
+    20
+   ],
+   "lote-064": [
+    0,
+    0,
+    0,
+    null,
+    22
+   ],
+   "lote-063": [
+    0,
+    0,
+    0,
+    null,
+    26
+   ],
+   "zona-sz-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-154": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-153": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-152": [
+    18,
+    14.173228,
+    11.951006,
+    0,
+    null
+   ],
+   "lote-151": [
+    0,
+    null,
+    null,
+    null,
+    null
+   ],
+   "lote-149": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-148": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-147": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-146": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-145": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-144": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-143": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-121": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-120": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-114": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-119": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-118": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-117": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-116": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-115": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-113": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-112": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-111": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-110": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-109": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-108": [
+    0,
+    0,
+    0,
+    null,
+    17
+   ],
+   "lote-107": [
+    0,
+    0,
+    0,
+    null,
+    5
+   ],
+   "lote-106": [
+    0,
+    0,
+    0,
+    null,
+    24
+   ],
+   "lote-104": [
+    0,
+    0,
+    0,
+    null,
+    28
+   ],
+   "lote-103": [
+    0,
+    0,
+    0,
+    null,
+    18
+   ],
+   "lote-102": [
+    0,
+    0,
+    0,
+    null,
+    32
+   ],
+   "lote-101": [
+    0,
+    0,
+    0,
+    null,
+    7
+   ],
+   "lote-100": [
+    0,
+    0,
+    0,
+    null,
+    30
+   ],
+   "lote-099": [
+    0,
+    0,
+    0,
+    null,
+    0
+   ],
+   "lote-094": [
+    0,
+    0,
+    0,
+    null,
+    34
+   ],
+   "lote-157": [
+    0,
+    0,
+    0,
+    null,
+    11
+   ],
+   "lote-155": [
+    0,
+    0,
+    0,
+    null,
+    30
+   ],
+   "zona-h0-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-abonado-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-090": [
+    0,
+    0,
+    0,
+    null,
+    2
+   ],
+   "lote-091": [
+    0,
+    0,
+    0,
+    null,
+    14
+   ],
+   "lote-092": [
+    0,
+    0,
+    0,
+    null,
+    37
+   ],
+   "lote-093": [
+    0,
+    0,
+    0,
+    null,
+    23
+   ],
+   "lote-095": [
+    0,
+    0,
+    0,
+    null,
+    33
+   ],
+   "lote-162": [
+    0,
+    0,
+    0,
+    null,
+    18
+   ],
+   "lote-161": [
+    0,
+    0,
+    0,
+    null,
+    4
+   ],
+   "lote-135": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-158": [
+    0,
+    0,
+    0,
+    null,
+    28
+   ],
+   "lote-159": [
+    0,
+    0,
+    0,
+    null,
+    16
+   ],
+   "lote-160": [
+    0,
+    0,
+    0,
+    null,
+    14
+   ],
+   "lote-134": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-132": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-133": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-130": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-129": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-128": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-127": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-126": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-142": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-125": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-124": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-123": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-141": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-139": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-140": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-131": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-136": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-137": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-138": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-sorgo-1": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-123-b": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-127-b": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-126-b": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-124-b": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "lote-125-b": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ],
+   "zona-sorgo-2": [
+    0,
+    0,
+    0,
+    null,
+    null
+   ]
+  },
+  "animales": {
+   "ani-dm-1": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-2": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-3": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-4": [
+    "Vaca",
+    0.055556
+   ],
+   "ani-dm-5": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-6": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-7": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-8": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-9": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-10": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-11": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-12": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-13": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-14": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-15": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-16": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-17": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-18": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-19": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-20": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-21": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-22": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-23": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-24": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-25": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-26": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-27": [
+    "Toro",
+    0.055556
+   ],
+   "ani-dm-28": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-29": [
+    "Vaca",
+    0.011111
+   ],
+   "ani-dm-30": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-31": [
+    "Vaca",
+    0.011111
+   ],
+   "ani-dm-32": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-33": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-34": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-35": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-36": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-37": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-38": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-39": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-40": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-41": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-42": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-43": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-44": [
+    "Vaca",
+    0.033333
+   ],
+   "ani-dm-45": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-46": [
+    "Vaca",
+    0.044444
+   ],
+   "ani-dm-47": [
+    "Vaca",
+    0.055556
+   ],
+   "ani-dm-48": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-49": [
+    "Vaca",
+    0.022222
+   ],
+   "ani-dm-50": [
+    "Toro",
+    0.055556
+   ],
+   "ani-dm-51": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-52": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-53": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-54": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-55": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-56": [
+    "Novilla",
+    0.5
+   ],
+   "ani-dm-57": [
+    "Novilla",
+    0.433333
+   ],
+   "ani-dm-58": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-59": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-60": [
+    "Novilla",
+    0.5
+   ],
+   "ani-dm-61": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-62": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-63": [
+    "Novilla",
+    0.433333
+   ],
+   "ani-dm-64": [
+    "Novilla",
+    0.5
+   ],
+   "ani-dm-65": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-66": [
+    "Novilla",
+    0.433333
+   ],
+   "ani-dm-67": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-68": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-69": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-70": [
+    "Novilla",
+    0.466667
+   ],
+   "ani-dm-71": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-72": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-73": [
+    "Novillo",
+    0.5
+   ],
+   "ani-dm-74": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-75": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-76": [
+    "Novillo",
+    0.566667
+   ],
+   "ani-dm-77": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-78": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-79": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-80": [
+    "Novillo",
+    0.5
+   ],
+   "ani-dm-81": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-82": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-83": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-84": [
+    "Novillo",
+    0.5
+   ],
+   "ani-dm-85": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-86": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-87": [
+    "Novillo",
+    0.566667
+   ],
+   "ani-dm-88": [
+    "Novillo",
+    0.533333
+   ],
+   "ani-dm-89": [
+    "Ternero",
+    0.533333
+   ],
+   "ani-dm-90": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-91": [
+    "Ternera",
+    0.454545
+   ],
+   "ani-dm-92": [
+    "Ternera",
+    0.755556
+   ],
+   "ani-dm-93": [
+    "Ternera",
+    0.746667
+   ],
+   "ani-dm-94": [
+    "Ternero",
+    0.755556
+   ],
+   "ani-dm-95": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-96": [
+    "Novillo",
+    0.7
+   ],
+   "ani-dm-97": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-98": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-99": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-100": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-101": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-102": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-103": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-104": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-105": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-106": [
+    "Novillo",
+    0.7
+   ],
+   "ani-dm-107": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-108": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-109": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-110": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-111": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-112": [
+    "Novillo",
+    0.7
+   ],
+   "ani-dm-113": [
+    "Novillo",
+    0.7
+   ],
+   "ani-dm-114": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-115": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-116": [
+    "Novillo",
+    null
+   ],
+   "ani-dm-117": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-118": [
+    "Novillo",
+    0.7
+   ],
+   "ani-dm-119": [
+    "Novillo",
+    0.633333
+   ],
+   "ani-dm-120": [
+    "Novillo",
+    0.666667
+   ],
+   "ani-dm-121": [
+    "Ternera",
+    0.733333
+   ],
+   "ani-dm-122": [
+    "Ternera",
+    0.755556
+   ],
+   "ani-dm-123": [
+    "Ternero",
+    0.755556
+   ],
+   "ani-dm-124": [
+    "Ternero",
+    0.744444
+   ],
+   "ani-dm-125": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-126": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-127": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-128": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-129": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-130": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-131": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-132": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-133": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-134": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-135": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-136": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-137": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-138": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-139": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-140": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-141": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-142": [
+    "Ternero",
+    null
+   ],
+   "ani-dm-143": [
+    "Ternera",
+    null
+   ],
+   "ani-dm-144": [
+    "Ternero",
+    null
+   ]
+  },
+  "dash": {
+   "30": {
+    "hato": [
+     129,
+     138
+    ],
+    "gdp": [
+     0.746667,
+     0.576706
+    ],
+    "carga": [
+     0.679021,
+     0.751711
+    ],
+    "lluvia": [
+     112.15,
+     205.35
+    ],
+    "ms": [
+     6497.477606,
+     6483.008762
+    ],
+    "margen": [
+     36878380,
+     -10406940
+    ],
+    "ingresos": 47463700,
+    "costos": 10585320
+   },
+   "90": {
+    "hato": [
+     129,
+     135
+    ],
+    "gdp": [
+     0.577014,
+     0.362766
+    ],
+    "carga": [
+     0.679021,
+     0.718329
+    ],
+    "lluvia": [
+     585.9,
+     962.8
+    ],
+    "ms": [
+     6489.216248,
+     null
+    ],
+    "margen": [
+     15067260,
+     -29591080
+    ],
+    "ingresos": 47463700,
+    "costos": 32396440
+   },
+   "365": {
+    "hato": [
+     129,
+     88
+    ],
+    "gdp": [
+     0.324261,
+     null
+    ],
+    "carga": [
+     0.679021,
+     null
+    ],
+    "lluvia": [
+     2187.2,
+     null
+    ],
+    "ms": [
+     6489.791321,
+     null
+    ],
+    "margen": [
+     -123998940,
+     null
+    ],
+    "ingresos": 47463700,
+    "costos": 171462640
+   }
+  },
+  "indicadores": [
+   "0,553 kg/d",
+   "0,68 UGG/ha",
+   "99,4 UGG",
+   "403,2 t MS",
+   "49 %",
+   "39 %",
+   "1,5 %",
+   "112 mm"
+  ],
+  "lluvia": {
+   "total": 2223.4,
+   "diasLluvia": 142,
+   "max": 78.6,
+   "fechaMax": "2026-06-26"
+  },
+  "alertas": {
+   "Próximo a parto": 10,
+   "Animal enfermo": 2,
+   "Vencido": 1,
+   "Mantenimiento próximo": 7,
+   "Equipo fuera de servicio": 1,
+   "Revisión próxima": 5,
+   "Tarea vencida": 5,
+   "Animal en cuarentena": 1,
+   "Vacuna pendiente": 1,
+   "Tratamiento pendiente": 2,
+   "Próximo a vencer": 2,
+   "Respaldo pendiente": 1,
+   "Fertilización programada": 2,
+   "Lote listo": 1,
+   "Lote próximo a estar disponible": 1
+  },
+  "conteos": {
+   "config": 6,
+   "lotes": 394,
+   "animales": 144,
+   "eventos": 1792,
+   "movimientos": 1107,
+   "ocupaciones": 1104,
+   "planes": 10,
+   "insumos": 20,
+   "movinv": 205,
+   "equipos": 7,
+   "mantenimientos": 13,
+   "infra": 14,
+   "agua": 11,
+   "ambiental": 20,
+   "tareas": 20,
+   "cultivos": 3,
+   "labores": 20,
+   "costos": 33,
+   "usuarios": 5,
+   "auditoria": 3,
+   "lluvias": 248,
+   "fertilizaciones": 119,
+   "aforos": 186
+  }
+ }
+}
