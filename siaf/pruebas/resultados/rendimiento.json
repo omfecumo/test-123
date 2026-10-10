@@ -1,0 +1,31 @@
+{
+ "volumen": {
+  "animales": 3044,
+  "eventos": 36592,
+  "costos": 6033
+ },
+ "cargaMs": {
+  "v5": 954,
+  "v6": 978
+ },
+ "vistaMs": {
+  "v5": {
+   "dashboard": 694,
+   "ganado": 200,
+   "costos": 722,
+   "alertas": 264,
+   "reportes": 837
+  },
+  "v6": {
+   "dashboard": 672,
+   "ganado": 236,
+   "costos": 819,
+   "alertas": 121,
+   "reportes": 728,
+   "indicadores": 257,
+   "finanzas": 45,
+   "calidad": 48
+  }
+ },
+ "errores": []
+}

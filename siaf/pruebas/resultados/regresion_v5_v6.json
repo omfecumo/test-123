@@ -1,0 +1,87 @@
+{
+ "fecha": "2026-10-10T01:44:52.941Z",
+ "mismaBaseQueLineaBase": true,
+ "migracion": {
+  "esquema": {
+   "id": "esquema",
+   "v": 6,
+   "historial": [
+    {
+     "de": 5,
+     "a": 6,
+     "fecha": "2026-10-10T01:44:51.421Z",
+     "punto": "pr-mv1qeug62qqr8",
+     "cambios": "Sin cambios destructivos: se agregan documentos de configuración (esquema, alertas, clases de costo). Los registros existentes no se modifican. Compatible con SIAF v5."
+    }
+   ],
+   "creado": "2026-10-10T01:44:51.421Z",
+   "actualizado": "2026-10-10T01:44:51.421Z",
+   "creadoPor": "Sistema"
+  },
+  "puntos": [
+   {
+    "motivo": "Antes de actualizar los datos a SIAF v6",
+    "conteos": 144
+   }
+  ]
+ },
+ "totalDiferencias": 9,
+ "esperadas": [
+  {
+   "ruta": "costos.n",
+   "v5": 664,
+   "v6": 667
+  },
+  {
+   "ruta": "costos.monto",
+   "v5": 190462640,
+   "v6": 194277140
+  },
+  {
+   "ruta": "costos.porOrigen.Cultivo (costos directos)",
+   "v6": {
+    "n": 3,
+    "m": 3814500
+   }
+  },
+  {
+   "ruta": "dash.90.margen.0",
+   "v5": 15067260,
+   "v6": 13747760
+  },
+  {
+   "ruta": "dash.90.costos",
+   "v5": 32396440,
+   "v6": 33715940
+  },
+  {
+   "ruta": "dash.365.margen.0",
+   "v5": -123998940,
+   "v6": -127813440
+  },
+  {
+   "ruta": "dash.365.costos",
+   "v5": 171462640,
+   "v6": 175277140
+  },
+  {
+   "ruta": "conteos.config",
+   "v5": 6,
+   "v6": 7
+  },
+  {
+   "ruta": "conteos.auditoria",
+   "v5": 3,
+   "v6": 4
+  }
+ ],
+ "inesperadas": [],
+ "errores": [],
+ "resumen": {
+  "aforos": 186,
+  "stock": 20,
+  "fert": 119,
+  "potreros": 394,
+  "animales": 144
+ }
+}

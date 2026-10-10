@@ -1,0 +1,238 @@
+[
+ {
+  "id": "F01",
+  "nombre": "Inicio: carga inicial (plano + demostración) e ingreso con PIN",
+  "estado": "APROBADA",
+  "evidencia": {
+   "ms": 1396
+  }
+ },
+ {
+  "id": "F02",
+  "nombre": "Crear animal desde el formulario (con lote, pesaje inicial y compra)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "id": "ani-mv1qhd8x6fwvh",
+   "lote": "lote-001"
+  }
+ },
+ {
+  "id": "F03",
+  "nombre": "Validación: arete duplicado rechazado",
+  "estado": "APROBADA",
+  "evidencia": "Arete duplicado: ya existe un animal con el arete test-001."
+ },
+ {
+  "id": "F04",
+  "nombre": "Editar animal",
+  "estado": "APROBADA",
+  "evidencia": {}
+ },
+ {
+  "id": "F05",
+  "nombre": "Registrar pesaje: actualiza peso actual y anterior",
+  "estado": "APROBADA",
+  "evidencia": {}
+ },
+ {
+  "id": "F06",
+  "nombre": "Mover animal entre lotes: actualiza lote, ocupación y movimiento",
+  "estado": "APROBADA",
+  "evidencia": {
+   "dest": "lote-002"
+  }
+ },
+ {
+  "id": "F07",
+  "nombre": "Persistencia después de recargar",
+  "estado": "APROBADA",
+  "evidencia": {}
+ },
+ {
+  "id": "F08",
+  "nombre": "Inventario: impide stock negativo",
+  "estado": "APROBADA",
+  "evidencia": {}
+ },
+ {
+  "id": "F09",
+  "nombre": "Eliminar animal (con confirmación)",
+  "estado": "APROBADA",
+  "evidencia": {}
+ },
+ {
+  "id": "F10",
+  "nombre": "Fotografía: captura, reducción a JPEG, guardado y visualización",
+  "estado": "APROBADA",
+  "evidencia": {
+   "antes": 13,
+   "despues": 14,
+   "visibles": 1
+  }
+ },
+ {
+  "id": "F11",
+  "nombre": "Exportación Excel (.xlsx) y CSV (UTF-8 con BOM, separador ;) del reporte",
+  "estado": "APROBADA",
+  "evidencia": {
+   "xlsx": "inventario_ganadero_2026-10-10.xlsx",
+   "csv": "inventario_ganadero_2026-10-10.csv"
+  }
+ },
+ {
+  "id": "F12",
+  "nombre": "Los 28 reportes (23 originales + 5 nuevos) se generan",
+  "estado": "APROBADA",
+  "evidencia": {
+   "nRep": 28,
+   "errRep": 0
+  }
+ },
+ {
+  "id": "F13",
+  "nombre": "Exportar la finca completa a Excel",
+  "estado": "APROBADA",
+  "evidencia": "finca_2026-10-10.xlsx"
+ },
+ {
+  "id": "S01",
+  "nombre": "XSS almacenado por nombre de lote: se ejecuta en v5; en v6 no se ejecuta ni se crea el elemento (el título se muestra como texto plano)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "v5": true,
+   "v6": false,
+   "tituloV6": "Cambiar estado — "
+  }
+ },
+ {
+  "id": "S02",
+  "nombre": "Depuración de HTML en confirmaciones: conserva <b>/<br> y elimina etiquetas peligrosas",
+  "estado": "APROBADA",
+  "evidencia": "Hola <b>ok</b>x()<br>fin"
+ },
+ {
+  "id": "F14",
+  "nombre": "Permisos: el rol Consulta ve indicadores pero no puede mover ganado, exportar ni restaurar",
+  "estado": "APROBADA",
+  "evidencia": {
+   "mover": "Su rol (Consulta) no tiene permiso para: Registrar movimientos de ganado.",
+   "importar": false,
+   "exportar": false,
+   "biVisible": true
+  }
+ },
+ {
+  "id": "F15",
+  "nombre": "Alertas: posponer oculta la alerta (sin perderla) y reactivar la devuelve",
+  "estado": "APROBADA",
+  "evidencia": {
+   "n0": 42,
+   "n1": 41,
+   "posp": 42,
+   "n2": 42
+  }
+ },
+ {
+  "id": "F16",
+  "nombre": "Alertas: desactivar un tipo en la configuración",
+  "estado": "APROBADA",
+  "evidencia": {
+   "tipo": "Próximo a parto",
+   "n": 10,
+   "r": 0
+  }
+ },
+ {
+  "id": "F17",
+  "nombre": "Indicadores: inventario al cierre = animales activos y costos = suma de registros del periodo",
+  "estado": "APROBADA",
+  "evidencia": {
+   "inv": 129,
+   "act": 129,
+   "cos": 175277140,
+   "cosD": 175277140
+  }
+ },
+ {
+  "id": "F18",
+  "nombre": "Indicadores: el filtro por grupo restringe el universo correctamente",
+  "estado": "APROBADA",
+  "evidencia": {
+   "g": "Cría 1",
+   "inv": 39,
+   "esperado": 39
+  }
+ },
+ {
+  "id": "F19",
+  "nombre": "Flujo de caja: la suma mensual cuadra con el total y fijos + variables = total",
+  "estado": "APROBADA",
+  "evidencia": {
+   "tot": 160351940,
+   "suma": 160351940,
+   "fijos": 66457540,
+   "vars": 93894400
+  }
+ },
+ {
+  "id": "F20",
+  "nombre": "Calidad de datos detecta un evento huérfano sembrado",
+  "estado": "APROBADA",
+  "evidencia": {
+   "hallazgos": 4
+  }
+ },
+ {
+  "id": "F21",
+  "nombre": "Diseño móvil (390 px): sin desplazamiento horizontal de la página en vistas nuevas y originales",
+  "estado": "APROBADA",
+  "evidencia": {
+   "dashboard": {
+    "doc": 390,
+    "vp": 390
+   },
+   "indicadores": {
+    "doc": 390,
+    "vp": 390
+   },
+   "finanzas": {
+    "doc": 390,
+    "vp": 390
+   },
+   "alertas": {
+    "doc": 390,
+    "vp": 390
+   },
+   "asistente": {
+    "doc": 390,
+    "vp": 390
+   },
+   "calidad": {
+    "doc": 390,
+    "vp": 390
+   },
+   "ganado": {
+    "doc": 390,
+    "vp": 390
+   },
+   "configuracion": {
+    "doc": 390,
+    "vp": 390
+   }
+  }
+ },
+ {
+  "id": "F22",
+  "nombre": "Funcionamiento sin red: todas las peticiones http/https bloqueadas y la aplicación opera (0 recursos externos solicitados)",
+  "estado": "APROBADA",
+  "evidencia": {
+   "externas": []
+  }
+ },
+ {
+  "id": "F23",
+  "nombre": "Sin errores de JavaScript en las pruebas funcionales",
+  "estado": "APROBADA",
+  "evidencia": []
+ }
+]
