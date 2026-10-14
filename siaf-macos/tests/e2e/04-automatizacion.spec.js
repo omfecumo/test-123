@@ -159,5 +159,6 @@ test('P13-mac automatización de TextEdit (app de prueba autorizada) — requier
   const h = await ejecutarYEsperar(s.id);
   fs.writeFileSync(path.join(EVID, '..', 'automatizacion-textedit-macos.json'), JSON.stringify({ permisos: per, historial: h, apps: await ctl.evaluate(() => siafControl.appsEnEjecucion()) }, null, 2));
   await captura(ctl, '18-control-textedit-macos');
+  console.log('TEXTEDIT', JSON.stringify({ per, h }));
   expect(h.estado, h.error || '').toBe('completada');
 });

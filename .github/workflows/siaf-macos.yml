@@ -30,6 +30,7 @@ jobs:
         working-directory: siaf-macos
     env:
       CI: '1'
+      SIAF_DIAGNOSTICO: '1'   # mensajes de error ampliados en la automatización (solo CI)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -47,6 +48,9 @@ jobs:
         run: bash scripts/build-automator.sh 2>&1 | tee evidencias/ci/auxiliar-${{ matrix.nombre }}.txt
       - name: Pruebas unitarias (incluye protocolo del auxiliar nativo)
         run: npm run test:unit 2>&1 | tee evidencias/ci/unitarias-${{ matrix.nombre }}.txt
+      - name: Diagnóstico del auxiliar con TextEdit (sin Electron)
+        continue-on-error: true
+        run: node tests/diag/textedit-auxiliar.js 2>&1 | tee evidencias/ci/diag-textedit-${{ matrix.nombre }}.txt; osascript -e 'tell application "TextEdit" to quit saving no' || true
       - name: Pruebas de extremo a extremo (Electron en macOS)
         run: npm run test:e2e 2>&1 | tee evidencias/ci/e2e-${{ matrix.nombre }}.txt
       - name: Empaquetar (.app universal, .dmg, .zip, .pkg)

@@ -67,7 +67,12 @@ class DriverMacOS {
       case 'esperarElemento': return conAviso(this.aux.pedir('buscar', { bundleId: b, elemento: paso.elemento, timeoutMs }, t));
       case 'validarValor': {
         const r = await conAviso(this.aux.pedir('leer', { bundleId: b, elemento: paso.elemento, timeoutMs }, t));
-        if (!String(r && r.valor || '').toLowerCase().includes(paso.contiene.toLowerCase())) throw new Error(`Validación fallida: el control no contiene «${paso.contiene}».`);
+        if (!String(r && r.valor || '').toLowerCase().includes(paso.contiene.toLowerCase())) {
+          let diag = '';
+          // SIAF_DIAGNOSTICO=1 (solo pruebas): añade contexto técnico. En uso normal no se expone el contenido leído.
+          if (process.env.SIAF_DIAGNOSTICO === '1') { const f = await this.aux.pedir('frontal').catch(() => ({})); diag = ` [diag: frente=${f.bundleId} ventana=«${f.ventana}» valor(${String(r && r.valor || '').length})=«${String(r && r.valor || '').slice(0, 60)}»]`; }
+          throw new Error(`Validación fallida: el control no contiene «${paso.contiene}».${diag}`);
+        }
         return r;
       }
       case 'applescript':
