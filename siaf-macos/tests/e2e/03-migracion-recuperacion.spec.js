@@ -19,7 +19,7 @@ test('P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con ve
   await pag.goto(pathToFileURL(path.join(RAIZ, 'source', 'SIAF_v9_3_3.html')).toString());
   await pag.waitForSelector('.login', { timeout: 90000 });
   for (const d of '1234') await pag.keyboard.press(d); await pag.keyboard.press('Enter');
-  await pag.waitForSelector('#cp1'); await pag.fill('#cp1', '2580'); await pag.fill('#cp2', '2580'); await pag.click('#lg-cp button[type=submit]');
+  await pag.waitForSelector('#cp1'); await pag.waitForFunction(() => document.activeElement && document.activeElement.id === 'cp1'); await pag.fill('#cp1', '2580'); await pag.fill('#cp2', '2580'); await pag.click('#lg-cp button[type=submit]');
   await pag.waitForSelector('#app .topbar', { timeout: 60000 });
   await cerrarNovedades(pag);
   // datos propios en el navegador: un animal con fotografía

@@ -1,6 +1,6 @@
 {
- "origen": "SIAF_respaldo_2026-10-14_1655.zip",
- "sha256": "0f0a7cd85b8d52345e4c9a1d1160a19ac603723f26f6878e9b73e2094fc69022",
+ "origen": "SIAF_respaldo_2026-10-14_1734.zip",
+ "sha256": "b7be9208111c91658ea19272d95928462ac3b8104279c344e75128359a4690c8",
  "conteos": {
   "config": 7,
   "lotes": 394,
@@ -33,9 +33,9 @@
   "papelera": 0
  },
  "cifrado": false,
- "fecha": "2026-10-14T16:55:57.526Z",
+ "fecha": "2026-10-14T17:34:56.020Z",
  "estado": "verificada",
- "verificada": "2026-10-14T16:56:01.805Z",
+ "verificada": "2026-10-14T17:35:01.431Z",
  "obtenido": {
   "config": 7,
   "lotes": 394,

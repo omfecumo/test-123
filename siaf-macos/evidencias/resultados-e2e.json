@@ -4,7 +4,8 @@
       "/opt/node22/bin/node",
       "/home/user/test-123/siaf-macos/node_modules/.bin/playwright",
       "test",
-      "tests/e2e/zz-ayuda.tmp.spec.js"
+      "tests/e2e/01-arranque-datos.spec.js",
+      "tests/e2e/03-migracion-recuperacion.spec.js"
     ],
     "configFile": "/home/user/test-123/siaf-macos/playwright.config.js",
     "rootDir": "/home/user/test-123/siaf-macos/tests/e2e",
@@ -66,13 +67,13 @@
   },
   "suites": [
     {
-      "title": "zz-ayuda.tmp.spec.js",
-      "file": "zz-ayuda.tmp.spec.js",
+      "title": "01-arranque-datos.spec.js",
+      "file": "01-arranque-datos.spec.js",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "ayuda",
+          "title": "P01 instalación limpia: arranque, contexto seguro, sin Node.js en la página, CSP y menús nativos",
           "ok": true,
           "tags": [],
           "tests": [
@@ -87,16 +88,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3207,
+                  "duration": 10142,
                   "errors": [],
-                  "stdout": [
-                    {
-                      "text": "HEADER rgb(21, 74, 46) siaf://ayuda/index.html#automatizacion\n"
-                    }
-                  ],
+                  "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-14T17:02:46.109Z",
+                  "startTime": "2026-10-14T17:34:23.613Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -104,9 +101,119 @@
               "status": "expected"
             }
           ],
-          "id": "b5ae8094941c83eee356-9ba80b37ac47df92146d",
-          "file": "zz-ayuda.tmp.spec.js",
-          "line": 3,
+          "id": "91c659fb4508383f4a36-5daf46b53e2e1642d8f0",
+          "file": "01-arranque-datos.spec.js",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "P02–P06 crear, editar y consultar registros; fotografía; persistencia tras reiniciar; respaldo al salir; sin red",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10459,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T17:34:33.910Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "91c659fb4508383f4a36-c1a4f6191303c9e36197",
+          "file": "01-arranque-datos.spec.js",
+          "line": 45,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "03-migracion-recuperacion.spec.js",
+      "file": "03-migracion-recuperacion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T17:34:44.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7dc5d23adac86a155ed0-7b9e1bf0a930985077be",
+          "file": "03-migracion-recuperacion.spec.js",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5123,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T17:35:01.964Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7dc5d23adac86a155ed0-cf7686450b4aa5cbad3f",
+          "file": "03-migracion-recuperacion.spec.js",
+          "line": 87,
           "column": 1
         }
       ]
@@ -114,9 +221,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-14T17:02:45.470Z",
-    "duration": 3921.193,
-    "expected": 1,
+    "startTime": "2026-10-14T17:34:21.770Z",
+    "duration": 45371.85,
+    "expected": 4,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

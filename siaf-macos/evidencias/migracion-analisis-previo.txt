@@ -1,6 +1,6 @@
-Archivo: SIAF_respaldo_2026-10-14_1655.zip (0.71 MB, ZIP)
-SHA-256: 0f0a7cd85b8d5234…
-Exportado: 2026-10-14T16:55:52.851Z · SIAF 9.0 · Finca — Puerto López
+Archivo: SIAF_respaldo_2026-10-14_1734.zip (0.71 MB, ZIP)
+SHA-256: b7be9208111c9165…
+Exportado: 2026-10-14T17:34:50.483Z · SIAF 9.0 · Finca — Puerto López
 
 Registros: 5497
   • config: 7

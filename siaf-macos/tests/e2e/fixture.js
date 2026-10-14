@@ -33,6 +33,8 @@ async function primerIngreso(win, nuevo = '2580') {
   await win.waitForSelector('.login');
   await teclearPin(win, '1234');
   await win.waitForSelector('#cp1');
+  // SIAF enfoca #cp1 60 ms después de mostrar el formulario: se espera ese enfoque para que no interrumpa la escritura en #cp2
+  await win.waitForFunction(() => document.activeElement && document.activeElement.id === 'cp1');
   await win.fill('#cp1', nuevo); await win.fill('#cp2', nuevo);
   await win.click('#lg-cp button[type=submit]');
   try { await win.waitForSelector('#app .topbar', { timeout: 60000 }); }
