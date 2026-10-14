@@ -157,5 +157,7 @@ test('P13-mac automatización de TextEdit (app de prueba autorizada) — requier
     { tipo: 'escribirTexto', texto: 'Prueba de SIAF Control y Automatización', modo: 'teclear' },
     { tipo: 'validarValor', elemento: { rol: 'AXTextArea' }, contiene: 'SIAF Control' }] });
   const h = await ejecutarYEsperar(s.id);
-  expect(h.estado).toBe('completada');
+  fs.writeFileSync(path.join(EVID, '..', 'automatizacion-textedit-macos.json'), JSON.stringify({ permisos: per, historial: h, apps: await ctl.evaluate(() => siafControl.appsEnEjecucion()) }, null, 2));
+  await captura(ctl, '18-control-textedit-macos');
+  expect(h.estado, h.error || '').toBe('completada');
 });
