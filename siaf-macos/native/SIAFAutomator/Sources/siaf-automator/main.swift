@@ -229,17 +229,27 @@ func enviarCombinacion(_ combo: String) throws {
     abajo.post(tap: .cghidEventTap); arriba.post(tap: .cghidEventTap)
 }
 
-func teclear(_ s: String) {
-    let fuente = CGEventSource(stateID: .hidSystemState)
+/// Escribe texto como pulsaciones Unicode. Con `pid` los eventos se entregan directamente a esa aplicación
+/// (más fiable que el flujo HID global, que algunas apps ignoran para eventos sin tecla física).
+func teclear(_ s: String, pid: pid_t? = nil) {
+    let fuente = CGEventSource(stateID: .combinedSessionState)
     for ch in s {
         let u = Array(String(ch).utf16)
         guard let a = CGEvent(keyboardEventSource: fuente, virtualKey: 0, keyDown: true),
               let b = CGEvent(keyboardEventSource: fuente, virtualKey: 0, keyDown: false) else { continue }
         a.keyboardSetUnicodeString(stringLength: u.count, unicodeString: u)
         b.keyboardSetUnicodeString(stringLength: u.count, unicodeString: u)
-        a.post(tap: .cghidEventTap); b.post(tap: .cghidEventTap)
-        Thread.sleep(forTimeInterval: 0.012)
+        if let p = pid { a.postToPid(p); b.postToPid(p) } else { a.post(tap: .cghidEventTap); b.post(tap: .cghidEventTap) }
+        Thread.sleep(forTimeInterval: 0.02)
     }
+}
+
+/// Inserta texto en la posición del cursor usando Accesibilidad (equivale a escribirlo). Devuelve false si el
+/// control no lo admite.
+func insertarAX(_ e: AXUIElement, _ t: String) -> Bool {
+    var ajustable: DarwinBoolean = false
+    guard AXUIElementIsAttributeSettable(e, kAXSelectedTextAttribute as CFString, &ajustable) == .success, ajustable.boolValue else { return false }
+    return AXUIElementSetAttributeValue(e, kAXSelectedTextAttribute as CFString, t as CFTypeRef) == .success
 }
 
 func clic(en p: CGPoint, derecho: Bool = false, dobles: Bool = false) {
@@ -447,8 +457,11 @@ func ejecutar(_ cmd: String, _ a: [String: Any]) throws -> Any {
                AXUIElementSetAttributeValue(d, kAXValueAttribute as CFString, t as CFTypeRef) == .success { return true }
         }
         try asegurarFrontal(b)
-        if let d = destino { AXUIElementSetAttributeValue(d, kAXFocusedAttribute as CFString, kCFBooleanTrue) }
-        teclear(t)
+        if let d = destino {
+            AXUIElementSetAttributeValue(d, kAXFocusedAttribute as CFString, kCFBooleanTrue)
+            if insertarAX(d, t) { return true }   // 1.º: inserción accesible en el cursor
+        }
+        teclear(t, pid: appEnEjecucion(b)?.processIdentifier) // 2.º: pulsaciones dirigidas al proceso de la app
         return true
     case "teclas":
         try asegurarFrontal(b)

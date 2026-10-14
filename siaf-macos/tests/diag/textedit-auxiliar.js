@@ -16,6 +16,8 @@ const esperar = ms => new Promise(r => setTimeout(r, ms));
   await paso('teclas', { bundleId: B, combinacion: 'cmd+n' }); await esperar(1200); await paso('frontal');
   await paso('escribir', { bundleId: B, texto: 'Prueba directa del auxiliar', modo: 'teclear' }); await esperar(800);
   await paso('leer', { bundleId: B, elemento: { rol: 'AXTextArea' }, timeoutMs: 3000 });
+  await paso('escribir', { bundleId: B, texto: ' + segundo tramo', modo: 'teclear', elemento: { rol: 'AXTextArea' } }); await esperar(800);
+  await paso('leer', { bundleId: B, elemento: { rol: 'AXTextArea' }, timeoutMs: 3000 });
   await paso('escribir', { bundleId: B, texto: 'Valor asignado por AX', modo: 'valor', elemento: { rol: 'AXTextArea' } }); await esperar(500);
   await paso('leer', { bundleId: B, elemento: { rol: 'AXTextArea' }, timeoutMs: 3000 });
   await paso('menu', { bundleId: B, ruta: ['Format', 'Make Plain Text'] }).catch(() => { });
