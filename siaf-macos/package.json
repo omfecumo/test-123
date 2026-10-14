@@ -1,0 +1,112 @@
+{
+  "name": "siaf-desktop",
+  "productName": "SIAF",
+  "version": "9.3.3",
+  "description": "SIAF — Sistema Integral de Administración de Finca, aplicación de escritorio para macOS",
+  "author": "Omar Fernando Cuadro Mogollón",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "src/main/main.js",
+  "scripts": {
+    "prepare-web": "node scripts/prepare-web.mjs",
+    "start": "npm run prepare-web && electron .",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:e2e": "npm run prepare-web && playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "icons": "python3 scripts/make-icons.py",
+    "automator": "bash scripts/build-automator.sh",
+    "dist:mac": "bash scripts/build-mac.sh",
+    "dist:mac:sin-firma-desde-linux": "npm run prepare-web && electron-builder --mac zip --x64 --arm64 -c.mac.identity=null --publish never"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "electron": "44.5.1",
+    "electron-builder": "26.16.1"
+  },
+  "homepage": "https://github.com/omfecumo/test-123/tree/main/siaf-macos",
+  "build": {
+    "appId": "co.siaf.finca",
+    "productName": "SIAF",
+    "copyright": "© 2026 Omar Fernando Cuadro Mogollón. Todos los derechos reservados.",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "package.json",
+      "src/**/*",
+      "app-web/**/*",
+      "!src/**/*.md"
+    ],
+    "asar": true,
+    "extraResources": [
+      {
+        "from": "build/bin",
+        "to": "bin",
+        "filter": [
+          "siaf-automator"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg",
+        "zip",
+        "pkg"
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.inherit.plist",
+      "minimumSystemVersion": "12.0",
+      "darkModeSupport": true,
+      "notarize": false,
+      "extendInfo": {
+        "NSAppleEventsUsageDescription": "SIAF usa Apple Events solo cuando usted aprueba y ejecuta un paso AppleScript en «SIAF Control y Automatización».",
+        "LSApplicationCategoryType": "public.app-category.business",
+        "NSHumanReadableCopyright": "© 2026 Omar Fernando Cuadro Mogollón. Todos los derechos reservados."
+      },
+      "artifactName": "SIAF-${version}-${arch}-mac.${ext}"
+    },
+    "dmg": {
+      "title": "SIAF ${version}",
+      "artifactName": "SIAF-${version}-${arch}.dmg",
+      "contents": [
+        {
+          "x": 150,
+          "y": 190,
+          "type": "file"
+        },
+        {
+          "x": 410,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 560,
+        "height": 380
+      }
+    },
+    "pkg": {
+      "artifactName": "SIAF-${version}-${arch}.pkg",
+      "installLocation": "/Applications",
+      "allowAnywhere": false,
+      "allowCurrentUserHome": false,
+      "isRelocatable": false,
+      "isVersionChecked": true
+    },
+    "publish": null,
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": true,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    }
+  }
+}

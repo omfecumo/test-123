@@ -1,0 +1,11 @@
+node_modules/
+dist/
+app-web/
+test-results/
+playwright-report/
+.e2e-datos/
+build/bin/siaf-automator
+native/SIAFAutomator/.build/
+native/SIAFAutomator/.swiftpm/
+*.log
+.DS_Store

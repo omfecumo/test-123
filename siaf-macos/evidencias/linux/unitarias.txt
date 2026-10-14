@@ -1,0 +1,196 @@
+TAP version 13
+# Subtest: Esquema: elimina campos desconocidos y acota tipos
+ok 1 - Esquema: elimina campos desconocidos y acota tipos
+  ---
+  duration_ms: 3.830513
+  type: 'test'
+  ...
+# Subtest: Esquema: AppleScript lleva huella SHA-256 calculada (no la del archivo) y siempre es destructivo
+ok 2 - Esquema: AppleScript lleva huella SHA-256 calculada (no la del archivo) y siempre es destructivo
+  ---
+  duration_ms: 1.456219
+  type: 'test'
+  ...
+# Subtest: Esquema: detecta pasos destructivos por su texto
+ok 3 - Esquema: detecta pasos destructivos por su texto
+  ---
+  duration_ms: 0.831075
+  type: 'test'
+  ...
+# Subtest: Motor: ejecuta todos los pasos en orden y registra el resultado
+ok 4 - Motor: ejecuta todos los pasos en orden y registra el resultado
+  ---
+  duration_ms: 13.689122
+  type: 'test'
+  ...
+# Subtest: Motor: pide confirmación antes de un paso destructivo y se detiene si no se confirma
+ok 5 - Motor: pide confirmación antes de un paso destructivo y se detiene si no se confirma
+  ---
+  duration_ms: 1.067114
+  type: 'test'
+  ...
+# Subtest: Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+ok 6 - Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+  ---
+  duration_ms: 0.610095
+  type: 'test'
+  ...
+# Subtest: Motor: reintenta solo pasos idempotentes o marcados como seguros
+ok 7 - Motor: reintenta solo pasos idempotentes o marcados como seguros
+  ---
+  duration_ms: 3006.800383
+  type: 'test'
+  ...
+# Subtest: Motor: detener interrumpe de inmediato una pausa larga
+ok 8 - Motor: detener interrumpe de inmediato una pausa larga
+  ---
+  duration_ms: 102.540258
+  type: 'test'
+  ...
+# Subtest: Motor: pausa y continuación
+ok 9 - Motor: pausa y continuación
+  ---
+  duration_ms: 502.765555
+  type: 'test'
+  ...
+# Subtest: Motor: modo paso a paso espera «Siguiente» en cada paso
+ok 10 - Motor: modo paso a paso espera «Siguiente» en cada paso
+  ---
+  duration_ms: 42.657319
+  type: 'test'
+  ...
+# Subtest: Motor: pasos manuales (campo protegido) esperan al usuario y nunca se automatizan
+ok 11 - Motor: pasos manuales (campo protegido) esperan al usuario y nunca se automatizan
+  ---
+  duration_ms: 0.792622
+  type: 'test'
+  ...
+# Subtest: Motor: condición con «saltar» y con «detener»; reanudación desde punto
+ok 12 - Motor: condición con «saltar» y con «detener»; reanudación desde punto
+  ---
+  duration_ms: 0.725444
+  type: 'test'
+  ...
+# Subtest: Motor: si la interfaz cambia (contexto inesperado) la secuencia se detiene con mensaje claro
+ok 13 - Motor: si la interfaz cambia (contexto inesperado) la secuencia se detiene con mensaje claro
+  ---
+  duration_ms: 0.421857
+  type: 'test'
+  ...
+# Subtest: Almacén: guardar, listar, duplicar, eliminar (a papelera), historial, apps y aprobaciones
+ok 14 - Almacén: guardar, listar, duplicar, eliminar (a papelera), historial, apps y aprobaciones
+  ---
+  duration_ms: 6.406765
+  type: 'test'
+  ...
+# Subtest: Almacén: importar una secuencia genera id nuevo y no hereda aprobaciones ajenas
+ok 15 - Almacén: importar una secuencia genera id nuevo y no hereda aprobaciones ajenas
+  ---
+  duration_ms: 1.621786
+  type: 'test'
+  ...
+# Subtest: auxiliar: subcomandos de diagnóstico
+ok 16 - auxiliar: subcomandos de diagnóstico # SKIP requiere macOS y build/bin/siaf-automator
+  ---
+  duration_ms: 0.975724
+  type: 'test'
+  ...
+# Subtest: auxiliar: protocolo serve (peticiones, errores controlados y cierre al cerrar stdin)
+ok 17 - auxiliar: protocolo serve (peticiones, errores controlados y cierre al cerrar stdin) # SKIP requiere macOS y build/bin/siaf-automator
+  ---
+  duration_ms: 0.142339
+  type: 'test'
+  ...
+# Subtest: Migración: analiza un ZIP oficial de SIAF sin modificarlo
+ok 18 - Migración: analiza un ZIP oficial de SIAF sin modificarlo
+  ---
+  duration_ms: 7.908671
+  type: 'test'
+  ...
+# Subtest: Migración: JSON con identificadores inválidos, repetidos y referencias rotas genera avisos
+ok 19 - Migración: JSON con identificadores inválidos, repetidos y referencias rotas genera avisos
+  ---
+  duration_ms: 0.710276
+  type: 'test'
+  ...
+# Subtest: Migración: rechaza archivos que no son de SIAF y reconoce respaldos cifrados
+ok 20 - Migración: rechaza archivos que no son de SIAF y reconoce respaldos cifrados
+  ---
+  duration_ms: 1.009786
+  type: 'test'
+  ...
+# Subtest: Migración: estado pendiente y resultado se guardan y limpian
+ok 21 - Migración: estado pendiente y resultado se guardan y limpian
+  ---
+  duration_ms: 3.613478
+  type: 'test'
+  ...
+# Subtest: Protocolo siaf://: sirve solo archivos dentro de cada raíz
+ok 22 - Protocolo siaf://: sirve solo archivos dentro de cada raíz
+  ---
+  duration_ms: 4.183167
+  type: 'test'
+  ...
+# Subtest: ZIP: lee archivos almacenados y comprimidos (deflate) con el formato de SIAF
+ok 23 - ZIP: lee archivos almacenados y comprimidos (deflate) con el formato de SIAF
+  ---
+  duration_ms: 5.905184
+  type: 'test'
+  ...
+# Subtest: ZIP: verifica huellas del manifiesto y detecta alteraciones
+ok 24 - ZIP: verifica huellas del manifiesto y detecta alteraciones
+  ---
+  duration_ms: 2.244763
+  type: 'test'
+  ...
+# Subtest: Respaldos: guarda, escribe .sha256, indexa y verifica
+ok 25 - Respaldos: guarda, escribe .sha256, indexa y verifica
+  ---
+  duration_ms: 10.130201
+  type: 'test'
+  ...
+# Subtest: Respaldos: rechaza contenido que no es un respaldo de SIAF y motivos desconocidos
+ok 26 - Respaldos: rechaza contenido que no es un respaldo de SIAF y motivos desconocidos
+  ---
+  duration_ms: 2.73116
+  type: 'test'
+  ...
+# Subtest: Respaldos: detecta un archivo modificado en disco después de guardarlo
+ok 27 - Respaldos: detecta un archivo modificado en disco después de guardarlo
+  ---
+  duration_ms: 5.348479
+  type: 'test'
+  ...
+# Subtest: Respaldos: rotación separa automáticas y puntos; las manuales nunca se borran
+ok 28 - Respaldos: rotación separa automáticas y puntos; las manuales nunca se borran
+  ---
+  duration_ms: 26.581159
+  type: 'test'
+  ...
+# Subtest: Respaldos: nombres con rutas o fuera del patrón se rechazan (sin recorrido de directorios)
+ok 29 - Respaldos: nombres con rutas o fuera del patrón se rechazan (sin recorrido de directorios)
+  ---
+  duration_ms: 1.964823
+  type: 'test'
+  ...
+# Subtest: Respaldos: copia espejo verificada y fallo de espejo no impide el respaldo principal
+ok 30 - Respaldos: copia espejo verificada y fallo de espejo no impide el respaldo principal
+  ---
+  duration_ms: 7.345727
+  type: 'test'
+  ...
+# Subtest: Respaldos: el índice se reconstruye si se borra
+ok 31 - Respaldos: el índice se reconstruye si se borra
+  ---
+  duration_ms: 15.974081
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 2
+# todo 0
+# duration_ms 3784.232676

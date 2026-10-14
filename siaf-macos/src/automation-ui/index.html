@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIAF Control y Automatización</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cab">
+    <img src="icon.png" alt="" width="34" height="34">
+    <div class="titulo"><h1>SIAF Control y Automatización</h1><p class="sub">Grabar, guardar y reproducir secuencias de acciones autorizadas</p></div>
+    <span class="espacio"></span>
+    <span id="estado" class="pill" role="status" aria-live="polite">Inactivo</span>
+    <button id="btn-detener-global" class="btn peligro" title="Detener toda grabación o ejecución (⌘⇧⎋)">■ Detener todo</button>
+  </header>
+
+  <nav class="pestanas" role="tablist" aria-label="Secciones">
+    <button role="tab" data-p="secuencias" aria-selected="true">Secuencias</button>
+    <button role="tab" data-p="grabar">Grabar</button>
+    <button role="tab" data-p="historial">Historial</button>
+    <button role="tab" data-p="permisos">Permisos y aplicaciones</button>
+    <button role="tab" data-p="ayuda">Ayuda</button>
+  </nav>
+
+  <main>
+    <!-- ===================== SECUENCIAS ===================== -->
+    <section id="p-secuencias" class="panel-pest" role="tabpanel">
+      <div class="dos-col">
+        <aside class="lista">
+          <div class="barra">
+            <input id="buscar" type="search" placeholder="Buscar secuencia…" aria-label="Buscar secuencia">
+          </div>
+          <div class="barra">
+            <button id="btn-nueva" class="btn">＋ Nueva</button>
+            <button id="btn-importar" class="btn">Importar…</button>
+          </div>
+          <ul id="lista-sec" class="items" aria-label="Secuencias guardadas"></ul>
+        </aside>
+        <section class="editor" aria-label="Editor de secuencia">
+          <div id="vacio" class="vacio">Seleccione o cree una secuencia. También puede grabar una en la pestaña «Grabar».</div>
+          <form id="editor" class="oculto" autocomplete="off">
+            <div class="fila">
+              <label>Nombre<input name="nombre" required maxlength="120"></label>
+              <label>Carpeta<input name="carpeta" maxlength="60" placeholder="p. ej. Ganado"></label>
+            </div>
+            <label>Descripción<textarea name="descripcion" rows="2" maxlength="2000"></textarea></label>
+            <div class="fila">
+              <label>Objetivo<select name="objetivo" id="sel-objetivo"></select></label>
+              <label>Espera entre pasos (ms)<input name="esperaPasoMs" type="number" min="0" max="60000"></label>
+              <label>Tiempo máximo por paso (ms)<input name="timeoutMs" type="number" min="500" max="120000"></label>
+              <label>Reintentos (pasos seguros)<input name="reintentos" type="number" min="0" max="5"></label>
+            </div>
+            <div class="barra acciones-sec">
+              <button type="button" id="btn-ejecutar" class="btn primario">▶ Ejecutar</button>
+              <button type="button" id="btn-paso" class="btn">⏯ Paso a paso</button>
+              <button type="button" id="btn-desde" class="btn" title="Reanudar desde un punto de recuperación">↻ Desde punto…</button>
+              <span class="espacio"></span>
+              <button type="submit" class="btn">💾 Guardar</button>
+              <button type="button" id="btn-duplicar" class="btn">Duplicar</button>
+              <button type="button" id="btn-exportar" class="btn">Exportar…</button>
+              <button type="button" id="btn-eliminar" class="btn peligro-suave">Eliminar</button>
+            </div>
+            <h2>Pasos</h2>
+            <table class="tabla" aria-label="Pasos de la secuencia">
+              <thead><tr><th>#</th><th>Paso</th><th title="Pedir confirmación antes de ejecutar">Confirmar</th><th title="Se puede reintentar sin efectos secundarios">Reintento seguro</th><th>Acciones</th></tr></thead>
+              <tbody id="pasos"></tbody>
+            </table>
+            <div class="barra">
+              <select id="nuevo-tipo" aria-label="Tipo de paso a añadir"></select>
+              <button type="button" id="btn-anadir" class="btn">＋ Añadir paso</button>
+            </div>
+            <div id="edicion-paso" class="tarjeta oculto" aria-live="polite"></div>
+          </form>
+          <div id="ejecucion" class="tarjeta oculto" aria-live="polite">
+            <h2>Ejecución</h2>
+            <p id="ej-estado"></p>
+            <progress id="ej-progreso" max="1" value="0"></progress>
+            <p id="ej-paso" class="sub"></p>
+            <div id="ej-manual" class="aviso oculto">
+              <p id="ej-manual-txt"></p>
+              <button id="btn-manual-ok" class="btn primario">Ya lo hice — Continuar</button>
+              <button id="btn-manual-no" class="btn">Detener</button>
+            </div>
+            <div class="barra">
+              <button id="btn-pausar" class="btn">⏸ Pausar</button>
+              <button id="btn-continuar" class="btn">▶ Continuar</button>
+              <button id="btn-siguiente" class="btn">⏭ Siguiente paso</button>
+              <button id="btn-detener" class="btn peligro">■ Detener</button>
+            </div>
+            <ol id="ej-registro" class="registro"></ol>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== GRABAR ===================== -->
+    <section id="p-grabar" class="panel-pest oculto" role="tabpanel">
+      <div class="tarjeta">
+        <div class="fila">
+          <label>Grabar en<select id="grab-objetivo"></select></label>
+          <label class="chk"><input type="checkbox" id="grab-teclado"> Grabar teclado (solo otras apps; requiere «Monitorización de entrada»)</label>
+        </div>
+        <p class="sub">Dentro de SIAF se graban clics, navegación, selección de controles y texto de formularios. <b>Nunca</b> se graban el PIN de ingreso, contraseñas, frases de cifrado ni campos de tarjetas o cuentas: esos pasos quedan como «manuales». En otras apps solo se graban eventos mientras la app autorizada está al frente.</p>
+        <div class="barra">
+          <button id="btn-grabar" class="btn primario">⏺ Iniciar grabación</button>
+          <button id="btn-grabar-fin" class="btn peligro" disabled>■ Detener grabación</button>
+        </div>
+      </div>
+      <div class="tarjeta">
+        <h2>Pasos grabados <span id="grab-n" class="sub"></span></h2>
+        <ol id="grab-pasos" class="registro"></ol>
+        <div id="grab-guardar" class="oculto">
+          <div class="fila">
+            <label>Nombre<input id="grab-nombre" maxlength="120" placeholder="p. ej. Registrar pesaje rápido"></label>
+            <label>Carpeta<input id="grab-carpeta" maxlength="60"></label>
+          </div>
+          <label>Descripción<textarea id="grab-desc" rows="2" maxlength="2000"></textarea></label>
+          <div class="barra"><button id="btn-grab-guardar" class="btn primario">💾 Guardar como secuencia</button><button id="btn-grab-descartar" class="btn">Descartar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HISTORIAL ===================== -->
+    <section id="p-historial" class="panel-pest oculto" role="tabpanel">
+      <table class="tabla"><thead><tr><th>Inicio</th><th>Secuencia</th><th>Objetivo</th><th>Modo</th><th>Estado</th><th>Pasos</th><th>Detalle</th></tr></thead><tbody id="historial"></tbody></table>
+    </section>
+
+    <!-- ===================== PERMISOS ===================== -->
+    <section id="p-permisos" class="panel-pest oculto" role="tabpanel">
+      <div class="tarjeta">
+        <h2>Permisos de macOS</h2>
+        <p class="sub">SIAF solo pide lo imprescindible. Ningún permiso es necesario para usar SIAF ni para automatizar acciones DENTRO de SIAF.</p>
+        <table class="tabla"><tbody id="permisos"></tbody></table>
+        <p id="permisos-nota" class="sub"></p>
+      </div>
+      <div class="tarjeta">
+        <h2>Aplicaciones autorizadas</h2>
+        <p class="sub">SIAF solo graba y controla las aplicaciones de esta lista, y solo mientras usted graba o ejecuta una secuencia.</p>
+        <ul id="apps" class="items"></ul>
+        <div class="barra"><button id="btn-autorizar" class="btn">＋ Autorizar aplicación…</button><select id="apps-abiertas" aria-label="Aplicaciones abiertas"><option value="">— o elija una abierta —</option></select></div>
+      </div>
+    </section>
+
+    <!-- ===================== AYUDA ===================== -->
+    <section id="p-ayuda" class="panel-pest oculto" role="tabpanel">
+      <div class="tarjeta texto">
+        <h2>Cómo funciona</h2>
+        <ol>
+          <li><b>Grabar:</b> elija «SIAF» o una aplicación autorizada, pulse «Iniciar grabación», realice las acciones y pulse «Detener». Revise los pasos y guárdelos con un nombre.</li>
+          <li><b>Editar:</b> añada pausas, confirmaciones, validaciones («Validar texto/valor»), condiciones y puntos de recuperación. Marque «Confirmar» en los pasos que no deben ejecutarse sin su visto bueno.</li>
+          <li><b>Ejecutar:</b> «Ejecutar» corre la secuencia completa; «Paso a paso» espera su clic en «Siguiente paso». Durante la ejecución aparece una barra flotante con Pausar y Detener.</li>
+          <li><b>Detener de inmediato:</b> botón «Detener todo», la barra flotante, el menú Herramientas o el atajo <kbd>⌘</kbd><kbd>⇧</kbd><kbd>⎋</kbd>.</li>
+        </ol>
+        <h2>Seguridad</h2>
+        <ul>
+          <li>Las acciones que borran, restauran, venden, pagan, transfieren o envían piden confirmación siempre, aunque la secuencia no lo indique.</li>
+          <li>Solo se reintentan pasos de consulta (esperar, validar, navegar) o los marcados como «reintento seguro».</li>
+          <li>Si la interfaz no coincide con lo grabado (falta un botón, otra ventana al frente), la secuencia se detiene y explica el motivo.</li>
+          <li>Los AppleScript de una secuencia no se ejecutan hasta que usted los revisa y aprueba en este Mac; importar una secuencia nunca los aprueba.</li>
+          <li>No se envía nada a Internet. Las secuencias y el historial se guardan en ~/Library/Application Support/SIAF/Automatizacion.</li>
+        </ul>
+        <h2>Limitaciones</h2>
+        <ul>
+          <li>No todas las apps exponen controles accesibles. Las apps con interfaces dibujadas a mano (juegos, algunos programas multiplataforma), las ventanas protegidas del sistema y los campos seguros (contraseñas) no se pueden grabar ni controlar por accesibilidad.</li>
+          <li>El clic por posición es un complemento: depende del tamaño y la posición de la ventana y puede fallar si la interfaz cambia.</li>
+          <li>macOS bloquea la captura de teclado mientras hay un campo de contraseña activo (Secure Input).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div id="aviso" class="toast oculto" role="alert"></div>
+  <script src="app.js"></script>
+</body>
+</html>

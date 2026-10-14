@@ -1,0 +1,11 @@
+{
+  "empaquetada": true,
+  "version": "9.3.3",
+  "recursos": "/home/user/test-123/siaf-macos/dist/linux-unpacked/resources",
+  "arch": "x64",
+  "plataforma": "linux",
+  "respaldos": [
+    "SIAF_auto_2026-10-14_165712.zip"
+  ],
+  "fecha": "2026-10-14T16:57:13.824Z"
+}

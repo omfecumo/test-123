@@ -1,0 +1,92 @@
+# Compila y prueba «SIAF para macOS» en Mac reales (runners de GitHub): Apple Silicon e Intel.
+# Produce .app (universal), .dmg, .zip y .pkg; los instala (DMG y PKG) y ejecuta las pruebas sobre la app instalada.
+# Sin secretos de firma se genera una firma AD-HOC (Gatekeeper la rechaza en otros Mac; ver docs/DISTRIBUCION.md).
+name: SIAF macOS
+
+on:
+  push:
+    paths: ['siaf-macos/**', '.github/workflows/siaf-macos.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    name: macOS ${{ matrix.nombre }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            nombre: apple-silicon
+          - runner: macos-15-intel
+            nombre: intel
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: siaf-macos
+    env:
+      CI: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: siaf-macos/package-lock.json
+      - name: Entorno
+        run: |
+          sw_vers; uname -m; xcodebuild -version; swift --version; node -v
+          mkdir -p evidencias/ci && { sw_vers; uname -m; xcodebuild -version; swift --version; } > evidencias/ci/entorno-${{ matrix.nombre }}.txt 2>&1
+      - name: Dependencias
+        run: npm ci --no-audit --no-fund && npx playwright install chromium
+      - name: Auxiliar nativo (Swift, universal)
+        run: bash scripts/build-automator.sh 2>&1 | tee evidencias/ci/auxiliar-${{ matrix.nombre }}.txt
+      - name: Pruebas unitarias (incluye protocolo del auxiliar nativo)
+        run: npm run test:unit 2>&1 | tee evidencias/ci/unitarias-${{ matrix.nombre }}.txt
+      - name: Pruebas de extremo a extremo (Electron en macOS)
+        run: npm run test:e2e 2>&1 | tee evidencias/ci/e2e-${{ matrix.nombre }}.txt
+      - name: Empaquetar (.app universal, .dmg, .zip, .pkg)
+        env:
+          SIAF_ARCH: universal
+        run: bash scripts/build-mac.sh 2>&1 | tee evidencias/ci/empaquetado-${{ matrix.nombre }}.txt
+      - name: Instalación limpia desde el DMG y prueba de la app instalada
+        run: |
+          set -euo pipefail
+          DMG=$(ls dist/*.dmg | head -1)
+          hdiutil attach "$DMG" -nobrowse -mountpoint /tmp/siaf-dmg
+          rm -rf /Applications/SIAF.app && cp -R /tmp/siaf-dmg/SIAF.app /Applications/
+          hdiutil detach /tmp/siaf-dmg
+          codesign --verify --deep --strict /Applications/SIAF.app
+          SIAF_APP_EXEC=/Applications/SIAF.app/Contents/MacOS/SIAF npx playwright test tests/e2e/07-app-empaquetada.spec.js 2>&1 | tee evidencias/ci/instalada-dmg-${{ matrix.nombre }}.txt
+      - name: Instalación desde el PKG y prueba de la app instalada
+        run: |
+          set -euo pipefail
+          sudo rm -rf /Applications/SIAF.app
+          PKG=$(ls dist/*.pkg | head -1)
+          pkgutil --check-signature "$PKG" || true
+          sudo installer -pkg "$PKG" -target / 2>&1 | tee evidencias/ci/instalacion-pkg-${{ matrix.nombre }}.txt
+          test -d /Applications/SIAF.app
+          SIAF_APP_EXEC=/Applications/SIAF.app/Contents/MacOS/SIAF npx playwright test tests/e2e/07-app-empaquetada.spec.js 2>&1 | tee evidencias/ci/instalada-pkg-${{ matrix.nombre }}.txt
+      - name: Guardar evidencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-${{ matrix.nombre }}
+          path: |
+            siaf-macos/evidencias/
+            siaf-macos/.e2e-datos/**/logs/*.log
+          if-no-files-found: warn
+      - name: Guardar instaladores
+        if: success() && matrix.nombre == 'apple-silicon'
+        uses: actions/upload-artifact@v4
+        with:
+          name: SIAF-macOS-instaladores
+          path: |
+            siaf-macos/dist/*.dmg
+            siaf-macos/dist/*.zip
+            siaf-macos/dist/*.pkg
+            siaf-macos/dist/SHA256SUMS.txt
+          if-no-files-found: error

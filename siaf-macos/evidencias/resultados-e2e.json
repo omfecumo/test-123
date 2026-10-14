@@ -1,0 +1,765 @@
+{
+  "config": {
+    "argv": [
+      "/opt/node22/bin/node",
+      "/home/user/test-123/siaf-macos/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/home/user/test-123/siaf-macos/playwright.config.js",
+    "rootDir": "/home/user/test-123/siaf-macos/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/user/test-123/siaf-macos/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/user/test-123/siaf-macos/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 300000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidencias/resultados-e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "01-arranque-datos.spec.js",
+      "file": "01-arranque-datos.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P01 instalación limpia: arranque, contexto seguro, sin Node.js en la página, CSP y menús nativos",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6647,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:11.444Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "91c659fb4508383f4a36-5daf46b53e2e1642d8f0",
+          "file": "01-arranque-datos.spec.js",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "P02–P06 crear, editar y consultar registros; fotografía; persistencia tras reiniciar; respaldo al salir; sin red",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:18.140Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "91c659fb4508383f4a36-c1a4f6191303c9e36197",
+          "file": "01-arranque-datos.spec.js",
+          "line": 45,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "02-respaldo-importacion-roles.spec.js",
+      "file": "02-respaldo-importacion-roles.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P07 exportación (Excel, JSON, plantillas) e importación de animales desde CSV con vista previa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6563,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:27.812Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "07932089571826c63ce9-4523ef9dd5a29a7876b7",
+          "file": "02-respaldo-importacion-roles.spec.js",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "P08 restauración desde un respaldo de la app, con punto de recuperación previo y verificación de integridad",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6227,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:34.386Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "07932089571826c63ce9-d1aee21d182f00ec37b3",
+          "file": "02-respaldo-importacion-roles.spec.js",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "P11 roles y permisos: operario sin permiso de respaldo/restauración; consulta solo lectura",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6830,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:40.629Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "07932089571826c63ce9-0feede2720c914148e8c",
+          "file": "02-respaldo-importacion-roles.spec.js",
+          "line": 82,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "03-migracion-recuperacion.spec.js",
+      "file": "03-migracion-recuperacion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14864,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:55:47.478Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7dc5d23adac86a155ed0-7b9e1bf0a930985077be",
+          "file": "03-migracion-recuperacion.spec.js",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4246,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:02.355Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7dc5d23adac86a155ed0-cf7686450b4aa5cbad3f",
+          "file": "03-migracion-recuperacion.spec.js",
+          "line": 87,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "04-automatizacion.spec.js",
+      "file": "04-automatizacion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P12 grabar acciones en SIAF, guardar la secuencia y reproducirla",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5510,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:06.618Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-e76e22949021022eb609",
+          "file": "04-automatizacion.spec.js",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "P12b campos protegidos: el PIN nunca se graba",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 557,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:16.550Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-e7a56f42c8dd946a1c34",
+          "file": "04-automatizacion.spec.js",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "P15 operación destructiva sin confirmar → la secuencia se detiene sin ejecutarla",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 910,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:17.121Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-406c2ef627287ca7f131",
+          "file": "04-automatizacion.spec.js",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "P15b la interfaz cambió: elemento inexistente → error comprensible, sin reintentar el clic",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3938,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:18.044Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-6d09c9ad8c72858b458f",
+          "file": "04-automatizacion.spec.js",
+          "line": 96,
+          "column": 1
+        },
+        {
+          "title": "P15c detener de inmediato desde el menú (equivale a ⌘⇧⎋ y al botón de la barra flotante)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1542,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:21.993Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-16cc4f81c537737c072b",
+          "file": "04-automatizacion.spec.js",
+          "line": 103,
+          "column": 1
+        },
+        {
+          "title": "P12c modo paso a paso, pausas, validaciones, condición y punto de recuperación",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:23.543Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-22554062f31d56cca519",
+          "file": "04-automatizacion.spec.js",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "P12d exportar e importar secuencias; aprobación de AppleScript no se hereda",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:36.413Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-97c94b0b4cbb67f71476",
+          "file": "04-automatizacion.spec.js",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "P13-mac automatización de TextEdit (app de prueba autorizada) — requiere macOS con Accesibilidad concedida",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Solo en macOS: necesita el auxiliar nativo siaf-automator y el permiso de Accesibilidad.",
+                  "location": {
+                    "file": "/home/user/test-123/siaf-macos/tests/e2e/04-automatizacion.spec.js",
+                    "line": 150,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:37.974Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Solo en macOS: necesita el auxiliar nativo siaf-automator y el permiso de Accesibilidad.",
+                      "location": {
+                        "file": "/home/user/test-123/siaf-macos/tests/e2e/04-automatizacion.spec.js",
+                        "line": 150,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "7a198893c0b76baf3675-cd9db941b5088a3f37ec",
+          "file": "04-automatizacion.spec.js",
+          "line": 149,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "05-actualizacion-desinstalacion.spec.js",
+      "file": "05-actualizacion-desinstalacion.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "P16 actualización 9.3.3 → 9.3.4 conserva datos, sesión, respaldos y preferencias",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6214,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:38.448Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37196fd1ed0dd983f73e-87c733da78751931e956",
+          "file": "05-actualizacion-desinstalacion.spec.js",
+          "line": 26,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "06-modulos.spec.js",
+      "file": "06-modulos.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Módulos originales: cada sección de SIAF se abre y se dibuja sin errores",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24503,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:56:44.676Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f08e2b7ff254083944e4-80a52bfa932724c9e658",
+          "file": "06-modulos.spec.js",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "07-app-empaquetada.spec.js",
+      "file": "07-app-empaquetada.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5040,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:57:09.199Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca9eb2546594f077a4c6-13e7ad23cfedafcfa4ea",
+          "file": "07-app-empaquetada.spec.js",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-14T16:55:10.809Z",
+    "duration": 123470.91200000001,
+    "expected": 17,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

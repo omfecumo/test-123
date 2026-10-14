@@ -1,0 +1,24 @@
+
+Running 18 tests using 1 worker
+
+  ✓   1 tests/e2e/01-arranque-datos.spec.js:11:1 › P01 instalación limpia: arranque, contexto seguro, sin Node.js en la página, CSP y menús nativos (6.6s)
+  ✓   2 tests/e2e/01-arranque-datos.spec.js:45:1 › P02–P06 crear, editar y consultar registros; fotografía; persistencia tras reiniciar; respaldo al salir; sin red (9.6s)
+  ✓   3 tests/e2e/02-respaldo-importacion-roles.spec.js:11:1 › P07 exportación (Excel, JSON, plantillas) e importación de animales desde CSV con vista previa (6.6s)
+  ✓   4 tests/e2e/02-respaldo-importacion-roles.spec.js:44:1 › P08 restauración desde un respaldo de la app, con punto de recuperación previo y verificación de integridad (6.2s)
+  ✓   5 tests/e2e/02-respaldo-importacion-roles.spec.js:82:1 › P11 roles y permisos: operario sin permiso de respaldo/restauración; consulta solo lectura (6.8s)
+  ✓   6 tests/e2e/03-migracion-recuperacion.spec.js:14:1 › P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos (14.9s)
+  ✓   7 tests/e2e/03-migracion-recuperacion.spec.js:87:1 › P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático (4.2s)
+  ✓   8 tests/e2e/04-automatizacion.spec.js:37:1 › P12 grabar acciones en SIAF, guardar la secuencia y reproducirla (5.5s)
+  ✓   9 tests/e2e/04-automatizacion.spec.js:72:1 › P12b campos protegidos: el PIN nunca se graba (557ms)
+  ✓  10 tests/e2e/04-automatizacion.spec.js:87:1 › P15 operación destructiva sin confirmar → la secuencia se detiene sin ejecutarla (910ms)
+  ✓  11 tests/e2e/04-automatizacion.spec.js:96:1 › P15b la interfaz cambió: elemento inexistente → error comprensible, sin reintentar el clic (3.9s)
+  ✓  12 tests/e2e/04-automatizacion.spec.js:103:1 › P15c detener de inmediato desde el menú (equivale a ⌘⇧⎋ y al botón de la barra flotante) (1.5s)
+  ✓  13 tests/e2e/04-automatizacion.spec.js:115:1 › P12c modo paso a paso, pausas, validaciones, condición y punto de recuperación (12.9s)
+  ✓  14 tests/e2e/04-automatizacion.spec.js:131:1 › P12d exportar e importar secuencias; aprobación de AppleScript no se hereda (1.5s)
+  -  15 tests/e2e/04-automatizacion.spec.js:149:1 › P13-mac automatización de TextEdit (app de prueba autorizada) — requiere macOS con Accesibilidad concedida
+  ✓  16 tests/e2e/05-actualizacion-desinstalacion.spec.js:26:1 › P16 actualización 9.3.3 → 9.3.4 conserva datos, sesión, respaldos y preferencias (6.2s)
+  ✓  17 tests/e2e/06-modulos.spec.js:9:1 › Módulos originales: cada sección de SIAF se abre y se dibuja sin errores (24.5s)
+  ✓  18 tests/e2e/07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco (5.0s)
+
+  1 skipped
+  17 passed (2.1m)

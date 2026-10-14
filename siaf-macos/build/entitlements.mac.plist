@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Entitlements de Hardened Runtime para SIAF (no App Store, sin sandbox).
+     - allow-jit / allow-unsigned-executable-memory: requeridos por el motor V8 de Electron.
+     - automation.apple-events: solo para pasos AppleScript aprobados por el usuario.
+     No se solicitan cámara, micrófono, ubicación, contactos ni red entrante. -->
+<plist version="1.0">
+<dict>
+  <key>com.apple.security.cs.allow-jit</key><true/>
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key><true/>
+  <key>com.apple.security.automation.apple-events</key><true/>
+</dict>
+</plist>

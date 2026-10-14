@@ -1,0 +1,34 @@
+Archivo: SIAF_respaldo_2026-10-14_1655.zip (0.71 MB, ZIP)
+SHA-256: 0f0a7cd85b8d5234…
+Exportado: 2026-10-14T16:55:52.851Z · SIAF 9.0 · Finca — Puerto López
+
+Registros: 5497
+  • config: 7
+  • Lotes: 394
+  • Animales: 145
+  • Eventos: 1790
+  • Movimientos: 1111
+  • ocupaciones: 1108
+  • planes: 10
+  • Inventario: 20
+  • Mov. inventario: 207
+  • Maquinaria: 7
+  • mantenimientos: 13
+  • infra: 14
+  • agua: 11
+  • ambiental: 20
+  • Tareas: 20
+  • cultivos: 3
+  • labores: 20
+  • Costos: 33
+  • Usuarios: 5
+  • Bitácora: 7
+  • Fotografías: 14
+  • Lluvias: 240
+  • Fertilizaciones: 124
+  • Aforos: 174
+
+Avisos:
+  ⚠️ Huellas SHA-256 del manifiesto ZIP verificadas.
+
+Al continuar, SIAF mostrará su vista previa de restauración. Los datos actuales se guardarán antes en un punto de recuperación en disco. Los datos del navegador no se modifican.
