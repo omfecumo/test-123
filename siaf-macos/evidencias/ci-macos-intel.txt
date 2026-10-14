@@ -1,0 +1,53 @@
+##[group]Run sw_vers; uname -m; xcodebuild -version; swift --version; node -v
+[36;1msw_vers; uname -m; xcodebuild -version; swift --version; node -v[0m
+[36;1mmkdir -p evidencias/ci && { sw_vers; uname -m; xcodebuild -version; swift --version; } > evidencias/ci/entorno-intel.txt 2>&1[0m
+ProductVersion:		15.7.9
+x86_64
+Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+Architectures in the fat file: build/bin/siaf-automator are: x86_64 arm64 
+# pass 31
+# fail 0
+# skipped 0
+grabar {"apps":["com.apple.TextEdit"],"teclado":true} → {"resultado":true,"ok":true,"id":13}
+EVENTO GRABADO {"datos":{"app":"com.apple.TextEdit","paso":{"contexto":{"app":"com.apple.TextEdit","ventana":"Untitled 2"},"tipo":"pulsar","elemento":{"rol":"AXTextArea","identificador":"First Text View","ventana":"Untitled 2","titulo":"","descripcion":"","subrol":"","ruta":[{"rol":"AXScrollArea","in
+EVENTO GRABADO {"evento":"paso","datos":{"paso":{"tipo":"teclas","combinacion":"cmd+a","contexto":{"app":"com.apple.TextEdit","ventana":""}},"app":"com.apple.TextEdit"}}
+EVENTO GRABADO {"evento":"paso","datos":{"app":"com.apple.TextEdit","paso":{"combinacion":"return","contexto":{"app":"com.apple.TextEdit","ventana":""},"tipo":"teclas"}}}
+grabar-detener {} → {"id":17,"ok":true,"resultado":true}
+  ✓   1 tests/e2e/01-arranque-datos.spec.js:11:1 › P01 instalación limpia: arranque, contexto seguro, sin Node.js en la página, CSP y menús nativos (13.8s)
+  ✓   2 tests/e2e/01-arranque-datos.spec.js:45:1 › P02–P06 crear, editar y consultar registros; fotografía; persistencia tras reiniciar; respaldo al salir; sin red (15.9s)
+  ✓   3 tests/e2e/02-respaldo-importacion-roles.spec.js:11:1 › P07 exportación (Excel, JSON, plantillas) e importación de animales desde CSV con vista previa (15.8s)
+  ✓   4 tests/e2e/02-respaldo-importacion-roles.spec.js:44:1 › P08 restauración desde un respaldo de la app, con punto de recuperación previo y verificación de integridad (12.2s)
+  ✓   5 tests/e2e/02-respaldo-importacion-roles.spec.js:82:1 › P11 roles y permisos: operario sin permiso de respaldo/restauración; consulta solo lectura (9.2s)
+  ✓   6 tests/e2e/03-migracion-recuperacion.spec.js:14:1 › P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos (21.3s)
+  ✓   7 tests/e2e/03-migracion-recuperacion.spec.js:87:1 › P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático (9.7s)
+  ✓   8 tests/e2e/04-automatizacion.spec.js:37:1 › P12 grabar acciones en SIAF, guardar la secuencia y reproducirla (7.0s)
+  ✓   9 tests/e2e/04-automatizacion.spec.js:72:1 › P12b campos protegidos: el PIN nunca se graba (836ms)
+  ✓  10 tests/e2e/04-automatizacion.spec.js:87:1 › P15 operación destructiva sin confirmar → la secuencia se detiene sin ejecutarla (959ms)
+  ✓  11 tests/e2e/04-automatizacion.spec.js:96:1 › P15b la interfaz cambió: elemento inexistente → error comprensible, sin reintentar el clic (4.0s)
+  ✓  12 tests/e2e/04-automatizacion.spec.js:103:1 › P15c detener de inmediato desde el menú (equivale a ⌘⇧⎋ y al botón de la barra flotante) (1.6s)
+  ✓  13 tests/e2e/04-automatizacion.spec.js:115:1 › P12c modo paso a paso, pausas, validaciones, condición y punto de recuperación (12.3s)
+  ✓  14 tests/e2e/04-automatizacion.spec.js:131:1 › P12d exportar e importar secuencias; aprobación de AppleScript no se hereda (1.7s)
+  ✓  15 tests/e2e/04-automatizacion.spec.js:149:1 › P13-mac automatización de TextEdit (app de prueba autorizada) — requiere macOS con Accesibilidad concedida (6.9s)
+  ✓  16 tests/e2e/05-actualizacion-desinstalacion.spec.js:26:1 › P16 actualización 9.3.3 → 9.3.4 conserva datos, sesión, respaldos y preferencias (14.9s)
+  ✓  17 tests/e2e/06-modulos.spec.js:9:1 › Módulos originales: cada sección de SIAF se abre y se dibuja sin errores (29.3s)
+  -  18 tests/e2e/07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco
+  17 passed (3.2m)
+# pass 31
+# fail 0
+# skipped 0
+Architectures in the fat file: build/bin/siaf-automator are: x86_64 arm64 
+  • installing native dependencies  arch=arm64
+  • building        target=pkg arch=universal file=dist/SIAF-9.3.3-universal.pkg
+  • building        target=DMG arch=universal file=dist/SIAF-9.3.3-universal.dmg
+dist/mac-universal/SIAF.app: valid on disk
+Signature=adhoc
+Architectures in the fat file: dist/mac-universal/SIAF.app/Contents/MacOS/SIAF are: x86_64 arm64 
+Architectures in the fat file: dist/mac-universal/SIAF.app/Contents/Resources/bin/siaf-automator are: x86_64 arm64 
+dist/mac-universal/SIAF.app: rejected
+e412fdc3bd52bf3f834613a54d5c3187cf55ebd7176338f50e1e502e8dc6356a  SIAF-9.3.3-universal.dmg
+e97d5c40b35989081e94f3d99e230d54ccd9c2b5b627c0e24736a27faf783839  SIAF-9.3.3-universal.pkg
+  ✓  1 tests/e2e/07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco (10.0s)
+  1 passed (11.9s)
+installer: The install was successful.
+  ✓  1 tests/e2e/07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco (9.8s)
+  1 passed (10.8s)

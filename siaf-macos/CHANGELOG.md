@@ -11,13 +11,14 @@ Primera versión de escritorio para macOS. Versión de la app = versión de SIAF
 - Migración verificable desde la versión HTML (análisis previo, vista previa de SIAF, verificación posterior e informe).
 - «SIAF Control y Automatización»: grabación, edición, organización, exportación/importación y reproducción de secuencias; paso a paso, pausa, detener inmediato (barra flotante, ⌘⇧⎋, menú), reintentos seguros, confirmación de operaciones sensibles, detección de cambios de interfaz, puntos de recuperación, historial; automatización de apps autorizadas mediante el auxiliar Swift `siaf-automator` (Accesibilidad, CGEvent, menús, AppleScript aprobado, Atajos).
 - Empaquetado `.app` universal, `.dmg`, `.zip`, `.pkg`; Hardened Runtime y entitlements mínimos; fuses de Electron; scripts de compilación; CI en macOS (Apple Silicon e Intel).
-- Pruebas unitarias (29 + 2 en macOS) y de extremo a extremo (18) con evidencias.
+- Pruebas unitarias (29 + 2 en macOS) y de extremo a extremo (18; en macOS 17 + app instalada, en Linux 17 + app empaquetada) con evidencias.
 
 ### Corregido durante el desarrollo (encontrado por las pruebas)
 - El grabador usaba el valor de un campo como texto del selector: un PIN escrito durante la grabación podía quedar en la secuencia. Ahora nunca se usa el valor de un campo como selector.
 - La navegación de SIAF por `history.replaceState` no se grababa; ahora se registra antes de cada acción.
+- En macOS 15 el texto «tecleado» en otras apps no llegaba (eventos Unicode por el flujo HID global): ahora se inserta con Accesibilidad (`AXSelectedText`) o con eventos dirigidos al proceso.
 
 ### Limitaciones conocidas
 - Sin firma Developer ID ni notarización (no hay credenciales de Apple): firma ad-hoc.
 - Respaldo en Google Drive y dictado por voz del navegador no disponibles en la app.
-- Automatización de otras apps no probada en un Mac con permisos concedidos (requiere intervención manual).
+- Flujo de concesión/denegación de permisos de privacidad no probado con un usuario real; solo se probó macOS 15.

@@ -7,7 +7,7 @@ Módulo opcional para **grabar, guardar, editar y reproducir** secuencias de acc
 | Objetivo | Cómo actúa | Permisos de macOS | Estado |
 |---|---|---|---|
 | **SIAF** (esta app) | Reproductor interno sobre la página de SIAF (botones, campos, listas, casillas, secciones) | Ninguno | ✅ Probado automáticamente (Linux y macOS CI) |
-| **Otra aplicación** autorizada | Auxiliar nativo `siaf-automator`: API de Accesibilidad (AXUIElement), eventos de teclado/ratón (CGEvent), menús, AppleScript aprobado, Atajos | Accesibilidad; Monitorización de entrada solo para grabar teclado; Automatización solo para AppleScript | ⚠️ Compila y responde a su protocolo en macOS (CI). La prueba con TextEdit (`P13-mac`) requiere conceder Accesibilidad a mano en un Mac: **pendiente de ejecución en un Mac real** |
+| **Otra aplicación** autorizada | Auxiliar nativo `siaf-automator`: API de Accesibilidad (AXUIElement), eventos de teclado/ratón (CGEvent), menús, AppleScript aprobado, Atajos | Accesibilidad; Monitorización de entrada solo para grabar teclado; Automatización solo para AppleScript | ✅ Probado en macOS 15 Apple Silicon e Intel (CI): reproducción en TextEdit (abrir, ⌘N, escribir, validar, menús) y grabación (clics y teclas). Pendiente: probar el flujo de concesión de permisos con un usuario |
 
 ## 2. Grabar
 
@@ -39,6 +39,7 @@ Pasos que puede añadir: Pausa · Pedir confirmación · Punto de recuperación 
 
 * **▶ Ejecutar**: secuencia completa. **⏯ Paso a paso**: espera «⏭ Siguiente paso» antes de cada paso. **↻ Desde punto…**: reanuda desde un punto de recuperación (propone el último alcanzado).
 * Durante la ejecución aparece una **barra flotante** (siempre visible) con la app controlada, el paso actual, ⏸ Pausar/▶ Continuar y **■ Detener**.
+* **Escritura de texto en otras apps:** se inserta en el cursor mediante Accesibilidad (`AXSelectedText`); si el control no lo admite, se envían pulsaciones Unicode dirigidas solo al proceso de esa app.
 * **Detener de inmediato:** botón «Detener todo», barra flotante, Herramientas → Detener toda automatización, atajo global **⌘⇧⎋** (Comando+Mayúsculas+Escape) o, mientras graba otra app, **Escape dos veces**. Probado: detiene una espera de 2 minutos en menos de 5 s.
 * Ajustes por secuencia: espera entre pasos, tiempo máximo por paso y número de reintentos.
 * **Historial**: inicio, secuencia, objetivo, modo, estado, pasos completados, error y último punto alcanzado (sin valores escritos).
