@@ -26,6 +26,7 @@ jobs:
     timeout-minutes: 75
     defaults:
       run:
+        shell: bash   # bash -eo pipefail: un fallo antes de «tee» detiene el paso
         working-directory: siaf-macos
     env:
       CI: '1'
