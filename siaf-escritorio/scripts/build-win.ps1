@@ -10,7 +10,7 @@
 $ErrorActionPreference = 'Stop'
 Set-Location (Split-Path -Parent $PSScriptRoot)
 $arch = if ($env:SIAF_ARCH) { $env:SIAF_ARCH } else { 'x64' }
-$archs = switch ($arch) { 'x64' { @('--x64') } 'arm64' { @('--arm64') } 'todas' { @('--x64', '--arm64') } default { throw 'SIAF_ARCH debe ser x64, arm64 o todas' } }
+[string[]]$archs = switch ($arch) { 'x64' { @('--x64') } 'arm64' { @('--arm64') } 'todas' { @('--x64', '--arm64') } default { throw 'SIAF_ARCH debe ser x64, arm64 o todas' } }
 
 Write-Host '> 1/6 Dependencias (npm ci)'
 npm ci --no-audit --no-fund; if ($LASTEXITCODE) { throw 'npm ci' }

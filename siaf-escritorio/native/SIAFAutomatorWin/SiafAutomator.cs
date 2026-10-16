@@ -102,8 +102,12 @@ namespace SiafAutomator
             {
                 var a = new INPUT { type = INPUT_KEYBOARD }; a.u.ki = new KEYBDINPUT { wScan = c, dwFlags = KEYEVENTF_UNICODE };
                 var b = new INPUT { type = INPUT_KEYBOARD }; b.u.ki = new KEYBDINPUT { wScan = c, dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP };
-                SendInput(2, new[] { a, b }, Marshal.SizeOf(typeof(INPUT)));
-                Thread.Sleep(10);
+                // pulsación y liberación por separado: algunas apps (Bloc de notas de Windows 11) pierden la
+                // liberación si llegan en el mismo lote y repiten la tecla
+                SendInput(1, new[] { a }, Marshal.SizeOf(typeof(INPUT)));
+                Thread.Sleep(5);
+                SendInput(1, new[] { b }, Marshal.SizeOf(typeof(INPUT)));
+                Thread.Sleep(15);
             }
         }
 
