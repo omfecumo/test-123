@@ -14,8 +14,12 @@ const esperar = ms => new Promise(r => setTimeout(r, ms));
   const paso = async (cmd, args) => { const r = await pedir(cmd, args); console.log(cmd, JSON.stringify(args || {}).slice(0, 90), '→', JSON.stringify(r).slice(0, 500)); return r; };
   await paso('version'); await paso('permisos'); await paso('abrir', { bundleId: B }); await esperar(2000); await paso('frontal');
   await paso('foco', { bundleId: B });
-  await paso('escribir', { bundleId: B, texto: 'Prueba directa del auxiliar', modo: 'teclear' }); await esperar(800);
-  await paso('leer', { bundleId: B, elemento: {} });
+  // primer tecleo justo después de abrir (caso que antes salía alterado en Windows 11 ARM64)
+  const e1 = await paso('escribir', { bundleId: B, texto: 'Prueba directa del auxiliar', modo: 'teclear' }); await esperar(800);
+  const l1 = await paso('leer', { bundleId: B, elemento: {} });
+  const ok1 = e1.ok !== false && String((l1.resultado || {}).valor || '').includes('Prueba directa del auxiliar');
+  console.log(ok1 ? 'VERIFICACIÓN primer tecleo: OK' : 'VERIFICACIÓN primer tecleo: FALLO');
+  if (!ok1) process.exitCode = 1;
   await paso('escribir', { bundleId: B, texto: 'Valor asignado por UI Automation', modo: 'valor' }); await esperar(500);
   await paso('leer', { bundleId: B, elemento: {} });
   await paso('apps');

@@ -113,3 +113,42 @@ jobs:
             siaf-escritorio/dist/*.zip
             siaf-escritorio/dist/SHA256SUMS.txt
           if-no-files-found: error
+
+  # Publica los ejecutables probados como versión preliminar (pre-release) de GitHub, para descargarlos directamente
+  # (los artefactos de Actions exigen iniciar sesión y vienen dentro de otro ZIP). Solo si ambas arquitecturas pasaron.
+  publicar:
+    name: Publicar ejecutables (versión preliminar)
+    needs: windows
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/claude/jolly-hypatia-9r8k3w'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: SIAF-Windows-*-instaladores
+          path: salida
+      - name: Crear o reemplazar la versión preliminar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version=$(node -p "require('./siaf-escritorio/package.json').version")
+          etiqueta="siaf-windows-v${version}"
+          mkdir publicar
+          for d in salida/SIAF-Windows-*-instaladores; do
+            arch=$(basename "$d" | sed -E 's/SIAF-Windows-(.*)-instaladores/\1/')
+            cp "$d"/*.exe "$d"/*.msi "$d"/*.zip publicar/
+            tr -d '\r' < "$d/SHA256SUMS.txt" >> publicar/SHA256SUMS-windows.txt
+          done
+          ls -l publicar; cat publicar/SHA256SUMS-windows.txt
+          gh release delete "$etiqueta" --yes --cleanup-tag 2>/dev/null || true
+          notas="SIAF ${version} para Windows 10/11 (x64 y ARM64), compilado y probado en GitHub Actions (commit ${GITHUB_SHA::7}, ejecución ${GITHUB_RUN_ID}).
+
+          - Instalador recomendado: SIAF-${version}-x64-instalador.exe (o -arm64- en equipos ARM).
+          - MSI por equipo: SIAF-${version}-<arch>.msi · Portátil: SIAF-${version}-<arch>-win.zip
+          - Sumas SHA-256 en SHA256SUMS-windows.txt.
+
+          Sin firma Authenticode (no hay certificado): Windows SmartScreen mostrará «Windows protegió su PC» → Más información → Ejecutar de todas formas. Ver siaf-escritorio/docs/WINDOWS.md."
+          gh release create "$etiqueta" publicar/* --prerelease --target "$GITHUB_SHA" --title "SIAF ${version} para Windows (preliminar, sin firma)" --notes "$notas"

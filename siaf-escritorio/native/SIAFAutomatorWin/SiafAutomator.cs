@@ -234,11 +234,77 @@ namespace SiafAutomator
             while (DateTime.Now < limite)
             {
                 var p = Proceso(id);
-                if (p != null) { p.Refresh(); if (p.MainWindowHandle != IntPtr.Zero) { Thread.Sleep(500); Activar(id); return; } }
+                if (p != null)
+                {
+                    p.Refresh();
+                    if (p.MainWindowHandle != IntPtr.Zero)
+                    {
+                        // la ventana existe antes de que la app acepte teclado (Bloc de notas de Windows 11 en ARM64
+                        // alteraba el primer texto tecleado): se espera a que quede inactiva y se da un margen
+                        EsperarInactiva(p, 10000);
+                        Thread.Sleep(800);
+                        Activar(id); return;
+                    }
+                }
                 Thread.Sleep(250);
             }
             throw new Fallo("La aplicación no mostró ninguna ventana en 20 s.");
         }
+
+        static void EsperarInactiva(Process p, int ms)
+        {
+            try { p.WaitForInputIdle(ms); } catch { } // apps de consola o que ya terminaron: no aplica
+        }
+
+        /// Valor legible del control (ValuePattern o TextPattern), o null si no expone ninguno.
+        static string ValorLegible(AutomationElement e)
+        {
+            if (e == null) return null;
+            try
+            {
+                object pat;
+                if (e.TryGetCurrentPattern(ValuePattern.Pattern, out pat)) return ((ValuePattern)pat).Current.Value ?? "";
+                if (e.TryGetCurrentPattern(TextPattern.Pattern, out pat)) return ((TextPattern)pat).DocumentRange.GetText(200000) ?? "";
+            }
+            catch { }
+            return null;
+        }
+
+        /// Teclea el texto y comprueba, si el control es legible, que quedó escrito. Si no quedó y el control permite
+        /// restaurar su valor anterior (ValuePattern editable), lo restaura y teclea una vez más; si sigue sin quedar,
+        /// falla con un mensaje claro en lugar de dejar el texto alterado sin avisar.
+        static void TeclearVerificado(string idApp, AutomationElement d, string t)
+        {
+            for (int intento = 1; ; intento++)
+            {
+                EsperarInactiva(ProcesoObligatorio(idApp), 3000);
+                AsegurarFrontal(idApp);
+                if (d != null) { try { d.SetFocus(); } catch { } }
+                string antes = ValorLegible(d);
+                Win.Unicode(t);
+                if (antes == null || t.Length == 0) return; // control no legible: no se puede verificar
+                string despues = null;
+                var limite = DateTime.Now.AddMilliseconds(1500);
+                while (DateTime.Now < limite)
+                {
+                    Thread.Sleep(150);
+                    despues = ValorLegible(d);
+                    if (despues != null && Normalizar(despues).Contains(Normalizar(t))) return;
+                }
+                object pat;
+                bool restaurable = d.TryGetCurrentPattern(ValuePattern.Pattern, out pat) && !((ValuePattern)pat).Current.IsReadOnly;
+                if (intento == 1 && restaurable)
+                {
+                    Console.Error.WriteLine("escribir: el texto tecleado no coincide; se restaura el valor anterior y se reintenta");
+                    ((ValuePattern)pat).SetValue(antes);
+                    Thread.Sleep(300);
+                    continue;
+                }
+                throw new Fallo("El texto no se escribió correctamente en el control (la aplicación no procesó bien las pulsaciones). Revise el contenido y repita el paso.");
+            }
+        }
+
+        static string Normalizar(string v) { return (v ?? "").Replace("\r\n", "\n").Replace('\r', '\n'); }
 
         public static void AsegurarFrontal(string id)
         {
@@ -498,9 +564,7 @@ namespace SiafAutomator
                         if (d != null && EsSeguro(d)) throw new Fallo("SIAF no escribe en campos de contraseña. Hágalo manualmente.");
                         object pat;
                         if (modo == "valor" && d != null && d.TryGetCurrentPattern(ValuePattern.Pattern, out pat) && !((ValuePattern)pat).Current.IsReadOnly) { ((ValuePattern)pat).SetValue(t); return true; }
-                        AsegurarFrontal(b);
-                        if (d != null) { try { d.SetFocus(); } catch { } }
-                        Win.Unicode(t);
+                        TeclearVerificado(b, d, t);
                         return true;
                     }
                 case "teclas": AsegurarFrontal(b); Combinacion(Str(a, "combinacion")); return true;
