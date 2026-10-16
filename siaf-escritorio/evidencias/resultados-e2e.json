@@ -2,13 +2,12 @@
   "config": {
     "argv": [
       "/opt/node22/bin/node",
-      "/home/user/test-123/siaf-macos/node_modules/.bin/playwright",
+      "/home/user/test-123/siaf-escritorio/node_modules/.bin/playwright",
       "test",
-      "tests/e2e/01-arranque-datos.spec.js",
-      "tests/e2e/03-migracion-recuperacion.spec.js"
+      "tests/e2e/01-arranque-datos.spec.js"
     ],
-    "configFile": "/home/user/test-123/siaf-macos/playwright.config.js",
-    "rootDir": "/home/user/test-123/siaf-macos/tests/e2e",
+    "configFile": "/home/user/test-123/siaf-escritorio/playwright.config.js",
+    "rootDir": "/home/user/test-123/siaf-escritorio/tests/e2e",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -24,7 +23,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/home/user/test-123/siaf-macos/test-results",
+        "outputDir": "/home/user/test-123/siaf-escritorio/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -32,7 +31,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "/home/user/test-123/siaf-macos/tests/e2e",
+        "testDir": "/home/user/test-123/siaf-escritorio/tests/e2e",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -88,12 +87,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 10142,
+                  "duration": 26625,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-14T17:34:23.613Z",
+                  "startTime": "2026-10-16T01:51:28.999Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -122,12 +121,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 10459,
+                  "duration": 9950,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-14T17:34:33.910Z",
+                  "startTime": "2026-10-16T01:51:55.759Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -141,89 +140,13 @@
           "column": 1
         }
       ]
-    },
-    {
-      "title": "03-migracion-recuperacion.spec.js",
-      "file": "03-migracion-recuperacion.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 300000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 17549,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-14T17:34:44.397Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "7dc5d23adac86a155ed0-7b9e1bf0a930985077be",
-          "file": "03-migracion-recuperacion.spec.js",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 300000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 5123,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-14T17:35:01.964Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "7dc5d23adac86a155ed0-cf7686450b4aa5cbad3f",
-          "file": "03-migracion-recuperacion.spec.js",
-          "line": 87,
-          "column": 1
-        }
-      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-14T17:34:21.770Z",
-    "duration": 45371.85,
-    "expected": 4,
+    "startTime": "2026-10-16T01:51:27.646Z",
+    "duration": 38103.699,
+    "expected": 2,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -1,4 +1,4 @@
-# Compilación reproducible de SIAF para Windows: instalador NSIS (.exe), MSI y ZIP portátil.
+﻿# Compilación reproducible de SIAF para Windows: instalador NSIS (.exe), MSI y ZIP portátil.
 #
 #   powershell -ExecutionPolicy Bypass -File scripts\build-win.ps1             # x64
 #   $env:SIAF_ARCH='arm64'; powershell -ExecutionPolicy Bypass -File scripts\build-win.ps1

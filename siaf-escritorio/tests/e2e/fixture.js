@@ -55,6 +55,16 @@ async function ingresar(win, usuarioId, pin) {
   await win.waitForSelector('#app .topbar', { timeout: 60000 });
 }
 
+/** Rellena un campo y confirma el valor (SIAF puede estar inicializando el formulario recién abierto). */
+async function rellenar(win, sel, valor) {
+  for (let i = 0; i < 5; i++) {
+    await win.fill(sel, valor);
+    if (await win.inputValue(sel) === valor) { await win.waitForTimeout(150); if (await win.inputValue(sel) === valor) return; }
+    await win.waitForTimeout(300);
+  }
+  throw new Error(`No se pudo rellenar ${sel}`);
+}
+
 /** Pulsa un elemento del menú de la aplicación por etiquetas (prueba el cableado real del menú). */
 function menu(app, ...ruta) {
   return app.evaluate(({ Menu }, ruta) => {
@@ -70,4 +80,4 @@ const captura = (win, nombre) => win.screenshot({ path: path.join(EVID, nombre +
 async function cerrar(app) { const p = app.process(); await app.close().catch(() => { }); if (p && p.exitCode === null) p.kill('SIGKILL'); }
 async function externas(app) { return app.evaluate(() => global.__externas); }
 
-module.exports = { cerrarNovedades, abrir, primerIngreso, ingresar, teclearPin, menu, listarRespaldos, esperarArchivo, captura, cerrar, externas, datos, expect, RAIZ, EVID };
+module.exports = { rellenar, cerrarNovedades, abrir, primerIngreso, ingresar, teclearPin, menu, listarRespaldos, esperarArchivo, captura, cerrar, externas, datos, expect, RAIZ, EVID };

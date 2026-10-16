@@ -1,4 +1,4 @@
-# Compila el auxiliar nativo de Windows (siaf-automator.exe) con el compilador C# incluido en .NET Framework 4.x
+﻿# Compila el auxiliar nativo de Windows (siaf-automator.exe) con el compilador C# incluido en .NET Framework 4.x
 # (presente en todo Windows 10/11): no requiere Visual Studio ni el SDK de .NET. Deja el resultado en build\bin\.
 #   powershell -ExecutionPolicy Bypass -File scripts\build-automator-win.ps1
 $ErrorActionPreference = 'Stop'

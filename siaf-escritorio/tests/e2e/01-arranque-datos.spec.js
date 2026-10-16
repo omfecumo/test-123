@@ -4,7 +4,7 @@
 const { test } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
-const { abrir, primerIngreso, menu, listarRespaldos, esperarArchivo, captura, cerrar, externas, datos, expect } = require('./fixture');
+const { rellenar, abrir, primerIngreso, menu, listarRespaldos, esperarArchivo, captura, cerrar, externas, datos, expect } = require('./fixture');
 
 const DIR = datos('p01');
 
@@ -48,11 +48,13 @@ test('P02–P06 crear, editar y consultar registros; fotografía; persistencia t
   // ---- crear animal con fotografía ----
   await menu(app, 'Visualización', 'Ganado');
   await win.click('[data-nuevo]');
-  await win.fill('#f-arete', 'E2E-001');
+  await win.waitForSelector('.capa-oscura #f-arete');
+  await rellenar(win, '#f-arete', 'E2E-001');
   await win.selectOption('#f-sexo', 'H');
-  await win.fill('#f-nombre', 'Lucero');
+  await rellenar(win, '#f-nombre', 'Lucero');
   const png = path.join(__dirname, '..', '..', 'build', 'icon.png');
   if (await win.locator('#f-fotos').count()) await win.setInputFiles('#f-fotos', png);
+  expect(await win.inputValue('#f-arete')).toBe('E2E-001');
   await win.click('.capa-oscura [data-guardar]');
   await expect(win.locator('#toasts')).toContainText('Animal registrado');
   const animal = await win.evaluate(() => DB.todos('animales').find(a => a.arete === 'E2E-001'));
