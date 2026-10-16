@@ -71,7 +71,7 @@ powershell -ExecutionPolicy Bypass -File scripts\build-win.ps1        # x64
 $env:SIAF_ARCH='todas'; powershell -ExecutionPolicy Bypass -File scripts\build-win.ps1   # x64 + ARM64
 ```
 
-Salidas en `dist\`: `SIAF-<versión>-<arch>-instalador.exe`, `SIAF-<versión>-<arch>.msi`, `SIAF-<versión>-<arch>-win.zip`, `win-unpacked\` y `SHA256SUMS.txt`. Desde Linux/macOS solo puede generarse el ZIP sin firma (`npm run dist:win:sin-firma-desde-linux`).
+Salidas en `dist\`: `SIAF-<versión>-<arch>-instalador.exe`, `SIAF-<versión>-<arch>.msi`, `SIAF-<versión>-<arch>.zip`, `win-unpacked\` y `SHA256SUMS.txt`. Desde Linux/macOS solo puede generarse el ZIP sin firma (`npm run dist:win:sin-firma-desde-linux`).
 
 CI: `.github/workflows/siaf-windows.yml` compila y prueba en **Windows Server 2025 x64** y **Windows 11 ARM64**: auxiliar, pruebas unitarias, diagnóstico con el Bloc de notas, pruebas E2E, empaquetado, instalación silenciosa NSIS y MSI, prueba de la app instalada y verificación de que la desinstalación conserva los respaldos.
 

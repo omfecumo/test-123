@@ -96,14 +96,50 @@ namespace SiafAutomator
             if (lista.Count > 0) SendInput((uint)lista.Count, lista.ToArray(), Marshal.SizeOf(typeof(INPUT)));
         }
 
+        [DllImport("user32.dll")] public static extern short VkKeyScanEx(char c, IntPtr hkl);
+        [DllImport("user32.dll")] public static extern uint MapVirtualKeyEx(uint code, uint tipo, IntPtr hkl);
+        const int VK_RETURN = 0x0D;
+
+        static void Enviar1(ushort vk, ushort scan, uint flags)
+        {
+            var i = new INPUT { type = INPUT_KEYBOARD }; i.u.ki = new KEYBDINPUT { wVk = vk, wScan = scan, dwFlags = flags };
+            SendInput(1, new[] { i }, Marshal.SizeOf(typeof(INPUT)));
+        }
+
+        static void Pulsacion(ushort vk, IntPtr hkl)
+        {
+            ushort scan = (ushort)MapVirtualKeyEx(vk, 0, hkl); // MAPVK_VK_TO_VSC
+            Enviar1(vk, scan, 0); Thread.Sleep(5);
+            Enviar1(vk, scan, KEYEVENTF_KEYUP); Thread.Sleep(15);
+        }
+
+        /// Escribe el texto pulsando las teclas reales de la distribución de teclado de la ventana al frente
+        /// (tecla + Mayús si hace falta). Solo los caracteres que no están en esa distribución, o que exigirían Ctrl/Alt
+        /// (AltGr), se envían como pulsación Unicode (VK_PACKET): el Bloc de notas de Windows 11 en ARM64 alteraba
+        /// caracteres enviados como VK_PACKET justo después de abrirse.
         public static void Unicode(string texto)
         {
+            uint pidFrente; IntPtr hkl = GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), out pidFrente));
+            bool bloqMayus = (GetKeyState(VK_CAPITAL) & 1) != 0;
             foreach (char c in texto)
             {
+                if (c == '\r') continue;
+                if (c == '\n') { Pulsacion(VK_RETURN, hkl); continue; }
+                short s = VkKeyScanEx(c, hkl);
+                int mods = s == -1 ? -1 : (s >> 8) & 0xFF;
+                if (mods == 0 || mods == 1)
+                {
+                    ushort vk = (ushort)(s & 0xFF);
+                    bool mayus = mods == 1;
+                    if (bloqMayus && char.IsLetter(c)) mayus = !mayus; // con Bloq Mayús activo se invierte para letras
+                    if (mayus) { Enviar1((ushort)VK_SHIFT, (ushort)MapVirtualKeyEx((uint)VK_SHIFT, 0, hkl), 0); Thread.Sleep(5); }
+                    Pulsacion(vk, hkl);
+                    if (mayus) { Enviar1((ushort)VK_SHIFT, (ushort)MapVirtualKeyEx((uint)VK_SHIFT, 0, hkl), KEYEVENTF_KEYUP); Thread.Sleep(5); }
+                    continue;
+                }
                 var a = new INPUT { type = INPUT_KEYBOARD }; a.u.ki = new KEYBDINPUT { wScan = c, dwFlags = KEYEVENTF_UNICODE };
                 var b = new INPUT { type = INPUT_KEYBOARD }; b.u.ki = new KEYBDINPUT { wScan = c, dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP };
-                // pulsación y liberación por separado: algunas apps (Bloc de notas de Windows 11) pierden la
-                // liberación si llegan en el mismo lote y repiten la tecla
+                // pulsación y liberación por separado: algunas apps pierden la liberación si llegan en el mismo lote
                 SendInput(1, new[] { a }, Marshal.SizeOf(typeof(INPUT)));
                 Thread.Sleep(5);
                 SendInput(1, new[] { b }, Marshal.SizeOf(typeof(INPUT)));

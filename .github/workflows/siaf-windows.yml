@@ -147,7 +147,7 @@ jobs:
           notas="SIAF ${version} para Windows 10/11 (x64 y ARM64), compilado y probado en GitHub Actions (commit ${GITHUB_SHA::7}, ejecución ${GITHUB_RUN_ID}).
 
           - Instalador recomendado: SIAF-${version}-x64-instalador.exe (o -arm64- en equipos ARM).
-          - MSI por equipo: SIAF-${version}-<arch>.msi · Portátil: SIAF-${version}-<arch>-win.zip
+          - MSI por equipo: SIAF-${version}-<arch>.msi · Portátil: SIAF-${version}-<arch>.zip
           - Sumas SHA-256 en SHA256SUMS-windows.txt.
 
           Sin firma Authenticode (no hay certificado): Windows SmartScreen mostrará «Windows protegió su PC» → Más información → Ejecutar de todas formas. Ver siaf-escritorio/docs/WINDOWS.md."
