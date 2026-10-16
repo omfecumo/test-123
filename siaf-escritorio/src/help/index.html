@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ayuda de SIAF</title><link rel="stylesheet" href="estilo.css"></head>
+<body>
+<header><h1>Ayuda de SIAF (macOS y Windows)</h1></header>
+<nav aria-label="Secciones"><a href="#inicio">Inicio</a><a href="#respaldos">Respaldos</a><a href="#migracion">Migración</a><a href="#automatizacion">Automatización</a><a href="#problemas">Problemas</a><a href="#datos">Datos y privacidad</a></nav>
+<main>
+<section id="inicio"><h2>Inicio</h2>
+<p>SIAF funciona igual que en el navegador, ahora como aplicación de escritorio: sin Internet, con sus datos guardados en este equipo y copias de seguridad automáticas.</p>
+<p class="nota"><b>Windows:</b> donde dice <kbd>⌘</kbd> use <kbd>Ctrl</kbd>. Los datos están en <code>%APPDATA%\SIAF</code>; en macOS, en <code>~/Library/Application Support/SIAF</code>. Detener la automatización: <kbd>⌘⇧⎋</kbd> en macOS, <kbd>Ctrl+Alt+Mayús+X</kbd> en Windows.</p>
+<ul><li>Primer ingreso del administrador: PIN <b>1234</b>; SIAF pedirá cambiarlo.</li>
+<li>Secciones: menú <b>Visualización</b> o <kbd>⌘1</kbd>…<kbd>⌘9</kbd>. Buscar en toda la finca: <kbd>⌘F</kbd> o <kbd>⌘K</kbd>.</li>
+<li>Deshacer el último cambio de SIAF: <kbd>⌘⌥Z</kbd> (o <kbd>⌘Z</kbd> fuera de un campo de texto).</li>
+<li>Imprimir o guardar como PDF: <kbd>⌘P</kbd>. Tema claro/oscuro: <kbd>⌘⇧T</kbd>.</li></ul></section>
+<section id="respaldos"><h2>Respaldos y recuperación</h2>
+<ul><li><b>Automático:</b> si hubo cambios, cada 4 horas (configurable), al cerrar SIAF y después de un cierre inesperado.</li>
+<li><b>Manual:</b> Archivo → Crear respaldo ahora (<kbd>⌘S</kbd>). Las copias manuales nunca se borran solas.</li>
+<li><b>Punto de recuperación:</b> antes de cualquier restauración, importación completa o borrado total, la app guarda una copia en disco.</li>
+<li><b>Restaurar:</b> Archivo → Restaurar desde un respaldo de la app… SIAF verifica las huellas y muestra la vista previa antes de reemplazar nada.</li>
+<li><b>Verificar:</b> Archivo → Verificar integridad de los respaldos.</li>
+<li><b>Preferencias</b> (<kbd>⌘,</kbd>, solo administrador): intervalo, copias que se conservan, respaldo al salir y <b>carpeta espejo</b> (disco externo, iCloud Drive, Google Drive para escritorio) para tener una segunda copia fuera del Mac.</li></ul>
+<p class="nota">Carpeta: ~/Library/Application Support/SIAF/Respaldos (macOS) · %APPDATA%\SIAF\Respaldos (Windows). Cada copia es el ZIP oficial de SIAF: también se puede restaurar en la versión HTML.</p></section>
+<section id="migracion"><h2>Migración desde la versión HTML</h2>
+<ol><li>En el navegador: Configuración → Respaldo → descargue el respaldo (ZIP con fotos o JSON).</li>
+<li>Aquí, como administrador: Archivo → <b>Migrar datos desde SIAF (navegador)…</b></li>
+<li>Revise el informe previo y la vista previa de SIAF; pulse ♻️ Restaurar.</li>
+<li>Tras recargar verá «✅ Migración verificada». Ingrese con su PIN de siempre.</li></ol>
+<p class="nota">Los datos del navegador no se modifican. Si algo no le convence, restaure el punto de recuperación creado antes de migrar.</p></section>
+<section id="automatizacion"><h2>Automatización y permisos</h2>
+<p>Herramientas → <b>SIAF Control y Automatización</b> (<kbd>⌘⇧A</kbd>): grabe acciones, guárdelas, edítelas y reprodúzcalas. Detener de inmediato: <kbd>⌘⇧⎋</kbd>, la barra flotante o Herramientas → Detener toda automatización.</p>
+<table><tr><th>Permiso</th><th>Para qué</th></tr>
+<tr><td>Ninguno</td><td>Automatizar acciones dentro de SIAF (y, en Windows, otras aplicaciones no elevadas)</td></tr>
+<tr><td>Accesibilidad</td><td>Controlar o grabar clics en otras apps autorizadas</td></tr>
+<tr><td>Monitorización de entrada</td><td>Solo grabar el teclado en otras apps</td></tr>
+<tr><td>Automatización</td><td>Solo pasos AppleScript aprobados</td></tr></table>
+<p class="nota">Ajustes del Sistema → Privacidad y seguridad. Nunca se graban PIN, contraseñas ni campos seguros. Las acciones que borran, venden, pagan o envían siempre piden confirmación.</p></section>
+<section id="problemas"><h2>Solución de problemas</h2>
+<ul><li><b>macOS no deja abrir la app:</b> Ajustes del Sistema → Privacidad y seguridad → Abrir de todos modos.</li>
+<li><b>Windows SmartScreen («Windows protegió su PC»):</b> «Más información» → «Ejecutar de todas formas», solo si obtuvo el instalador de una fuente de confianza.</li>
+<li><b>Indicador «⚠️ Respaldo con error»:</b> pase el ratón por encima para ver el motivo (espacio en disco, carpeta espejo desconectada).</li>
+<li><b>Dictado 🎤:</b> use el dictado de macOS (🌐/Fn dos veces).</li>
+<li><b>Respaldo en Google Drive:</b> use una carpeta espejo dentro de Google Drive para escritorio.</li>
+<li><b>«La interfaz cambió»</b> en una secuencia: deje la app como al grabar o edite el paso.</li>
+<li>Herramientas → <b>Abrir registro técnico</b> para enviar a soporte (no contiene datos de la finca).</li></ul></section>
+<section id="datos"><h2>Datos y privacidad</h2>
+<p>Todo se guarda en ~/Library/Application Support/SIAF (macOS) o %APPDATA%\SIAF (Windows). La app no envía información a Internet ni tiene telemetría. Desinstalar (en macOS, arrastrar SIAF a la Papelera; en Windows, «Agregar o quitar programas») no borra los datos ni los respaldos.</p>
+<p class="nota">© 2026 Omar Fernando Cuadro Mogollón. Todos los derechos reservados.</p></section>
+</main>
+</body>
+</html>

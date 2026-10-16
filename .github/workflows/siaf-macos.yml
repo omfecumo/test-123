@@ -5,7 +5,7 @@ name: SIAF macOS
 
 on:
   push:
-    paths: ['siaf-macos/**', '.github/workflows/siaf-macos.yml']
+    paths: ['siaf-escritorio/**', '.github/workflows/siaf-macos.yml']
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
     defaults:
       run:
         shell: bash   # bash -eo pipefail: un fallo antes de «tee» detiene el paso
-        working-directory: siaf-macos
+        working-directory: siaf-escritorio
     env:
       CI: '1'
       SIAF_DIAGNOSTICO: '1'   # mensajes de error ampliados en la automatización (solo CI)
@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: siaf-macos/package-lock.json
+          cache-dependency-path: siaf-escritorio/package-lock.json
       - name: Entorno
         run: |
           sw_vers; uname -m; xcodebuild -version; swift --version; node -v
@@ -81,8 +81,8 @@ jobs:
         with:
           name: evidencias-${{ matrix.nombre }}
           path: |
-            siaf-macos/evidencias/
-            siaf-macos/.e2e-datos/**/logs/*.log
+            siaf-escritorio/evidencias/
+            siaf-escritorio/.e2e-datos/**/logs/*.log
           if-no-files-found: warn
       - name: Guardar instaladores
         if: success() && matrix.nombre == 'apple-silicon'
@@ -90,8 +90,8 @@ jobs:
         with:
           name: SIAF-macOS-instaladores
           path: |
-            siaf-macos/dist/*.dmg
-            siaf-macos/dist/*.zip
-            siaf-macos/dist/*.pkg
-            siaf-macos/dist/SHA256SUMS.txt
+            siaf-escritorio/dist/*.dmg
+            siaf-escritorio/dist/*.zip
+            siaf-escritorio/dist/*.pkg
+            siaf-escritorio/dist/SHA256SUMS.txt
           if-no-files-found: error

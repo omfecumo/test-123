@@ -1,0 +1,110 @@
+# Compila y prueba «SIAF para Windows» en equipos Windows reales (runners de GitHub): x64 y ARM64.
+# Produce instalador NSIS (.exe), MSI y ZIP portátil; los instala en silencio, prueba la app instalada y verifica
+# que desinstalar NO borra los datos ni los respaldos. Sin certificado, los instaladores quedan sin firma Authenticode.
+name: SIAF Windows
+
+on:
+  push:
+    paths: ['siaf-escritorio/**', '.github/workflows/siaf-windows.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Windows ${{ matrix.nombre }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            nombre: x64
+            arch: x64
+          - runner: windows-11-arm
+            nombre: arm64
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 75
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: siaf-escritorio
+    env:
+      CI: '1'
+      SIAF_DIAGNOSTICO: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: siaf-escritorio/package-lock.json
+      - name: Entorno
+        run: |
+          New-Item -ItemType Directory -Force evidencias/ci | Out-Null
+          $info = @((Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, OSArchitecture | Out-String), "Procesador: $env:PROCESSOR_ARCHITECTURE", "Node: $(node -v)")
+          $info | Tee-Object evidencias/ci/entorno-windows-${{ matrix.nombre }}.txt
+      - name: Dependencias
+        run: npm ci --no-audit --no-fund; npx playwright install chromium
+      - name: Auxiliar nativo (C#, UI Automation)
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-automator-win.ps1 2>&1 | Tee-Object evidencias/ci/auxiliar-windows-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+      - name: Pruebas unitarias (incluye protocolo del auxiliar)
+        run: npm run test:unit 2>&1 | Tee-Object evidencias/ci/unitarias-windows-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+      - name: Diagnóstico del auxiliar con el Bloc de notas (sin Electron)
+        continue-on-error: true
+        run: node tests/diag/notepad-auxiliar.js 2>&1 | Tee-Object evidencias/ci/diag-notepad-${{ matrix.nombre }}.txt; Stop-Process -Name notepad -Force -ErrorAction SilentlyContinue
+      - name: Pruebas de extremo a extremo (Electron en Windows)
+        run: npm run test:e2e 2>&1 | Tee-Object evidencias/ci/e2e-windows-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+      - name: Empaquetar (NSIS, MSI, ZIP)
+        env:
+          SIAF_ARCH: ${{ matrix.arch }}
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-win.ps1 2>&1 | Tee-Object evidencias/ci/empaquetado-windows-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+      - name: Instalación silenciosa (NSIS, por usuario), prueba de la app instalada y desinstalación
+        run: |
+          $inst = (Get-ChildItem dist -Filter '*-instalador.exe' | Select-Object -First 1).FullName
+          Start-Process $inst -ArgumentList '/S' -Wait
+          $exe = Join-Path $env:LOCALAPPDATA 'Programs\SIAF\SIAF.exe'
+          if (-not (Test-Path $exe)) { throw "No se instaló en $exe" }
+          if (-not (Test-Path (Join-Path ([Environment]::GetFolderPath('Programs')) 'SIAF.lnk'))) { Write-Warning 'Sin acceso directo en el menú Inicio' } else { 'Acceso directo en menú Inicio: OK' }
+          $env:SIAF_APP_EXEC = $exe
+          npx playwright test tests/e2e/07-app-empaquetada.spec.js 2>&1 | Tee-Object evidencias/ci/instalada-nsis-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+          # desinstalar no debe borrar datos ni respaldos
+          $datos = Get-ChildItem .e2e-datos -Directory -Filter 'empaquetada-*' | Sort-Object LastWriteTime | Select-Object -Last 1
+          $antes = (Get-ChildItem (Join-Path $datos.FullName 'Respaldos') -Filter *.zip).Count
+          $desinst = Join-Path $env:LOCALAPPDATA 'Programs\SIAF\Uninstall SIAF.exe'
+          Start-Process $desinst -ArgumentList '/S' -Wait; Start-Sleep -Seconds 5
+          if (Test-Path $exe) { throw 'La desinstalación no quitó SIAF.exe' }
+          $despues = (Get-ChildItem (Join-Path $datos.FullName 'Respaldos') -Filter *.zip).Count
+          "Respaldos antes: $antes · después de desinstalar: $despues" | Tee-Object -Append evidencias/ci/instalada-nsis-${{ matrix.nombre }}.txt
+          if ($despues -lt 1 -or $despues -ne $antes) { throw 'La desinstalación afectó los respaldos' }
+      - name: Instalación MSI (por equipo) y prueba de la app instalada
+        run: |
+          $msi = (Get-ChildItem dist -Filter '*.msi' | Select-Object -First 1).FullName
+          $p = Start-Process msiexec.exe -ArgumentList "/i `"$msi`" /qn /norestart /l*v evidencias/ci/msi-${{ matrix.nombre }}.log" -Wait -PassThru
+          "msiexec código: $($p.ExitCode)" | Tee-Object evidencias/ci/instalada-msi-${{ matrix.nombre }}.txt
+          if ($p.ExitCode -ne 0) { throw "msiexec falló ($($p.ExitCode))" }
+          $exe = Get-ChildItem "$env:ProgramFiles\SIAF\SIAF.exe", "${env:ProgramFiles(x86)}\SIAF\SIAF.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) { throw 'No se encontró SIAF.exe instalado por el MSI' }
+          $env:SIAF_APP_EXEC = $exe.FullName
+          npx playwright test tests/e2e/07-app-empaquetada.spec.js 2>&1 | Tee-Object -Append evidencias/ci/instalada-msi-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
+      - name: Guardar evidencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-windows-${{ matrix.nombre }}
+          path: |
+            siaf-escritorio/evidencias/
+            siaf-escritorio/.e2e-datos/**/logs/*.log
+          if-no-files-found: warn
+      - name: Guardar instaladores
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SIAF-Windows-${{ matrix.nombre }}-instaladores
+          path: |
+            siaf-escritorio/dist/*.exe
+            siaf-escritorio/dist/*.msi
+            siaf-escritorio/dist/*.zip
+            siaf-escritorio/dist/SHA256SUMS.txt
+          if-no-files-found: error
