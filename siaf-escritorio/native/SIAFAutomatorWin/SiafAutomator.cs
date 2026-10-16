@@ -196,15 +196,26 @@ namespace SiafAutomator
             IntPtr h = p.MainWindowHandle;
             if (h == IntPtr.Zero) throw new Fallo("La aplicación no tiene una ventana visible.");
             if (Win.IsIconic(h)) Win.ShowWindow(h, 9);
-            // Windows restringe quién puede traer ventanas al frente: se usa la técnica documentada de pulsar Alt
-            // (y adjuntar la cola de entrada) para que la petición sea aceptada.
-            uint hilo = Win.GetCurrentThreadId(), hiloFg = Win.Pid(Win.GetForegroundWindow()) == 0 ? 0 : GetHilo(Win.GetForegroundWindow());
-            Win.Teclas(new[] { new KeyValuePair<ushort, bool>((ushort)Win.VK_MENU, true), new KeyValuePair<ushort, bool>((ushort)Win.VK_MENU, false) });
+            if (Win.Pid(Win.GetForegroundWindow()) == (uint)p.Id) return; // ya está al frente: no se toca nada
+            // 1.º petición normal; 2.º adjuntando la cola de entrada de la ventana actual (técnica documentada).
+            Win.SetForegroundWindow(h);
+            if (EsperarFrente(p.Id, 600)) return;
+            uint hilo = Win.GetCurrentThreadId(), hiloFg = GetHilo(Win.GetForegroundWindow());
             if (hiloFg != 0 && hiloFg != hilo) Win.AttachThreadInput(hilo, hiloFg, true);
             Win.BringWindowToTop(h); Win.SetForegroundWindow(h);
             if (hiloFg != 0 && hiloFg != hilo) Win.AttachThreadInput(hilo, hiloFg, false);
-            var limite = DateTime.Now.AddSeconds(4);
-            while (Win.Pid(Win.GetForegroundWindow()) != (uint)p.Id && DateTime.Now < limite) { Thread.Sleep(100); Win.SetForegroundWindow(h); }
+            if (EsperarFrente(p.Id, 1000)) return;
+            // 3.º último recurso: una pulsación de Alt habilita el cambio de primer plano (solo si la app aún no está al frente,
+            // para no abrir su barra de menús).
+            Win.Teclas(new[] { new KeyValuePair<ushort, bool>((ushort)Win.VK_MENU, true), new KeyValuePair<ushort, bool>((ushort)Win.VK_MENU, false) });
+            Win.SetForegroundWindow(h);
+            EsperarFrente(p.Id, 2500);
+        }
+        static bool EsperarFrente(int pid, int ms)
+        {
+            var limite = DateTime.Now.AddMilliseconds(ms);
+            while (DateTime.Now < limite) { if (Win.Pid(Win.GetForegroundWindow()) == (uint)pid) return true; Thread.Sleep(100); }
+            return false;
         }
         static uint GetHilo(IntPtr h) { uint pid; return Win.GetWindowThreadProcessId(h, out pid); }
 

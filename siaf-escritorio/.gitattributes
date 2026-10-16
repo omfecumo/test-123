@@ -1,0 +1,4 @@
+# El archivo original de SIAF se verifica por SHA-256: Git no debe convertir sus finales de línea (CRLF en Windows).
+source/** -text
+*.sh text eol=lf
+*.ps1 text eol=crlf

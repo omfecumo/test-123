@@ -47,6 +47,8 @@ jobs:
           $info | Tee-Object evidencias/ci/entorno-windows-${{ matrix.nombre }}.txt
       - name: Dependencias
         run: npm ci --no-audit --no-fund; npx playwright install chromium
+      - name: Cerrar ventanas emergentes de la imagen del runner (p. ej. «Microsoft account»), que roban el foco
+        run: Get-Process WWAHost, OneDrive -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; 'ok'
       - name: Auxiliar nativo (C#, UI Automation)
         run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-automator-win.ps1 2>&1 | Tee-Object evidencias/ci/auxiliar-windows-${{ matrix.nombre }}.txt; if ($LASTEXITCODE) { exit 1 }
       - name: Pruebas unitarias (incluye protocolo del auxiliar)
