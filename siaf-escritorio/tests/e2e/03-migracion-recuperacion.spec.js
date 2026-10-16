@@ -89,8 +89,10 @@ test('P08b recuperación tras cierre forzado: datos confirmados intactos y punto
   await win.waitForSelector('#app .topbar');
   await win.evaluate(() => DB.put('tareas', { titulo: 'Antes del corte de luz', fecha: U.hoyISO(), vence: U.hoyISO(), estado: 'Pendiente', prioridad: 'Alta' }));
   const puntosAntes = listarRespaldos(DIR).filter(f => f.startsWith('SIAF_punto_')).length;
-  app.process().kill('SIGKILL'); // equivalente a un apagón o un cierre forzado
-  await new Promise(r => setTimeout(r, 1500));
+  // equivalente a un apagón o un cierre forzado: se termina TODO el árbol de procesos de la app
+  if (process.platform === 'win32') require('child_process').execFileSync('taskkill', ['/PID', String(app.process().pid), '/T', '/F']);
+  else app.process().kill('SIGKILL');
+  await new Promise(r => setTimeout(r, 3000));
   ({ app, win } = await abrir(DIR));
   await win.waitForSelector('#app .topbar');
   await expect(win.locator('#toasts')).toContainText('no se cerró correctamente', { timeout: 60000 });
