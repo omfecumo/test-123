@@ -54,3 +54,30 @@ Suites: unitarias `tests/unit/*.test.js` (node:test) · extremo a extremo `tests
 * Solo se probó macOS 15; macOS 12, 13, 14 y 26 no.
 * Dictado por voz y respaldo en Google Drive: no disponibles en la app (alternativas documentadas).
 * Reconocimiento visual por imagen: no implementado.
+
+## Windows
+
+Ejecución [Windows #6](https://github.com/omfecumo/test-123/actions/runs/38837424817): **Windows Server 2025 Datacenter x64** (10.0.26100) y **Windows 11 Enterprise ARM64** (10.0.26200). Resúmenes en `evidencias/ci-windows-x64.txt` y `evidencias/ci-windows-arm64.txt`.
+
+| # | Prueba | x64 | ARM64 | Evidencia / nota |
+|---|---|---|---|---|
+| 1 | Instalación limpia | ✅ | ✅ | NSIS silencioso por usuario (`%LOCALAPPDATA%\Programs\SIAF`) con acceso directo en el menú Inicio, y MSI por equipo (`msiexec` código 0); la app instalada se probó en ambos casos |
+| 2 | Inicio desde menú Inicio / Escritorio / barra de tareas | ⏳ manual | ⏳ manual | Accesos directos creados (verificado el del menú Inicio); abrirlos con clic requiere interacción |
+| 3–11 | Apertura/cierre repetidos, persistencia, sin red, CRUD, importación/exportación, restauración, fotos, migración desde el HTML original en Chromium, roles | ✅ | ✅ | Las mismas pruebas E2E que en macOS: 17/17 |
+| 8b | Recuperación tras cierre forzado | ✅ | ✅ | `taskkill /T /F` de todo el árbol de procesos |
+| 12 | Grabación y reproducción dentro de SIAF | ✅ | ✅ | P12, P12b (PIN nunca grabado), P12c, P12d |
+| 13 | Automatización de app de prueba autorizada (Bloc de notas) | ✅ | ✅ | P13-win (abrir, teclear, validar el texto del control con foco). Diagnóstico directo del auxiliar: teclear, asignar valor (UI Automation), grabación por hooks (clic → «pulsar Document», Ctrl+A, Return) y rechazo a enviar teclas a una app que no está al frente |
+| 14 | Permisos | ➖ | ➖ | Windows no exige permisos de privacidad para UI Automation; la limitación UIPI (apps «como administrador») está documentada, no probada |
+| 15 | Interrupción y operaciones destructivas | ✅ | ✅ | P15, P15b, P15c |
+| 16 | Actualización sin pérdida | ✅ | ✅ | P16 |
+| 17 | Desinstalación sin borrar respaldos | ✅ | ✅ | Desinstalación silenciosa NSIS: respaldos antes = después (x64: 1 → 1; ARM64: 2 → 2) |
+| 18 | Arquitecturas | ✅ x64 | ✅ ARM64 | Instaladores separados por arquitectura; auxiliar AnyCPU |
+
+Errores encontrados y corregidos en Windows:
+
+1. **Git en Windows alteraba el HTML original** (finales de línea CRLF) y la verificación SHA-256 lo rechazaba: añadido `.gitattributes`.
+2. **La técnica de pulsar Alt para traer una ventana al frente abría el menú del Bloc de notas** y se perdía la primera letra: ahora solo se usa como último recurso, si la app no está al frente.
+3. **En el Bloc de notas de Windows 11, las pulsaciones enviadas en un mismo lote se repetían**: ahora se envían por separado.
+4. Pruebas: cierre forzado de todo el árbol de procesos; confirmación de valores al rellenar formularios; ventanas del sistema del runner que roban el foco («Microsoft account», búsqueda del menú Inicio).
+
+Limitación observada (no resuelta): en Windows 11 ARM64, el **primer** texto tecleado justo después de abrir el Bloc de notas nuevo salió alterado en el diagnóstico directo («Prueba rrrr…»); los textos siguientes y la prueba P13-win fueron correctos. Recomendación: añadir una pausa tras «Abrir aplicación» o usar el modo «valor» (UI Automation), que fue correcto siempre.

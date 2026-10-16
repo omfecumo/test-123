@@ -26,7 +26,7 @@ Desde Linux solo es posible un `.app`/`.zip` **sin firma** (`npm run dist:mac:si
 
 ### Integración continua
 
-`.github/workflows/siaf-escritorio.yml` compila y prueba en **macOS 15 Apple Silicon** y **macOS 15 Intel**: auxiliar Swift, pruebas unitarias, pruebas E2E de Electron, empaquetado universal, **instalación limpia desde el DMG y desde el PKG** y prueba de la app instalada. Publica los instaladores y las evidencias como artefactos de la ejecución.
+`.github/workflows/siaf-macos.yml` compila y prueba en **macOS 15 Apple Silicon** y **macOS 15 Intel**: auxiliar Swift, pruebas unitarias, pruebas E2E de Electron, empaquetado universal, **instalación limpia desde el DMG y desde el PKG** y prueba de la app instalada. Publica los instaladores y las evidencias como artefactos de la ejecución.
 
 ## Estado de la firma
 

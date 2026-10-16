@@ -1,4 +1,21 @@
-# Registro de cambios — SIAF para macOS
+# Registro de cambios — SIAF de escritorio
+
+## 9.3.3 (escritorio 2) — 2026-10-16 · Windows
+
+### Añadido
+- Versión para **Windows 10/11, x64 y ARM64** con la misma base de código (proyecto renombrado a `siaf-escritorio/`).
+- Auxiliar `siaf-automator.exe` en C# (.NET Framework 4.x incluido en Windows, sin SDK): UI Automation, SendInput, hooks de bajo nivel en modo solo lectura para grabar; omite campos de contraseña; no salta UIPI.
+- Instalador NSIS por usuario (no pide administrador, elección de carpeta, accesos directos, conserva datos al desinstalar), MSI por equipo y ZIP portátil; icono `.ico`; `scripts/build-win.ps1`, `scripts/build-automator-win.ps1`; CI en Windows x64 y ARM64 con instalación y desinstalación silenciosas.
+- Atajo de detención en Windows **Ctrl+Alt+Mayús+X** (Ctrl+Mayús+Esc es del Administrador de tareas); «Acerca de» y «Preferencias de respaldo» en los menús de Windows; `docs/WINDOWS.md`.
+
+### Corregido
+- `.gitattributes`: Git ya no altera el HTML original de SIAF en Windows (verificación SHA-256).
+- Activación de ventanas sin abrir la barra de menús de la app; pulsaciones Unicode sin teclas repetidas.
+
+### Limitaciones conocidas
+- Instaladores sin firma Authenticode (SmartScreen advierte).
+- Pasos AppleScript y Atajos solo en macOS.
+
 
 ## 9.3.3 (escritorio 1) — 2026-10-14
 

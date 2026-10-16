@@ -88,4 +88,6 @@ Verificación: `Get-AuthenticodeSignature dist\SIAF-*-instalador.exe` debe indic
 
 ## Pruebas en Windows
 
-Ver la columna Windows en `PRUEBAS.md` y los registros `evidencias/ci-windows-*.txt`.
+Resultados reales (CI, Windows Server 2025 x64 y Windows 11 ARM64): pruebas unitarias 31/31, E2E 17/17 (incluida la automatización del Bloc de notas), instalación NSIS y MSI con la app instalada probada, y desinstalación que conserva los respaldos. Detalle, errores corregidos y la limitación observada en ARM64 en la sección Windows de `PRUEBAS.md`; registros en `evidencias/ci-windows-*.txt`.
+
+Pendiente de verificación manual: abrir desde los accesos directos con clic, SmartScreen con un instalador descargado, UIPI con una app elevada, Windows 10.

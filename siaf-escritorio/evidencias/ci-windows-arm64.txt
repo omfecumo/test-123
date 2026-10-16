@@ -1,0 +1,81 @@
+Microsoft Windows 11
+[36;1m$info = @((Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, OSArchitecture | Out-String), "Procesador: $env:PROCESSOR_ARCHITECTURE", "Node: $(node -v)")[0m
+Caption                         Version    OSArchitecture
+Microsoft Windows 11 Enterprise 10.0.26200 ARM 64-bit Processor
+Procesador: ARM64
+OK C:\a\test-123\test-123\siaf-escritorio\build\bin\siaf-automator.exe
+# Subtest: Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+ok 6 - Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+# pass 31
+# fail 0
+# skipped 2
+version {} → {"id":1,"ok":true,"resultado":"1.0.0"}
+permisos {} → {"id":2,"ok":true,"resultado":{"accesibilidad":true,"monitorEntrada":true,"elevado":true,"version":"1.0.0"}}
+abrir {"bundleId":"notepad.exe"} → {"id":3,"ok":true,"resultado":true}
+frontal {} → {"id":4,"ok":true,"resultado":{"bundleId":"notepad.exe","nombre":"Notepad","pid":4532,"ventana":"Notepad"}}
+foco {"bundleId":"notepad.exe"} → {"id":5,"ok":true,"resultado":{"rol":"Document","subrol":"RichEditD2DPT","titulo":"Text editor","identificador":"","descripcion":"","ventana":"Untitled - Notepad","ruta":[{"rol":"Pane","indice":0,"titulo":""},{"rol":"Document","indice":0,"titulo":"Text editor"}]}}
+escribir {"bundleId":"notepad.exe","texto":"Prueba directa del auxiliar","modo":"teclear"} → {"id":6,"ok":true,"resultado":true}
+leer {"bundleId":"notepad.exe","elemento":{}} → {"id":7,"ok":true,"resultado":{"valor":"Prueba rrrrrrrrrrrrrrrrrrrr"}}
+escribir {"bundleId":"notepad.exe","texto":"Valor asignado por UI Automation","modo":"valor"} → {"id":8,"ok":true,"resultado":true}
+leer {"bundleId":"notepad.exe","elemento":{}} → {"id":9,"ok":true,"resultado":{"valor":"Valor asignado por UI Automation"}}
+apps {} → {"id":10,"ok":true,"resultado":[{"bundleId":"windowsterminal.exe","nombre":"C:\\Windows\\system32\\wsl.exe (WindowsTerminal)","pid":8068},{"bundleId":"notepad.exe","nombre":"*Valor asignado por UI Automation - Notepad (Notepad)","pid":4532},{"bundleId":"hosted-compute-agent.exe","nombre":
+grabar {"apps":["notepad.exe"],"teclado":true} → {"id":11,"ok":true,"resultado":true}
+clicRelativo {"bundleId":"notepad.exe","x":0.5,"y":0.5} → {"id":12,"ok":true,"resultado":true}
+EVENTO GRABADO {"evento":"paso","datos":{"app":"notepad.exe","paso":{"tipo":"pulsar","elemento":{"rol":"Document","subrol":"RichEditD2DPT","titulo":"Text editor","identificador":"","descripcion":"","ventana":"*Valor asignado por UI Automation - Notepad","ruta":[{"rol":"Pane","indice":0,"titulo":""},{
+teclas {"bundleId":"notepad.exe","combinacion":"ctrl+a"} → {"id":13,"ok":true,"resultado":true}
+EVENTO GRABADO {"evento":"paso","datos":{"app":"notepad.exe","paso":{"tipo":"teclas","combinacion":"ctrl+a","contexto":{"app":"notepad.exe","ventana":"*Valor asignado por UI Automation - Notepad"}}}}
+escribir {"bundleId":"notepad.exe","texto":"xy","modo":"teclear"} → {"id":14,"ok":true,"resultado":true}
+teclas {"bundleId":"notepad.exe","combinacion":"return"} → {"id":15,"ok":true,"resultado":true}
+EVENTO GRABADO {"evento":"paso","datos":{"app":"notepad.exe","paso":{"tipo":"teclas","combinacion":"return","contexto":{"app":"notepad.exe","ventana":"*xy - Notepad"}}}}
+grabar-detener {} → {"id":16,"ok":true,"resultado":true}
+teclas {"bundleId":"otra.exe","combinacion":"ctrl+a"} → {"id":17,"ok":false,"error":"La interfaz cambió: otra.exe no está al frente; no se envían teclas ni clics a otra aplicación."}
+  ok  1 tests\e2e\01-arranque-datos.spec.js:11:1 › P01 instalación limpia: arranque, contexto seguro, sin Node.js en la página, CSP y menús nativos (7.4s)
+  ok  2 tests\e2e\01-arranque-datos.spec.js:45:1 › P02–P06 crear, editar y consultar registros; fotografía; persistencia tras reiniciar; respaldo al salir; sin red (7.7s)
+  ok  3 tests\e2e\02-respaldo-importacion-roles.spec.js:11:1 › P07 exportación (Excel, JSON, plantillas) e importación de animales desde CSV con vista previa (7.0s)
+  ok  4 tests\e2e\02-respaldo-importacion-roles.spec.js:44:1 › P08 restauración desde un respaldo de la app, con punto de recuperación previo y verificación de integridad (6.1s)
+  ok  5 tests\e2e\02-respaldo-importacion-roles.spec.js:82:1 › P11 roles y permisos: operario sin permiso de respaldo/restauración; consulta solo lectura (5.0s)
+  ok  6 tests\e2e\03-migracion-recuperacion.spec.js:14:1 › P10 migración desde SIAF HTML en el navegador → SIAF para macOS, con verificación de registros, identificadores y fotos (30.3s)
+  ok  7 tests\e2e\03-migracion-recuperacion.spec.js:87:1 › P08b recuperación tras cierre forzado: datos confirmados intactos y punto de recuperación automático (5.5s)
+  ok  8 tests\e2e\04-automatizacion.spec.js:37:1 › P12 grabar acciones en SIAF, guardar la secuencia y reproducirla (5.4s)
+  ok  9 tests\e2e\04-automatizacion.spec.js:72:1 › P12b campos protegidos: el PIN nunca se graba (442ms)
+  ok 10 tests\e2e\04-automatizacion.spec.js:87:1 › P15 operación destructiva sin confirmar → la secuencia se detiene sin ejecutarla (945ms)
+  ok 11 tests\e2e\04-automatizacion.spec.js:96:1 › P15b la interfaz cambió: elemento inexistente → error comprensible, sin reintentar el clic (4.0s)
+  ok 12 tests\e2e\04-automatizacion.spec.js:103:1 › P15c detener de inmediato desde el menú (equivale a ⌘⇧⎋ y al botón de la barra flotante) (1.5s)
+  ok 13 tests\e2e\04-automatizacion.spec.js:115:1 › P12c modo paso a paso, pausas, validaciones, condición y punto de recuperación (13.0s)
+  ok 14 tests\e2e\04-automatizacion.spec.js:131:1 › P12d exportar e importar secuencias; aprobación de AppleScript no se hereda (1.5s)
+  -  15 tests\e2e\04-automatizacion.spec.js:149:1 › P13-mac automatización de TextEdit (app de prueba autorizada) — requiere macOS con Accesibilidad concedida
+NOTEPAD {"per":{"plataforma":"win32","auxiliar":{"ok":true,"ruta":"C:\\a\\test-123\\test-123\\siaf-escritorio\\build\\bin\\siaf-automator.exe"},"accesibilidad":true,"monitorEntrada":true,"pantalla":null,"nota":"Windows no exige permisos especiales para la automatización. No es posible controlar apli
+  ok 16 tests\e2e\04-automatizacion.spec.js:166:1 › P13-win automatización del Bloc de notas (app de prueba autorizada) — solo Windows (6.1s)
+  ok 17 tests\e2e\05-actualizacion-desinstalacion.spec.js:26:1 › P16 actualización 9.3.3 → 9.3.4 conserva datos, sesión, respaldos y preferencias (8.7s)
+  ok 18 tests\e2e\06-modulos.spec.js:9:1 › Módulos originales: cada sección de SIAF se abre y se dibuja sin errores (26.3s)
+  -  19 tests\e2e\07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco
+  17 passed (2.5m)
+OK C:\a\test-123\test-123\siaf-escritorio\build\bin\siaf-automator.exe
+# Subtest: Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+ok 6 - Motor: también confirma cuando el elemento real es peligroso aunque la grabación no lo marcó
+# pass 31
+# fail 0
+# skipped 2
+> 5/6 Empaquetado (arm64) - firma Authenticode: False
+  • building        target=MSI arch=arm64 file=dist\SIAF-9.3.3-arm64.msi
+  • building        target=zip arch=arm64 file=dist\SIAF-9.3.3-arm64.zip
+  • no code signing certificate configured, signing is skipped  path=dist\SIAF-9.3.3-arm64.msi
+  • building        target=nsis file=dist\SIAF-9.3.3-arm64-instalador.exe archs=arm64 oneClick=false perMachine=false
+  • no code signing certificate configured, signing is skipped  path=dist\SIAF-9.3.3-arm64-instalador.__uninstaller.exe
+  • no code signing certificate configured, signing is skipped  path=dist\SIAF-9.3.3-arm64-instalador.exe
+  • building block map  blockMapFile=dist\SIAF-9.3.3-arm64-instalador.exe.blockmap
+SIAF-9.3.3-arm64-instalador.exe: firma NotSigned
+Auxiliar incluido: C:\a\test-123\test-123\siaf-escritorio\dist\win-arm64-unpacked\resources\bin\siaf-automator.exe
+6ee5fbb6ee68b4f7916034adf3c87def123215a5bc4623fb0ce0b00359375ba3  SIAF-9.3.3-arm64-instalador.exe
+5b8f35a1488ee1585903cdd82633f8cb7ab65f945d72115f4a8a0ff55f432b74  SIAF-9.3.3-arm64.msi
+aeb753d5589d45283d8f1b840838e072d7eeae8ac334171d214e9000e70fafa0  SIAF-9.3.3-arm64.zip
+[36;1mif (-not (Test-Path (Join-Path ([Environment]::GetFolderPath('Programs')) 'SIAF.lnk'))) { Write-Warning 'Sin acceso directo en el menú Inicio' } else { 'Acceso directo en menú Inicio: OK' }[0m
+[36;1m"Respaldos antes: $antes · después de desinstalar: $despues" | Tee-Object -Append evidencias/ci/instalada-nsis-arm64.txt[0m
+Acceso directo en menú Inicio: OK
+  ok 1 tests\e2e\07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco (6.1s)
+  1 passed (6.9s)
+Respaldos antes: 2 · después de desinstalar: 2
+[36;1m"msiexec código: $($p.ExitCode)" | Tee-Object evidencias/ci/instalada-msi-arm64.txt[0m
+msiexec código: 0
+  ok 1 tests\e2e\07-app-empaquetada.spec.js:9:1 › App empaquetada: arranca desde el paquete, usa asar, incluye el auxiliar nativo y respalda en disco (8.7s)
+  1 passed (9.6s)
