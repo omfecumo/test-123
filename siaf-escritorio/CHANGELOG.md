@@ -11,6 +11,9 @@
 ### Corregido
 - `.gitattributes`: Git ya no altera el HTML original de SIAF en Windows (verificación SHA-256).
 - Activación de ventanas sin abrir la barra de menús de la app; pulsaciones Unicode sin teclas repetidas.
+- Tecleo con las teclas reales de la distribución de teclado (VK_PACKET solo como respaldo): en Windows 11 ARM64 el primer texto tras abrir el Bloc de notas salía alterado.
+- «Abrir aplicación» espera a que la app acepte entrada; «Escribir texto» (teclear) verifica el resultado y avisa si no coincide, tras restaurar y reintentar una vez.
+- Publicación automática de los ejecutables probados como versión preliminar de GitHub (`siaf-windows-v9.3.3`).
 
 ### Limitaciones conocidas
 - Instaladores sin firma Authenticode (SmartScreen advierte).

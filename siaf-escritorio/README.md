@@ -25,7 +25,7 @@ Ejecución de CI [#7](https://github.com/omfecumo/test-123/actions/runs/38607980
 
 ### Windows
 
-Ejecución de CI [Windows #6](https://github.com/omfecumo/test-123/actions/runs/38837424817) → **Artifacts** → `SIAF-Windows-x64-instaladores` o `SIAF-Windows-arm64-instaladores` (instalador `.exe`, `.msi`, `.zip` y `SHA256SUMS.txt`; disponible hasta el 14-01-2027). **Sin firma Authenticode**: SmartScreen pedirá «Más información → Ejecutar de todas formas» (ver `docs/WINDOWS.md`).
+Descarga directa (sin iniciar sesión): **[versión preliminar siaf-windows-v9.3.3](https://github.com/omfecumo/test-123/releases/tag/siaf-windows-v9.3.3)** → `SIAF-9.3.3-x64-instalador.exe` (PC Intel/AMD) o `SIAF-9.3.3-arm64-instalador.exe` (PC ARM); también `.msi`, `.zip` portátil y `SHA256SUMS-windows.txt`. Compilados y probados en la ejecución de CI [Windows #8](https://github.com/omfecumo/test-123/actions/runs/38841126973) (también en sus **Artifacts**). **Sin firma Authenticode**: SmartScreen pedirá «Más información → Ejecutar de todas formas» (ver `docs/WINDOWS.md`).
 
 ## Documentación
 

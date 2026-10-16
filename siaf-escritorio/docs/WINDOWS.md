@@ -17,6 +17,20 @@ Misma aplicación que la versión de macOS (una sola base de código: `siaf-escr
 
 Por qué no se usó otra tecnología: WebView2 (motor de Edge) también es Chromium, pero exigiría reescribir en .NET los respaldos, la migración, los menús y la automatización que ya están probados en Electron, y mantener dos bases de código. Con Electron, Windows y macOS comparten exactamente el mismo código y las mismas pruebas.
 
+## Descargar
+
+Los ejecutables compilados y probados por la CI se publican en la versión preliminar **[siaf-windows-v9.3.3](https://github.com/omfecumo/test-123/releases/tag/siaf-windows-v9.3.3)** (se reemplaza en cada compilación correcta de la rama):
+
+| Archivo | Uso |
+|---|---|
+| `SIAF-9.3.3-x64-instalador.exe` | Instalador para la mayoría de PC (Intel/AMD) — recomendado |
+| `SIAF-9.3.3-arm64-instalador.exe` | Instalador para PC con procesador ARM (Snapdragon, Surface Pro X) |
+| `SIAF-9.3.3-<arch>.msi` | Instalación por equipo (empresas) |
+| `SIAF-9.3.3-<arch>.zip` | Versión portátil, sin instalar |
+| `SHA256SUMS-windows.txt` | Sumas SHA-256 para comprobar la descarga (`Get-FileHash <archivo>`) |
+
+¿x64 o ARM64? Configuración → Sistema → Información → «Tipo de sistema».
+
 ## Instalar
 
 ### Instalador NSIS (recomendado)
@@ -88,6 +102,6 @@ Verificación: `Get-AuthenticodeSignature dist\SIAF-*-instalador.exe` debe indic
 
 ## Pruebas en Windows
 
-Resultados reales (CI, Windows Server 2025 x64 y Windows 11 ARM64): pruebas unitarias 31/31, E2E 17/17 (incluida la automatización del Bloc de notas), instalación NSIS y MSI con la app instalada probada, y desinstalación que conserva los respaldos. Detalle, errores corregidos y la limitación observada en ARM64 en la sección Windows de `PRUEBAS.md`; registros en `evidencias/ci-windows-*.txt`.
+Resultados reales (CI, Windows Server 2025 x64 y Windows 11 ARM64): pruebas unitarias 31/31, E2E 17/17 (incluida la automatización del Bloc de notas), instalación NSIS y MSI con la app instalada probada, y desinstalación que conserva los respaldos; el primer tecleo tras abrir el Bloc de notas, que fallaba en ARM64, quedó corregido y verificado. Detalle y errores corregidos en la sección Windows de `PRUEBAS.md`; registros en `evidencias/ci-windows-*.txt`.
 
 Pendiente de verificación manual: abrir desde los accesos directos con clic, SmartScreen con un instalador descargado, UIPI con una app elevada, Windows 10.

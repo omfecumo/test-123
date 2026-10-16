@@ -57,7 +57,7 @@ Suites: unitarias `tests/unit/*.test.js` (node:test) · extremo a extremo `tests
 
 ## Windows
 
-Ejecución [Windows #6](https://github.com/omfecumo/test-123/actions/runs/38837424817): **Windows Server 2025 Datacenter x64** (10.0.26100) y **Windows 11 Enterprise ARM64** (10.0.26200). Resúmenes en `evidencias/ci-windows-x64.txt` y `evidencias/ci-windows-arm64.txt`.
+Ejecución [Windows #8](https://github.com/omfecumo/test-123/actions/runs/38841126973) (commit 2837a7e; la #6 dio el mismo resultado salvo el diagnóstico de tecleo en ARM64, ver abajo): **Windows Server 2025 Datacenter x64** (10.0.26100) y **Windows 11 Enterprise ARM64** (10.0.26200). Resúmenes en `evidencias/ci-windows-x64.txt` y `evidencias/ci-windows-arm64.txt`.
 
 | # | Prueba | x64 | ARM64 | Evidencia / nota |
 |---|---|---|---|---|
@@ -66,11 +66,11 @@ Ejecución [Windows #6](https://github.com/omfecumo/test-123/actions/runs/388374
 | 3–11 | Apertura/cierre repetidos, persistencia, sin red, CRUD, importación/exportación, restauración, fotos, migración desde el HTML original en Chromium, roles | ✅ | ✅ | Las mismas pruebas E2E que en macOS: 17/17 |
 | 8b | Recuperación tras cierre forzado | ✅ | ✅ | `taskkill /T /F` de todo el árbol de procesos |
 | 12 | Grabación y reproducción dentro de SIAF | ✅ | ✅ | P12, P12b (PIN nunca grabado), P12c, P12d |
-| 13 | Automatización de app de prueba autorizada (Bloc de notas) | ✅ | ✅ | P13-win (abrir, teclear, validar el texto del control con foco). Diagnóstico directo del auxiliar: teclear, asignar valor (UI Automation), grabación por hooks (clic → «pulsar Document», Ctrl+A, Return) y rechazo a enviar teclas a una app que no está al frente |
+| 13 | Automatización de app de prueba autorizada (Bloc de notas) | ✅ | ✅ | P13-win (abrir, teclear, validar el texto del control con foco). Diagnóstico directo del auxiliar: primer tecleo justo después de abrir verificado («VERIFICACIÓN primer tecleo: OK» en ambas), teclear, asignar valor (UI Automation), grabación por hooks (clic → «pulsar Document», Ctrl+A, Return) y rechazo a enviar teclas a una app que no está al frente |
 | 14 | Permisos | ➖ | ➖ | Windows no exige permisos de privacidad para UI Automation; la limitación UIPI (apps «como administrador») está documentada, no probada |
 | 15 | Interrupción y operaciones destructivas | ✅ | ✅ | P15, P15b, P15c |
 | 16 | Actualización sin pérdida | ✅ | ✅ | P16 |
-| 17 | Desinstalación sin borrar respaldos | ✅ | ✅ | Desinstalación silenciosa NSIS: respaldos antes = después (x64: 1 → 1; ARM64: 2 → 2) |
+| 17 | Desinstalación sin borrar respaldos | ✅ | ✅ | Desinstalación silenciosa NSIS: respaldos antes = después (x64: 1 → 1; ARM64: 1 → 1) |
 | 18 | Arquitecturas | ✅ x64 | ✅ ARM64 | Instaladores separados por arquitectura; auxiliar AnyCPU |
 
 Errores encontrados y corregidos en Windows:
@@ -80,4 +80,10 @@ Errores encontrados y corregidos en Windows:
 3. **En el Bloc de notas de Windows 11, las pulsaciones enviadas en un mismo lote se repetían**: ahora se envían por separado.
 4. Pruebas: cierre forzado de todo el árbol de procesos; confirmación de valores al rellenar formularios; ventanas del sistema del runner que roban el foco («Microsoft account», búsqueda del menú Inicio).
 
-Limitación observada (no resuelta): en Windows 11 ARM64, el **primer** texto tecleado justo después de abrir el Bloc de notas nuevo salió alterado en el diagnóstico directo («Prueba rrrr…»); los textos siguientes y la prueba P13-win fueron correctos. Recomendación: añadir una pausa tras «Abrir aplicación» o usar el modo «valor» (UI Automation), que fue correcto siempre.
+5. **En Windows 11 ARM64, el primer texto tecleado justo después de abrir el Bloc de notas salía alterado** (#6: «Prueba rrrrrrrrrrrrrrrrrrrr»; #7, ya con espera y verificación: «Prueba directa eel auxiliar»). Causa: el Bloc de notas nuevo procesaba mal las pulsaciones Unicode (VK_PACKET). Corrección:
+   * el auxiliar teclea con las **teclas reales** de la distribución de teclado de la ventana al frente (tecla + Mayús, con Bloq Mayús tenido en cuenta); VK_PACKET queda solo para caracteres que no están en esa distribución;
+   * «Abrir aplicación» espera a que la app acepte entrada (`WaitForInputIdle`) antes de activarla;
+   * «Escribir texto» en modo teclear **comprueba el resultado** cuando el control es legible: si no coincide, restaura el valor anterior y reintenta una vez; si sigue sin coincidir, el paso **falla con un mensaje claro** en vez de dejar texto alterado sin avisar (comprobado en #7, donde detectó el error).
+   Resultado en #8: «Prueba directa del auxiliar» correcto en x64 y ARM64 al primer intento.
+
+Observación (sin corregir, no afecta a las pruebas): en el Bloc de notas clásico de Windows Server 2025 (control `Edit`), «Escribir texto» en modo «valor» insertó el texto en la posición del cursor en lugar de reemplazar el contenido («Prueba directa del auxiliarValor asignado…»). En el Bloc de notas de Windows 11 reemplaza. Si necesita reemplazar en apps antiguas, anteponga un paso Ctrl+A.
