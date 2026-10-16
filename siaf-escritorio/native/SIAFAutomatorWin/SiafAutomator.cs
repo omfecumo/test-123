@@ -526,7 +526,7 @@ namespace SiafAutomator
             Console.OutputEncoding = new UTF8Encoding(false);
             if (args.Length > 0 && args[0] != "serve")
             {
-                try { Console.WriteLine(Json.Serialize(Ejecutar(args[0], new Dictionary<string, object>()))); return 0; }
+                try { var r = Ejecutar(args[0], new Dictionary<string, object>()); Console.WriteLine(r is string ? (string)r : Json.Serialize(r)); return 0; }
                 catch (Exception e) { Console.Error.WriteLine(e.Message); return 1; }
             }
             var entrada = new StreamReader(Console.OpenStandardInput(), new UTF8Encoding(false));
